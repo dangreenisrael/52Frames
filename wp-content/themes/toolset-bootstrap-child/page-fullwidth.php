@@ -4,22 +4,43 @@ Template Name: Full width template - without sidebar
 */
 get_header(); ?>
 
-/*
-	<?php
 
-		while ( have_posts() ) : the_post();
-			get_template_part( 'content', 'page' );
+	<?php
+		//get_active_album();
+		while ( have_posts() ) :
+
+			the_post();
+			$albums = get_terms('photo_alboms', array('hide_empty' => false));
+			//var_dump( get_active_album());
+			//get_template_part( 'content', 'page' );
 		endwhile;
 	?>
-*/
 
-	$images =& get_children( 'post_type=attachment&post_mime_type=image&post_parent=10' );
+<pre>
+<?php
 
-	$counter=0;
-	foreach( (array) $images as $attachment_id => $attachment )
-	{
-	$counter++;
-	echo "<a href='".wp_get_attachment_link( $attachment_id ) . "'>image $counter</a><br />";
+	$args = array(
+		'post_type' => 'attachment',
+		'numberposts' => -1,
+		'post_status' => null,
+		'post_parent' => null, // any parent,
+
+	);
+
+	$attachments = get_posts($args);
+	var_dump( term_exists( 'photo-alboms') );
+	echo get_active_album()->slug;
+	if ($attachments) {
+		foreach ($attachments as $post) {
+
+			$product_terms = wp_get_object_terms( $post->ID,  'photo-alboms' );
+			var_dump($product_terms);
+		}
 	}
 
-<?php get_footer();
+	exit;
+?>
+
+<?php
+	get_footer();
+?>

@@ -8,6 +8,7 @@
 
  */
 
+
 ?>
 
 
@@ -25,9 +26,11 @@
 <div class="holder span6">
 	<div class="albom-name-photo">
 
-	<h1><?php
+	<h1>
+	<?php
 
 	echo types_render_field("alboms-name", array("show_name"=>"false","output"=>"html","id"=>"$parent"));
+
 
 	?></h1>
 
@@ -72,13 +75,6 @@
 
 			<?php endif; ?>
 
-
-
-			
-
-
-
-			
 
 
 

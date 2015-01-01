@@ -78,6 +78,7 @@ function add_photo_js() {
 	</script>
 	<?php
 }
+
 add_action('wp_footer', 'add_photo_js');
 
 add_action('cred_save_data', 'add_data_to_photo',10,2);
@@ -86,11 +87,15 @@ function add_data_to_photo($post_id, $form_data){
 	if ($form_data['id'] == 92) {
 		$active_album = get_active_album();
 		// Add Photo association to the album
-		wp_set_object_terms($post_id, array($active_album->slug), 'photo_alboms');
+		var_dump(wp_set_object_terms($post_id, $active_album->slug, 'photo_alboms'));
 
 		// Add Photo association to Editor tags
 		$album_tag_ids = get_field('album_tags', $active_album);
 		$tag_names = get_terms('post_tag', array('include' => $album_tag_ids, 'fields' => 'names'));
 		wp_set_post_tags($post_id, $tag_names, true);
+
+		exit;
 	}
 }
+
+
