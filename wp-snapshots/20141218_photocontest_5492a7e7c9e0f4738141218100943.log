@@ -1,0 +1,96 @@
+********************************************************************************
+PACKAGE-LOG: 2014-12-18 10:12:07
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	0.5.8
+WORDPRESS:	4.0.1
+PHP INFO:	5.3.29 | SAPI: cgi-fcgi
+SERVER:		Apache 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 5000M (256M default) 
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   PHP
+MYSQLDUMP:    Is Supported
+MYSQLTIMEOUT: 5000 
+TABLES: total:29 | filtered:0 | create:29 
+FILTERED: [] 
+wp_bp_activity (1) 
+wp_bp_activity_meta (0) 
+wp_bp_follow (0) 
+wp_bp_notifications (0) 
+wp_bp_xprofile_data (1) 
+wp_bp_xprofile_fields (10) 
+wp_bp_xprofile_groups (1) 
+wp_bp_xprofile_meta (8) 
+wp_commentmeta (0) 
+wp_comments (1) 
+wp_duplicator_packages (1) 
+wp_links (0) 
+wp_options (295) 
+wp_postmeta (408) 
+wp_posts (128) 
+wp_ratings (8) 
+wp_signups (0) 
+wp_term_relationships (34) 
+wp_term_taxonomy (10) 
+wp_terms (10) 
+wp_usermeta (85) 
+wp_users (2) 
+wp_wp_rp_tags (11) 
+wp_wti_like_post (2) 
+wp_yasr_log (1) 
+wp_yasr_multi_set (1) 
+wp_yasr_multi_set_fields (4) 
+wp_yasr_multi_values (96) 
+wp_yasr_votes (1) 
+SQL CREATED: 20141218_photocontest_5492a7e7c9e0f4738141218100943_database.sql 
+SQL FILE SIZE: 692.06KB 
+SQL RUNTIME: 0.22 sec. 
+
+******************************************************************************** 
+ARCHIVE (ZIP): 
+******************************************************************************** 
+ARCHIVE DIR:  /home/contest/public_html 
+ARCHIVE FILE: 20141218_photocontest_5492a7e7c9e0f4738141218100943_archive.zip 
+FILTERS: *OFF* 
+DIRS:  not set 
+EXTS:  not set 
+---------------------------------------- 
+COMPRESSING 
+SIZE:	56.31MB 
+STATS:	Dirs 887 | Files 5,010 | Links 0 
+SQL ADDED: 20141218_photocontest_5492a7e7c9e0f4738141218100943_database.sql 
+WARNING: Unable to zip directory: '/home/contest/public_html' 
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 5897
+    [filename] => /home/contest/public_html/wp-snapshots/tmp/20141218_photocontest_5492a7e7c9e0f4738141218100943_archive.zip
+    [comment] => 
+)
+ 
+COMPRESSION RESULT: '1' 
+COMPRESSED SIZE: 20.48MB 
+ARCHIVE RUNTIME: 16.25 sec. 
+
+******************************************************************************** 
+INSTALLER: 
+******************************************************************************** 
+INSTALLER FILE: Build Start 
+INSTALLER FILE: Build Finished 
+INSTALLER FILE: Preping for use 
+INSTALLER FILE: Template parsed with new data 
+INSTALLER FILE: Complete [/home/contest/public_html/wp-snapshots/tmp/20141218_photocontest_5492a7e7c9e0f4738141218100943_installer.php] 
+INSTALLER FILE: Added to archive 
+
+********************************************************************************
+RECORD ID:[3]
+FILE SIZE: Archive:20.48MB | SQL:692.06KB | Installer:414.45KB
+TOTAL PROCESS RUNTIME: 16.91 sec.
+DONE PROCESSING => 20141218_photocontest 2014-12-18 10:12:24
+********************************************************************************
+ 
