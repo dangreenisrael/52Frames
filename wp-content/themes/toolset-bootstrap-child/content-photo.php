@@ -12,10 +12,41 @@
 ?>
 
 
+
+<?php
+	/*
+	 * Page Variables
+	 */
+	$album 			= wp_get_post_terms(get_the_ID(),'photo_alboms')[0];
+	$user_id		= $post->post_author;
+	$user 			= get_user_by( 'id', $user_id );
+	$album_name 	= $album->name;
+	$album_slug 	= $album->slug;
+	$author_name	= $user->display_name;
+	$author_pic		= get_avatar( $user->ID, '256');
+
+?>
 <div class="raw">
 
 <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
 
+
+	<?php
+		block_page($album_slug);
+	?>
+
+	<pre>
+	<?php
+		echo $album_name .'
+	';
+		echo $author_name.'
+	';
+		echo $author_pic.'
+	';
+		//var_dump($user);
+	?>
+
+	</pre>
 
 <div class="for-columns-4">
 <div class="row-fluid">

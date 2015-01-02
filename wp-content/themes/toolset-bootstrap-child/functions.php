@@ -36,9 +36,11 @@ function switch_homepage() {
 	    update_option( 'page_on_front', $page->ID );
 	    update_option( 'show_on_front', 'page' );
 	} else {
+		/*
 	    $page = get_page_by_title( 'Coming Soon!' );
 	    update_option( 'page_on_front', $page->ID );
 	    update_option( 'show_on_front', 'page' );
+		*/
 	}
 }
 add_action( 'init', 'switch_homepage' );
@@ -93,9 +95,56 @@ function add_data_to_photo($post_id, $form_data){
 		$album_tag_ids = get_field('album_tags', $active_album);
 		$tag_names = get_terms('post_tag', array('include' => $album_tag_ids, 'fields' => 'names'));
 		wp_set_post_tags($post_id, $tag_names, true);
-
-		exit;
 	}
 }
 
 
+/*
+ *  Check if the user has posted to the open album
+ *
+ *  Returns true is the user hasn't posted yet (allowed to post)
+ */
+function allowed_to_post_photo(){
+
+	$current_user = wp_get_current_user()->ID;
+	if ($current_user == 0) return true;
+	$args = array(
+		'post_type' => 'photo',
+		'numberposts' => -1,
+		'author'    => $current_user,
+		'post_author' => $current_user,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'photo_alboms',
+				'field' => 'slug',
+				'terms' => get_active_album()
+			)
+		)
+	);
+
+	$all_attachments = get_posts( $args );
+	$i=0;
+	foreach ($all_attachments as $attachment){
+		$i++;
+	}
+	return ($i < 1);
+}
+
+
+/*
+ * Block users from pages they don't have access to
+ */
+
+function block_page($album_slug){
+	$current_user = wp_get_current_user();
+	if ( !($current_user instanceof WP_User) ) return;
+	$roles = $current_user->roles;
+	$open_album_slug = get_active_album()->slug;
+	if ($album_slug == $open_album_slug) {
+		if ( !(in_array('administrator', $roles) || in_array('judge', $roles) || in_array('moderator', $roles)) ){
+			echo "<h2> You shouldn't be here </h2>";
+			get_footer();
+			exit;
+		}
+	}
+}
