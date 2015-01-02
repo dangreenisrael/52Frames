@@ -30,20 +30,17 @@ function register_my_menu() {
 add_action( 'init', 'register_my_menu' );
 
 
-function switch_homepage() {
-	if ( is_user_logged_in() ) {
-	    $page = get_page_by_title( 'Submit Your Photo' );
-	    update_option( 'page_on_front', $page->ID );
-	    update_option( 'show_on_front', 'page' );
-	} else {
-		/*
-	    $page = get_page_by_title( 'Coming Soon!' );
-	    update_option( 'page_on_front', $page->ID );
-	    update_option( 'show_on_front', 'page' );
-		*/
-	}
-}
-add_action( 'init', 'switch_homepage' );
+// function switch_homepage() {
+// 	if ( is_user_logged_in()) {
+// 		$page = get_page_by_title( 'Submit Your Photo' );
+// 	    update_option( 'page_on_front', $page->ID );
+// 	    update_option( 'show_on_front', 'page' );
+// 	}else{
+//         wp_redirect( 'http://qa.52frames.com' );
+//         exit;
+//     }
+// }
+// add_action( 'init', 'switch_homepage' );
 
 /************* THUMBNAIL SIZE OPTIONS *************/
 

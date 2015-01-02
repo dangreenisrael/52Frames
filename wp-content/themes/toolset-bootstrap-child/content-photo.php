@@ -24,7 +24,7 @@
 	$album_slug 	= $album->slug;
 	$author_name	= $user->display_name;
 	$author_pic		= get_avatar( $user->ID, '256');
-
+	$week_num		= get_field('week_number',$album)
 ?>
 <div class="raw">
 
@@ -42,6 +42,8 @@
 		echo $author_name.'
 	';
 		echo $author_pic.'
+	';
+		echo $week_num.'
 	';
 		//var_dump($user);
 	?>
