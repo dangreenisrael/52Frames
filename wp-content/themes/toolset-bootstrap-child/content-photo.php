@@ -24,7 +24,8 @@
 	$album_slug 	= $album->slug;
 	$author_name	= $user->display_name;
 	$author_pic		= get_avatar( $user->ID, '256');
-	$week_num		= get_field('week_number',$album)
+	$week_num		= get_field('week_number',$album);
+	$extra_credit	= types_render_field("extra-challange", array("show_name"=>"true","output"=>"html","id"=>"extra-challange"));
 ?>
 <div class="raw">
 
@@ -45,6 +46,9 @@
 	';
 		echo $week_num.'
 	';
+		echo $extra_credit.'
+	';
+
 		//var_dump($user);
 	?>
 
@@ -277,7 +281,7 @@
 
 		<?php
 
-		echo types_render_field("extra-challange", array("show_name"=>"true","output"=>"html","id"=>"extra-challange"));
+		
 
 		echo types_render_field("type-of-photo", array("show_name"=>"true","output"=>"html","id"=>"type-of-photo"));
 

@@ -37,77 +37,22 @@ Template Name: Register and Edit Profile
 		do_action( 'wpbootstrap_after_wp_head' );
 	?>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<style>
-	h1,h2,h3{
-		font-family: 'proxima_novasemibold';
-	}
-	p,li{
-		font-size:16px;
-		line-height: 24px;
-	}
-	h1{
-		color:rgba(34, 55, 79, 0.74);		
-		font-size:48px;
-		-ms-transform: rotate(-1deg); /* IE 9 */
-    	-webkit-transform: rotate(-1deg); /* Chrome, Safari, Opera */
-    	transform: rotate(-1deg);
-    	line-height: 275px;
-		height: 167px;
-	}
-	h2{
-		font-size:36px;
-		color:#56A3CE;
-		line-height:normal;
-	}
-	h3{
-		color:#F25A5A;
-		font-size:20px;
-	}
-	img.alignleft{margin:0;margin-right:50px;}
-	.fbconnect{
-		margin-right:50px;
-		margin-top: 20px;
-		display: block;
-	}
-	.register-trigger {
-		float:right;
-		margin-top:-55px;
-	}
-
-	.register-trigger a{
-		text-decoration: underline;
-		color:#fff;
-	}
-	#wppb_register_pre_form_message{
-		display:none;
-	}
-	.wppb-send-credentials-checkbox{display: none;}
-	.wppb-user-forms .wppb-checkboxes li, .wppb-user-forms .wppb-radios li{
-		width:100%;
-	}
-	#wppb-register-user .wppb-field-error, #wppb-edit-user .wppb-field-error, #wppb-recover-password .wppb-field-error{
-		background:none;
-	}
-	.wppb-form-field > span.wppb-form-error{
-		color:red !important;
-	}
-	</style>
-	
+		
 </head>
 
 <body <?php body_class(); ?>>
 	<div class="container">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
-			<section class="span12" id="content" role="main">
+			<section class="row" id="content" role="main">
 			<?php
 				while ( have_posts() ) : the_post();?>
 					<article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">	
 					<header class="article-header clearfix">	
-						<img src="<?php echo get_stylesheet_directory_uri() ?>/images/camera_monster.png" class="alignleft">				
-						<h1><?php the_title()?> </h1>
+						<img src="<?php echo get_stylesheet_directory_uri() ?>/images/camera_monster.png" class="monster">				
 					</header>	
 					<div class="entry-content">
+							<h1><?php the_title()?> </h1>
 							<?php the_content(); ?>
 					</div><!-- .entry-content -->
 
