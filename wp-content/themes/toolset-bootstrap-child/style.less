@@ -120,6 +120,10 @@ video {
 	position: absolute;
 	right: 0;
 }
+.page-title {
+	text-align:center;
+	padding-bottom: 40px;
+}
 
 /* NAVBAR */
 	#header{
@@ -168,6 +172,7 @@ video {
 	box-shadow: none;
 }
 /* END NAVBAR */
+
 
 /** NEWSLETTER ****/
 
@@ -272,15 +277,6 @@ video {
   }
 }
 
-
-.cred-form{
-	.span6,.span4, .span12{padding-left:0;}
-
-
-.container-fluid{
-	padding:0;
-}
-
 /* NAVBAR */
 	#header{
 	background: #242d36;
@@ -329,10 +325,7 @@ video {
 }
 /* END NAVBAR */
 
-.page-title {
-	text-align:center;
-	padding-bottom: 40px;
-}
+
 
 /*** FAQ ****/
 
@@ -404,11 +397,14 @@ video {
 
 .cred-form{
 	.span6,.span4, .span12{padding-left:0;}
-	.span6{width: 50%;}
-  	.span4:not(.tags),.span6{
-  		padding-right:5%;
-  		margin-left:0;
-  	}
+	
+	@media (min-width: 768px){
+		.span6{width: 50%;}
+	  	.span4:not(.tags),.span6{
+	  		padding-right:5%;
+	  		margin-left:0;
+	  	}
+	}
   	label {
     font-family: 'proxima_novasemibold';
     color: @gray;   
@@ -1136,11 +1132,7 @@ div#mc_embed_signup {
 
 	}
 }
-	.span6{width: 50%;}
-  	.span4:not(.tags),.span6{
-  		padding-right:5%;
-  		margin-left:0;
-  	}
+	
 
 /****SUBMIT PHOTO *****/
 
@@ -1202,13 +1194,7 @@ div#mc_embed_signup {
 }
 
 
-.cred-form{
-	.span6,.span4, .span12{padding-left:0;}
-	.span6{width: 50%;}
-  	.span4:not(.tags),.span6{
-  		padding-right:5%;
-  		margin-left:0;
-  	}
+
   	label {
     font-family: 'proxima_novasemibold';
     color: @gray;   
@@ -1308,7 +1294,7 @@ div#mc_embed_signup {
 		&:hover{background: lighten(@sub-color,5%);}
 	}
 	 
-}
+
 label[for="file-input"]{
   display: block;
   margin-bottom: 1em;
@@ -2028,7 +2014,7 @@ div#mc_embed_signup {
 		&:hover{background: lighten(@sub-color,5%);}
 	}
 	 
-}
+
 label[for="file-input"]{
   display: block;
   margin-bottom: 1em;
