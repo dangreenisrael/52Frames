@@ -1,4 +1,6 @@
 <?php
+require('functions_dan.php');
+require('functions_hanit.php');
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
 function theme_enqueue_styles() {
