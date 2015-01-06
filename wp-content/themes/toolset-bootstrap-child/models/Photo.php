@@ -7,10 +7,16 @@
  */
 
 class Photo {
-    private $photoId;
+    private $postId;
+    private $postObject;
+    private $judgeRatingText;
+    private $photoMeta;
 
-    public function __construct($photoId){
-        $this->photoId = $photoId;
+    public function __construct($postId){
+        $this->postId = $postId;
+        $this->postObject = get_post($postId);
+        $this->judgeRatingText = strip_tags(the_ratings_results($this->postId));
+        $this->photoMeta = get_post_meta( $this->postId);
     }
 
 
@@ -18,27 +24,42 @@ class Photo {
      * Return String
      */
     public function getUrl(){
-        return null;
+        return wp_get_attachment_url( get_post_thumbnail_id($this->postId) );
     }
 
 
     /*
      * Return Boolean
      */
-    public function getIsRated(){
-        return null;
+    public function getIsJudgeRated(){
+        $rating = intval($this->photoMeta['ratings_users'][0]);
+        if ($rating == 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    /*
+     * Return Number
+     */
+    public function getJudgeRatingCount(){
+        $rating = $this->photoMeta['ratings_users'][0];
+        return intval($rating);
     }
 
 
     /*
      * Return Number
      */
-    public function getRating(){
-        return null;
+    public function getJudgeRating(){
+        $rating = $this->photoMeta['ratings_average'][0];
+        return floatval($rating);
     }
 
 
     /*
+     *
      * Return Array of Objects
      */
     public function getWhoRated(){
@@ -47,18 +68,11 @@ class Photo {
 
 
     /*
-     * Return Number
-     */
-    public function getRatingCount(){
-        return null;
-    }
-
-
-    /*
      * Return Object
      */
     public function getAuthor(){
-        return null;
+        $authorID = $this->postObject->post_author;
+        return new Author($authorID);
     }
 
 
@@ -74,7 +88,7 @@ class Photo {
      * Return Number
      */
     public function getTotalLikes(){
-        return null;
+        return intval(GetWtiLikeCount($this->postId));
     }
 
 
@@ -82,7 +96,7 @@ class Photo {
      * Return Number
      */
     public function getTotalViews(){
-        return null;
+        return intval(getPostViews($this->postId));
     }
 
 
@@ -140,7 +154,8 @@ class Photo {
      * Return Number
      */
     public function getYear(){
-        return null;
+        $date=date_create($this->postObject->post_date);
+        return date_format($date,"Y");
     }
 
 
@@ -148,7 +163,7 @@ class Photo {
      * Return Boolean
      */
     public function getHasExtraCredit(){
-        return null;
+        return get_post_custom_values('wpcf-extra-challange', $this->postId)[0];
     }
 
 
@@ -163,8 +178,15 @@ class Photo {
     /*
      * Return Boolean
      */
-    public function getHasNudity(){
-        return null;
+    public function getHasNudity1(){
+        return get_post_custom_values('wpcf-theres-nudity', $this->postId)[0];
+    }
+
+    /*
+     * Return Boolean
+     */
+    public function getHasNudity2(){
+        return get_post_custom_values('wpcf-has-nudity', $this->postId)[0];
     }
 
 
@@ -172,7 +194,7 @@ class Photo {
      * Return Boolean
      */
     public function getIsForSale(){
-        return null;
+        return get_post_custom_values('wpcf-for-sale', $this->postId)[0];
     }
 
 

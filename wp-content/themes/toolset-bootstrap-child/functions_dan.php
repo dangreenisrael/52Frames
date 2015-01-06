@@ -16,10 +16,11 @@ require('models/Comments.php');
 
 
 /*
-$photo = new Photo(123);
+ * Find Between (no RegEx)
+ */
 
-//$photo = new Photo();
-echo "<pre>";
-echo $photo->getUrl();
-echo "</pre>";
-*/
+function contentBetween($haystack, $start,$end){
+    $startsAt = strpos($haystack, $start) + strlen($start);
+    $endsAt = strpos($haystack, $end, $startsAt);
+    return substr($haystack, $startsAt, $endsAt - $startsAt);
+}
