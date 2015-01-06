@@ -181,12 +181,10 @@ function validate_album_status( $valid, $value, $field, $input ){
 	if ($value != 'OPEN')
 		return $valid;
 
-	$valid = 'AAAAAA';
-
-	// $albums = get_terms('photo_alboms', array('hide_empty' => 0));
-	// foreach ($albums as $album) {
-	// 	if (get_field('album_status', $album) == 'OPEN')
-	// 		return false;
-	// }
+	$albums = get_terms('photo_alboms', array('hide_empty' => 0));
+	foreach ($albums as $album) {
+		if (get_field('album_status', $album) == 'OPEN')
+			return 'Album '.$album->name." already marked as OPEN";
+	}
 	return $valid;
 }
