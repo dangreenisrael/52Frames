@@ -25,7 +25,7 @@
 	$author_name	= $user->display_name;
 	$author_pic		= get_avatar( $user->ID, '256');
 	$week_num		= get_field('week_number',$album);
-	$extra_credit	= types_render_field("extra-challange", array("show_name"=>"true","output"=>"html","id"=>"extra-challange"));
+	$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
 ?>
 <div class="raw">
 
@@ -322,6 +322,9 @@
 
 		<?php endif; ?>
 
+</div>
+<div class="extra_challange">
+		Extra Credit: <?php echo (($extra_credit == '1') ? 'Yes' : 'No') ?>
 </div>
 <div class="holder span6">
 

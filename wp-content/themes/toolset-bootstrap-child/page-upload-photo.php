@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Page Upload Template
+Template Name: Submit Photo Template
 */
 get_header(); ?>
 

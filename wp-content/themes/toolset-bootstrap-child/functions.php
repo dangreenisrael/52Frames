@@ -13,6 +13,7 @@ function enqueue_my_scripts() {
 
     wp_enqueue_style('child', get_stylesheet_directory_uri() . '/child.css');
     wp_enqueue_style( 'fontAwesome', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
+    wp_enqueue_style( 'glyphicons', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
    	wp_enqueue_style( 'parent-style', get_stylesheet_directory_uri() . '/assets/styles.css' ); 
 	wp_enqueue_style( 'countdown', get_stylesheet_directory_uri() . '/assets/jquery.countdown.css' ); 
 
@@ -30,23 +31,17 @@ function register_my_menu() {
 add_action( 'init', 'register_my_menu' );
 
 
-function switch_homepage() {
-	if ( is_user_logged_in() ) {
-	    $page = get_page_by_title( 'Submit Your Photo' );
-	    update_option( 'page_on_front', $page->ID );
-	    update_option( 'show_on_front', 'page' );
-	} else {
-		
-	    $page = get_page_by_title( 'Coming Soon!' );
-	    update_option( 'page_on_front', $page->ID );
-	    update_option( 'show_on_front', 'page' );
-	    /*
-	    wp_redirect( 'http://qa.52frames.com', 302 );
-    	exit;*/
-	}
-}
-add_action( 'init', 'switch_homepage' );
->>>>>>> Stashed changes
+// function switch_homepage() {
+// 	if ( is_user_logged_in()) {
+// 		$page = get_page_by_title( 'Submit Your Photo' );
+// 	    update_option( 'page_on_front', $page->ID );
+// 	    update_option( 'show_on_front', 'page' );
+// 	}else{
+//         wp_redirect( 'http://qa.52frames.com' );
+//         exit;
+//     }
+// }
+// add_action( 'init', 'switch_homepage' );
 
 /************* THUMBNAIL SIZE OPTIONS *************/
 
@@ -150,4 +145,46 @@ function block_page($album_slug){
 			exit;
 		}
 	}
+}
+
+/*
+* Filter Posts by Author 
+*/
+
+add_filter('posts_join', 'zipsearch_search_join' );
+function zipsearch_search_join ($join){
+    global $pagenow, $wpdb;
+    if ( is_admin() && $pagenow=='edit.php' && $_GET['post_type']=='photo' && $_GET['s'] != '') {    
+        $join .='LEFT JOIN '.$wpdb->users. ' ON '. $wpdb->posts . '.post_author = ' . $wpdb->users . '.ID ';
+    }
+    return $join;	
+}
+add_filter( 'posts_where', 'zipsearch_search_where' );
+function zipsearch_search_where( $where ){
+    global $pagenow, $wpdb;
+    if ( is_admin() && $pagenow=='edit.php' && $_GET['post_type']=='yphoto' && $_GET['s'] != '') {
+       $where = preg_replace(
+       "/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+       "(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->users.".display_name LIKE $1)", $where );
+    }
+    return $where;
+}
+
+add_filter('acf/validate_value/name=album_status', 'validate_album_status', 10, 4);
+function validate_album_status( $valid, $value, $field, $input ){
+	if( !$valid ) {
+		return $valid;
+	}
+
+	if ($value != 'OPEN')
+		return $valid;
+
+	$valid = 'AAAAAA';
+
+	// $albums = get_terms('photo_alboms', array('hide_empty' => 0));
+	// foreach ($albums as $album) {
+	// 	if (get_field('album_status', $album) == 'OPEN')
+	// 		return false;
+	// }
+	return $valid;
 }

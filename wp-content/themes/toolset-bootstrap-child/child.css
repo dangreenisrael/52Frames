@@ -1,21 +1,9 @@
-body{
-	font-family: 'proxima_nova_rgregular';
-}
-body:not(.page-template-page-home-php) #main{
-  padding-bottom:100px;
-}
+
 .site-description{
 	color:#8CC6E7;
 	font-family: 'proxima_novalight';
 }
-.top-bar hgroup{
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto !important;
-  text-align: center;
 
-}
 .latest-albums{
 	margin-top:-110px;
 	position: relative;

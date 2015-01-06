@@ -10,7 +10,7 @@
 		<div class="row-fluid" id="newsletter-hp">
 			<div class="container">
 				<div class="span6">
-					<h3 class="title-newsletter"><?php the_field('newsletter_title',194); ?></h3>
+					<h3 class="title-newsletter"><?php// the_field('newsletter_title',194); ?>Monthly Newsletter</h3>
 					<div id="newsletter-text-hp"><?php the_field('newsletter_body',194); ?></div>
 				</div>
 				<div class="span6 pull-right">
@@ -76,7 +76,49 @@
 		<?php do_action( 'wpbootstrap_after_footer' ); ?>
 
 	</div><!-- .container -->
+<script>
+$(function(){
+	var today = new Date(); 
+	var note = $('#note'),
+		// ts = new Date(2012, 0, 1),
+		ts = new Date(today.getFullYear(),today.getMonth(),today.getDate()+(7-today.getDay()));
+		newYear = true;
+	
+	if((new Date()) > ts){
+		// The new year is here! Count towards something else.
+		// Notice the *1000 at the end - time must be in milliseconds
+		ts = (new Date()).getTime() + 10*24*60*60*1000;
+		newYear = false;
+	}
+		
+	$('#countdown').countdown({
+		timestamp	: ts,
+		callback	: function(days, hours, minutes, seconds){
+			
+			var message = "";
+			
+			message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+			message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+			message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+			message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+			
+			if(newYear){
+				message += "left until the new year!";
+			}
+			else {
+				message += "left to 10 days from now!";
+			}
+			
+			note.html(message);
+		}
+	});
+	
+});
 
+    $( "#FileInput" ).change(function() {
+      $( "#Up" ).click();
+    });
+</script>
 <?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
 <?php wp_footer(); ?>
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>

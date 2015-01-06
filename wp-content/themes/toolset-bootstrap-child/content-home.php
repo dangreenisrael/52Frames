@@ -68,31 +68,19 @@ jQuery(function() {
                  </div>
                  <div class="albums-carousel">
               <?php
-              $terms2 = get_terms('photo_alboms');
-              $open_album = get_active_album()->slug;
+              $terms2 = get_terms('photo_alboms'); 
                 if ( !empty( $terms2 ) && !is_wp_error( $terms2 ) ){
                 	 foreach ( $terms2 as $term2 ) {
-                         if ($term2->slug == $open_album) continue;
-                      $term_link = get_term_link( $term2, 'photo_alboms' );
+                      if (get_field('', $term2) == 'CLOSE')
+                        continue;
+                      $week = get_field('week_number', $term2);
+                      $term_link = get_term_link( $term2, 'photo_alboms' ); 
                       $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
-                       ?>
-                         <div class="span3 winning_image">
-                             <a href="<?php echo get_permalink($variable->ID);?>">
-                                 <?php echo get_the_post_thumbnail($variable->ID, "thumb-480"); ?>
-                             </a>
-                            <div class="week-name">
-                                <div class="album-stats">
-                                    <span class="week-number-hp">
-                                        Week 47
-                                    </span>
-                                    </br>
-                                    <a class="album-name-hp" href="<?php echo esc_url( $term_link );?>'">
-                                        <?php echo $term2->name;?>
-                                    </a>
-                                </div>
-                            </div>
-                         </div>
-                    <?
+                      $term_link = get_field('fb_link', $term2);
+                      // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
+                      echo '<div class="span3 winning_image"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
+                      echo '<div class="week-name"><div class="album-stats"><span class="week-number-hp">Week '.$week.'</span></br><a class="album-name-hp" href="'.esc_url( $term_link ).'">'.$term2->name.'</a></div></div></div>';
+
                     }
               }
               ?>

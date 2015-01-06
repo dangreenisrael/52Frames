@@ -82,6 +82,7 @@ Template Name: Register and Edit Profile
       	$(".register-trigger").addClass('hidden'); 
 	  });
 	  $('#send_credentials_via_email').attr('checked','checked');
+
 	});
 	</script>
 <?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
