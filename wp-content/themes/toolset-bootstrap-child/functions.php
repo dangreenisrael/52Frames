@@ -187,7 +187,11 @@ function validate_album_status( $valid, $value, $field, $input ){
 	$albums = get_terms('photo_alboms', array('hide_empty' => 0));
 	foreach ($albums as $album) {
 		if (get_field('album_status', $album) == 'OPEN')
+<<<<<<< HEAD
 			return 'The album "'.$album->name.'" already marked as OPEN';
+=======
+			return 'Album '.$album->name." already marked as OPEN";
+>>>>>>> FETCH_HEAD
 	}
 	return $valid;
 }

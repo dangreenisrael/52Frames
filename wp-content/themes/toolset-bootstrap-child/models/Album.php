@@ -16,6 +16,7 @@ class Album {
 
     /*
      * Return Number
+     * This should be a total number of photos
      */
     public function getPhotoCount(){
         return null;
