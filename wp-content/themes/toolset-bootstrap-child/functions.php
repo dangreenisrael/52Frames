@@ -1,8 +1,9 @@
 <?php
 require('functions_dan.php');
 require('functions_hanit.php');
-add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
+add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
+	
 function theme_enqueue_styles() {
   wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
   wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'parent-style' ) );
@@ -13,7 +14,7 @@ add_filter('wp_enqueue_scripts', 'enqueue_my_scripts', 20);
 
 function enqueue_my_scripts() {
 
-    wp_enqueue_style('child', get_stylesheet_directory_uri() . '/child.css');
+    wp_enqueue_style('main-css', get_stylesheet_directory_uri() . '/css/main.css');
     wp_enqueue_style( 'fontAwesome', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
     wp_enqueue_style( 'glyphicons', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
    	wp_enqueue_style( 'parent-style', get_stylesheet_directory_uri() . '/assets/styles.css' ); 
@@ -58,6 +59,7 @@ function get_active_album() {
 	endforeach;
 	return null;
 }
+
 function add_photo_js() {
 	$active_album = get_active_album();
 	if ($active_album != null) {
@@ -172,6 +174,7 @@ function zipsearch_search_where( $where ){
     return $where;
 }
 
+// restrict OPEN albums to 1
 add_filter('acf/validate_value/name=album_status', 'validate_album_status', 10, 4);
 function validate_album_status( $valid, $value, $field, $input ){
 	if( !$valid ) {
@@ -181,12 +184,76 @@ function validate_album_status( $valid, $value, $field, $input ){
 	if ($value != 'OPEN')
 		return $valid;
 
-	$valid = 'AAAAAA';
-
-	// $albums = get_terms('photo_alboms', array('hide_empty' => 0));
-	// foreach ($albums as $album) {
-	// 	if (get_field('album_status', $album) == 'OPEN')
-	// 		return false;
-	// }
+	$albums = get_terms('photo_alboms', array('hide_empty' => 0));
+	foreach ($albums as $album) {
+		if (get_field('album_status', $album) == 'OPEN')
+			return 'The album "'.$album->name.'" already marked as OPEN';
+	}
 	return $valid;
+}
+
+// Add albums column befor author
+add_filter('manage_photo_posts_columns', 'add_albums_to_photos_list');
+function add_albums_to_photos_list( $posts_columns ) {
+	if (!isset($posts_columns['author'])) {
+		$new_posts_columns = $posts_columns;
+	} else {
+		$new_posts_columns = array();
+		$index = 0;
+		foreach($posts_columns as $key => $posts_column) {
+			if ($key=='author') {
+				$new_posts_columns['albums'] = null;
+			}
+			$new_posts_columns[$key] = $posts_column;
+		}
+	}
+	$new_posts_columns['albums'] = 'Albums';
+	return $new_posts_columns;
+}
+
+// Show data on albums column
+add_action('manage_photo_posts_custom_column', 'show_albums_for_photos_list',10,2);
+function show_albums_for_photos_list( $column_id,$post_id ) {
+	switch ($column_id) {
+		case 'albums':
+			$albums = get_the_terms($post_id,'photo_alboms');
+			if (is_array($albums)) {
+				foreach($albums as $key => $album) {
+					$edit_link = get_term_link($album,$taxonomy);
+					$albums[$key] = '<a href="'.$edit_link.'">' . $album->name . '</a>';
+				}
+				echo implode(' | ',$albums);
+			}
+		break;
+	}
+}
+
+add_action('restrict_manage_posts','restrict_photos_by_albums');
+function restrict_photos_by_albums() {
+	global $typenow;
+	global $wp_query;
+	if ($typenow=='photo') {
+		$albums = get_taxonomy('photo_alboms');
+		wp_dropdown_categories(array(
+			'show_option_all' => __("Show All {$albums->label}"),
+			'taxonomy' => 'photo_alboms',
+			'name' => 'photo_alboms',
+			'orderby' => 'name',
+			'selected' => $wp_query->query['photo_alboms'],
+			'hierarchical' => true,
+			'depth' => 3,
+			'show_count' => true, 
+			'hide_empty' => true,
+		));
+	}
+}
+
+add_filter('parse_query','convert_album_id_to_taxonomy_term_in_query');
+function convert_album_id_to_taxonomy_term_in_query($query) {
+    global $pagenow;
+    $qv = &$query->query_vars;
+    if ($pagenow=='edit.php' && isset($qv['photo_alboms']) && is_numeric($qv['photo_alboms'])) {
+        $term = get_term_by('id',$qv['photo_alboms'],'photo_alboms');
+        $qv['photo_alboms'] = ($term ? $term->slug : '');
+    }
 }

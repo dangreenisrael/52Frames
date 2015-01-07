@@ -29,7 +29,7 @@ jQuery(function() {
               <!--<iframe src="//player.vimeo.com/video/115478018?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1" width="1920" height="599" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               -->
 		      	<video width="1920" height="600" autoplay>
-              <source src="http://52frames.com/wp-content/themes/toolset-bootstrap-child/video/video_background-HD.mp4" type="video/mp4"></video>
+              <source src="<?php echo get_stylesheet_directory_uri()?>/video/video_background-HD.mp4" type="video/mp4"></video>
             </div>  
             <div class="container uber">
               <div class="row span12"><h1 class="site-description"><?php bloginfo( 'description' ); ?></h1></div>
@@ -85,12 +85,7 @@ jQuery(function() {
               }
               ?>
                  </div>
-              </div>
-              
-
-
-
-
+              </div>   
               <?php
               // count posts
               $n_post = wp_count_posts();
@@ -234,18 +229,18 @@ if( $post_object ):
     </div>
 </div>
 <div class="for-columns-3"><div class="row-fluid">
-<div id="blur-dropshadow" class="holder span4 featured-framer_image featured_image" style="width:33.33%;">
-<?php
+<div id="blur-dropshadow" class="holder span4 featured-framer_image " style="width:33.33%;">
+  <?php
 
-$user = get_field('featured_framer');
-echo get_avatar( $user['ID'], '640');
+  $user = get_field('featured_framer');
+  echo get_avatar( $user['ID'], '640');
 
-?>
+  ?>
 
-<div class="overlay"></div>
-<div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
-<div class="featured-avatar"><div class="featured-avatar-inner"><span class="winning-avatar-hp"><?php echo $user['user_avatar']; ?></span></div></div>
-<div class="featured-name-photo"><p class="featured-photo-inner">Nomi Hirshman Rave</p></div>
+    <div class="overlay"></div>
+    <div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
+    <div class="featured-avatar"><div class="featured-avatar-inner"><span class="winning-avatar-hp"><?php echo $user['user_avatar']; ?></span></div></div>
+    <div class="featured-name-photo"><p class="featured-photo-inner">Nomi Hirshman Rave</p></div>
 </div>
 <?php
 

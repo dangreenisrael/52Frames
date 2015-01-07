@@ -1,27 +1,11 @@
 <?php
 
 /**
-
- * The template for displaying Alboms.
-
+ * The template for displaying Albums.
  *
-
  */
 
 get_header(); ?>
-
-
-<div class="for-columns-1">
-<div class="row-fluid">
-	<div class="holder span12">
-		<h4 class="album-week"><?php echo 'Week: ', date("W") . ' ', date("Y"); ?></h4>
-		<h1 class="album-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h1>
-		<div class="album-description"><?php echo category_description( $category_id ); ?></div>
-	</div>
-</div>
-</div>
-
-
 
 <div class="for-columns-3">
 <div class="row-fluid">
@@ -86,7 +70,7 @@ echo get_the_post_thumbnail($variable3->ID, array(370, 270));
 
 		while ( have_posts() ) : the_post();
 
-			get_template_part( 'content', 'alboms_collection' );
+			get_template_part( 'content', 'Albums_collection' );
 
 		endwhile;
 

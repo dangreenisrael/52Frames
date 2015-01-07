@@ -15,7 +15,7 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />	
 	<?php if ( of_get_option( 'favicon' ) ): ?>
 		<link rel="shortcut icon" href="<?php echo of_get_option( 'favicon' ); ?>">
-	<?php else: ?>
+		
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/favicon.ico">
 	<?php endif ?>
 	<!--[if lt IE 9]>
@@ -67,16 +67,32 @@
 					endif
 				?>	
 			</div>
-			<?php if ( wpbootstrap_get_setting('titles_settings', 'display_pages_titles' ) ): ?>
-			<?php if (!is_page_template( 'page-home.php' )) {?>
-			<div class="container page-title">	
-				<h1><?php the_title(); ?></h1>
-			</div>
-			<?php }?>
-			
-			<?php endif; ?>
 		</div>
+			<?php if ( wpbootstrap_get_setting('titles_settings', 'display_pages_titles' ) && !is_page_template( 'page-home.php' )): ?>
 		
+		<div class="row-fluid page-title">
+			<div class="container ">
+				<?php if ( is_singular( 'photo' )):
+				/*
+					 * Page Variables
+					 */
+					$album 			= wp_get_post_terms(get_the_ID(),'photo_alboms')[0];
+					$user_id		= $post->post_author;
+					$user 			= get_user_by( 'id', $user_id );
+					$album_name 	= $album->name;
+					$album_slug 	= $album->slug;
+					$author_name	= $user->display_name;
+					$author_pic		= get_avatar( $user->ID, '256');
+					$week_num		= get_field('week_number',$album);
+					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
+				 ?>
+					<h1><?php echo'Week '.$week_num . ' <span>'.$album_name.'</span>'?></h1>	
+				<?php else: ?>
+				<h1><?php the_title(); ?></h1>
+				<?php endif; ?>
+			</div>			
+		</div>
+	<?php endif; ?>		
 
 	</header><!-- #header -->
 		<?php endif; ?>
@@ -85,7 +101,7 @@
 	<div class="row-fluid">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
-			<?php if (!is_page_template( 'page-home.php' )) {
+			<?php if (!is_page_template( 'page-home.php' ) && !is_singular( 'photo' )) {
 				$container = 'class="container"';
 				
 			}?>
