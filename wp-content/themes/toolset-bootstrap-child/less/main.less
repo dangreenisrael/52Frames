@@ -225,7 +225,8 @@ body:not(.page-template-page-home-php) #main{
 	#header{
 	  background-image:url('../images/submition-pic.jpg');
 	  background-position: center top;
-	  padding-bottom: 150px;
+	  padding-bottom: 160px;
+	  .page-title{display:none;}
 	  h1{
 	  	color:rgba(255, 255, 255, 0.8);
 	  	font-size:24px;
@@ -246,7 +247,7 @@ body:not(.page-template-page-home-php) #main{
 }
 .submit-photo-title{
   text-align:center;
-  margin-top: -185px;
+  margin-top: -155px;
   	h2{
   		color:#fff;
   		font-size:36px;
@@ -254,7 +255,10 @@ body:not(.page-template-page-home-php) #main{
   		font-family:Helvetica, Arial, sans-serif;
   	}
 	h3{color:#87CDF5;}
-	.teaser{color:rgba(255, 255, 255, 0.9);}
+	.teaser{
+		color:rgba(255, 255, 255, 0.9);
+		font-size:24px;
+	}
 }
 .cred-form .row-fluid:not(last-child){
   	border: 1px solid #F0F0F0;
@@ -262,31 +266,36 @@ body:not(.page-template-page-home-php) #main{
 	padding: 30px;
 	background: #FFF;
 	border-radius: 3px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
 }
 .section-title{
     margin-bottom:20px;
  
    h2{
     font-size: 36px;
-    color: #d3d3d3;
+    color: @theme-color;
     padding:0 20px 0 0;
-    margin:0;
+    margin:0 0 10px;
     letter-spacing:-1px;
-    display:table-cell;
 	}	
   p{
-    
-   	display:table-cell;
-    color: #EA4858	;
+     color: #555	;
     font-size: 16px;
     vertical-align: bottom;
     padding-bottom:3px;
+  }
+  @media (min-width: 980px){
+  	h2,p{display:table-cell;}
   }
 }
 
 
 .cred-form{
-	.span6,.span4, .span12{padding-left:0;}
+	[class*="span"] {
+		padding-left:0;
+		margin-bottom:20px;
+	}
 	
 	@media (min-width: 768px){
 		.span6{width: 50%;}
@@ -301,11 +310,12 @@ body:not(.page-template-page-home-php) #main{
   	}
   	small{
   		display:block;
-  		font-size:13px;
+  		font-size:15px;
   		color:#797979;
   		line-height: 18px;
   		margin:6px 0;
   	}
+  	p{color:#555;}
 	label{display: inline-block !important;font-size: 15px;}
 	select, textarea,input[type="text"],input[type="password"], 
 	input[type="datetime"],input[type="datetime-local"], input[type="date"], 
@@ -335,12 +345,16 @@ body:not(.page-template-page-home-php) #main{
 	 input[type="radio"], input[type="checkbox"] {
 		width: 20px;
 		height: 16px;
-		margin:0;
+		margin: -2px 0 0;
+		line-height: 0;
 	}
 	 .wpt-form-checkbox-label,.wpt-form-radio-label{
-	 	font-family: helvetica;
+	 	font-family: 'proxima_nova_rgregular';
 		color:#797979;
-		font-size: 13px;
+		font-size: 15px;
+		word-wrap: break-word;
+		white-space: -moz-pre-wrap;
+		white-space: pre-wrap;
 	}
 	.cred-field-extra-challange{
 		.form-group{float:left;
@@ -366,34 +380,49 @@ body:not(.page-template-page-home-php) #main{
 		max-width:300px !important;
 	}
 	 .btn-default {
-	 	background: @sub-color;
+	 	background: @theme-color;
 		color: #FFF;
 		border: 0 none;
 		height: 40px;
 		vertical-align: top;
-		box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+		//box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
 	 }
-	.wpt-form-set-checkboxes-wpcf-subject-matter{
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-		-webkit-column-gap: 10px;
-		-moz-column-gap: 10px;
-		column-gap: 10px;
-		-webkit-column-fill: auto;
-		column-fill: auto;
+	 @media (min-width: 768px){
+	 .span5.subject-matter{
+	 	padding:0 40px;
+	 }
+	}
+	@media (min-width: 980px){
+		.wpt-form-set-checkboxes-wpcf-subject-matter{
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			column-count: 2;
+			-webkit-column-gap: 10px;
+			-moz-column-gap: 10px;
+			column-gap: 10px;
+			-webkit-column-fill: auto;
+			column-fill: auto;
+		}
 	}
 	.footer{text-align: center;}
 	.wpt-form-submit {
 		margin-top: 15px;
-		background: @sub-color;
+		background: @theme-color;
 		font-size: 36px;
 		padding: 20px 30px;
 		border: 0;	
 		border-radius:6px;
-		&:hover{background: lighten(@sub-color,5%);}
+		&:hover{background: lighten(@theme-color,5%);}
 	}
-	 
+	 .creation label{
+		color:@theme-color;
+		font-size:20px;
+	}
+	.wpt-form-error{
+		background:@sub-color;
+		color:#fff;
+		font-size:18px;
+	}
 }
 label[for="file-input"]{
   display: block;
@@ -409,16 +438,17 @@ input[type="file"] {
   cursor: pointer !Important;
   
   &::-webkit-file-upload-button {
-    background: @sub-color;
+    background: @theme-color;
     border: 0;
     padding: 1em 2em;
     cursor: pointer;
     color: #fff; 
      border-radius: 5px;
+     outline:0;
   }
   
   &::-ms-browse {
-    background: @sub-color;
+    background: @theme-color;
     border: 0;
     padding: 1em 2em;
     cursor: pointer;
@@ -441,6 +471,15 @@ input[type="file"] {
 		margin-top:12px;
 		i{margin-left:8px;font-size: 20px;}
 }	
+.cred-field_focal-length{
+	input{width:90px;float:left;}
+	small.mm{
+		display:inline-block;
+		line-height:40px;
+		margin:0 0 0  10px;
+	}
+
+}
 
 /****SUBMIT PHOTO  ENDS*****/
 
@@ -1040,216 +1079,6 @@ div#mc_embed_signup {
 }
 	
 
-/****SUBMIT PHOTO *****/
-
-.page-id-86 section#content{width:100%;}
-.page-id-86 #main{
-  margin-top:0;
-  background: #F9F9FB;
-}
-.vc_row-fluid.container{
-  margin:0 auto !important;
-}
-.page-id-86 #header{
-  background-image:url('../images/submition-pic.jpg');
-  background-position: center top;
-  padding-bottom: 150px;
-  h1{
-  	color:rgba(255, 255, 255, 0.8);
-  	font-size:24px;
-  }
-}
-.submit-photo-title{
-  text-align:center;
-  margin-top: -185px;
-  	h2{
-  		color:#fff;
-  		font-size:36px;
-  		margin-top:20px;
-  		font-family:Helvetica, Arial, sans-serif;
-  	}
-	h3{color:#87CDF5;}
-	.teaser{color:rgba(255, 255, 255, 0.9);}
-}
-.cred-form .row-fluid:not(last-child){
-  	border: 1px solid #F0F0F0;
-	margin-bottom: 30px;
-	padding: 30px;
-	background: #FFF;
-	border-radius: 3px;
-}
-.section-title{
-    margin-bottom:20px;
- 
-   h2{
-    font-size: 32px;
-    color: #555;
-    padding:0 20px 0 0;
-    margin:0;
-    letter-spacing:-1px;
-    display:table-cell;
-	}	
-  p{
-    
-   	display:table-cell;
-    color: #EA4858	;
-    font-size: 16px;
-    vertical-align: bottom;
-    padding-bottom:3px;
-  }
-}
-
-
-
-  	label {
-    font-family: 'proxima_novasemibold';
-    color: @gray;   
-  	}
-  	small{
-  		display:block;
-  		font-size:13px;
-  		color:#797979;
-  		line-height: 18px;
-  		margin:6px 0;
-  	}
-	label{display: inline-block !important;font-size: 15px;}
-	select, textarea,input[type="text"],input[type="password"], 
-	input[type="datetime"],input[type="datetime-local"], input[type="date"], 
-	input[type="month"],  input[type="time"],input[type="week"], input[type="number"],
-	input[type="email"],  input[type="url"],  input[type="search"], input[type="tel"], 
-	input[type="color"], .uneditable-input{
-	    box-sizing:border-box;
-	    -moz-box-sizing:border-box;
-	    height:40px !important;
-	    outline:0 !important;
-	 }
-	 select{width:100%;}
-	 textarea{height:160px !important;}
-	 input[type="file"]{
-		width:300px;
-	 	height:50px;
-    	 
-	 }
-	 .wpt-credfile-delete{
-	 	float:right;
-	 }
-	  .wpt-form-set-radios{
-	  	margin-left:0 !important;
-	  }
-	 .wpt-form-set-checkboxes{
-	 	margin-left:0 !important;
-	 	li{line-height:23px;}
-	 	label{margin-left:10px;}
-	 }
-	 input[type="radio"], input[type="checkbox"] {
-		width: 20px;
-		height: 16px;
-		margin:0;
-	}
-	 .wpt-form-checkbox-label,.wpt-form-radio-label{
-	 	font-family: helvetica;
-		color:#797979;
-		font-size: 13px;
-	}
-	.cred-field-extra-challange{
-		.form-group{float:left;
-		}
-	}
-	.featured_image {
-		background: #BBB;
-		border-radius: 5px;
-		margin-top: 20px;
-		padding: 20px;
-		label{
-			font-size: 34px;
-			line-height: normal;
-			font-family: helvetica;
-			font-weight: bold;
-		}
-		small{font-size:15px;}
-	}
-	.wpt-form-textfield.wpt-new-taxonomy-title{
-		max-width:300px !important;
-	}
-	 .btn-default {
-	 	background: @sub-color;
-		color: #FFF;
-		border: 0 none;
-		height: 40px;
-		vertical-align: top;
-		
-	 }
-	.wpt-form-set-checkboxes-wpcf-subject-matter{
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-		-webkit-column-gap: 10px;
-		-moz-column-gap: 10px;
-		column-gap: 10px;
-		-webkit-column-fill: auto;
-		column-fill: auto;
-	}
-	.footer{text-align: center;}
-	.wpt-form-submit {
-		margin-top: 15px;
-		background: @sub-color;
-		font-size: 36px;
-		padding: 20px 30px;
-		border: 0;	
-		border-radius:6px;
-		&:hover{background: lighten(@sub-color,5%);}
-	}
-	 
-
-label[for="file-input"]{
-  display: block;
-  margin-bottom: 1em;
-  font-size: 1em;
-  color: #fff;
-  opacity: .9;
-  font-weight: bold;
-}
-
-input[type="file"] {
-  
-  cursor: pointer !Important;
-  
-  &::-webkit-file-upload-button {
-    background: @sub-color;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff; 
-     border-radius: 5px;
-  }
-  
-  &::-ms-browse {
-    background: @sub-color;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff;
-    border-radius: 5em;
-  }
- }
- .content-box{display:none;}
-	button.exif-toggle{
-	 	background: @gray;
-		border: 0;
-		outline: 0 none;
-		border-radius: 5px;
-		padding: 8px 15px;
-		border: 1px solid #EEE;
-		font-size: 16px;
-		color: #fff;
-		clear:left;
-		display:block;
-		margin-top:12px;
-		i{margin-left:8px;font-size: 20px;}
-}	
-
-/****SUBMIT PHOTO  ENDS*****/
-
 @media (min-width: 1200px){
 	.row {
 			margin: 0 auto;
@@ -1742,151 +1571,8 @@ div#mc_embed_signup {
 
 	}
 }
-  	label {
-    font-family: 'proxima_novasemibold';
-    color: @gray;   
-  	}
-  	small{
-  		display:block;
-  		font-size:13px;
-  		color:#797979;
-  		line-height: 18px;
-  		margin:6px 0;
-  	}
-	label{display: inline-block !important;font-size: 15px;}
-	select, textarea,input[type="text"],input[type="password"], 
-	input[type="datetime"],input[type="datetime-local"], input[type="date"], 
-	input[type="month"],  input[type="time"],input[type="week"], input[type="number"],
-	input[type="email"],  input[type="url"],  input[type="search"], input[type="tel"], 
-	input[type="color"], .uneditable-input{
-	    box-sizing:border-box;
-	    -moz-box-sizing:border-box;
-	    height:40px !important;
-	    outline:0 !important;
-	 }
-	 select{width:100%;}
-	 textarea{height:160px !important;}
-	 input[type="file"]{
-		width:350px;
-	 	height:50px;
-    	 
-	 }
-	  .wpt-form-set-radios{
-	  	margin-left:0 !important;
-	  }
-	 .wpt-form-set-checkboxes{
-	 	margin-left:0 !important;
-	 	li{line-height:23px;}
-	 	label{margin-left:10px;}
-	 }
-	 input[type="radio"], input[type="checkbox"] {
-		width: 20px;
-		height: 16px;
-		margin:0;
-	}
-	 .wpt-form-checkbox-label,.wpt-form-radio-label{
-	 	font-family: helvetica;
-		color:#797979;
-		font-size: 13px;
-	}
-	.cred-field-extra-challange{
-		.form-group{float:left;
-		}
-	}
-	.featured_image {
-		background: #BBB;
-		border-radius: 5px;
-		margin-top: 20px;
-		padding: 20px;
-		label{
-			font-size: 34px;
-			line-height: normal;
-			font-family: helvetica;
-			font-weight: bold;
-		}
-		small{font-size:15px;}
-	}
-	.wpt-form-textfield.wpt-new-taxonomy-title{
-		max-width:80% !important;
-	}
-	 .btn-default {
-	 	background: @sub-color;
-		color: #FFF;
-		border: 0 none;
-		height: 40px;
-		vertical-align: top;
-		box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
-	 }
-	.wpt-form-set-checkboxes-wpcf-subject-matter{
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-		-webkit-column-gap: 10px;
-		-moz-column-gap: 10px;
-		column-gap: 10px;
-		-webkit-column-fill: auto;
-		column-fill: auto;
-	}
-	.footer{text-align: center;}
-	.wpt-form-submit {
-		margin-top: 15px;
-		background: @sub-color;
-		font-size: 36px;
-		padding: 20px 30px;
-		border: 0;	
-		border-radius:6px;
-		&:hover{background: lighten(@sub-color,5%);}
-	}
-	 
+  	
 
-label[for="file-input"]{
-  display: block;
-  margin-bottom: 1em;
-  font-size: 1em;
-  color: #fff;
-  opacity: .9;
-  font-weight: bold;
-}
-
-input[type="file"] {
-  
-  cursor: pointer !Important;
-  
-  &::-webkit-file-upload-button {
-    background: @sub-color;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff; 
-     border-radius: 5px;
-  }
-  
-  &::-ms-browse {
-    background: @sub-color;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff;
-    border-radius: .2em;
-  }
- }
- .content-box{display:none;}
-	button.exif-toggle{
-	 	background: @gray;
-		border: 0;
-		outline: 0 none;
-		border-radius: 5px;
-		padding: 8px 15px;
-		border: 1px solid #EEE;
-		font-size: 16px;
-		color: #fff;
-		clear:left;
-		display:block;
-		margin-top:12px;
-		i{margin-left:8px;font-size: 20px;}
-}	
-
-/****SUBMIT PHOTO  ENDS*****/
 
 @media (min-width: 1200px){
 	.row {
@@ -2120,8 +1806,8 @@ span.week-number-hp {
 	-webkit-appearance: none;	
 	background: transparent;
 }
-#mc_embed_signup input.email { text-indent: 15px !important;}
-
+#mc_embed_signup input.email {
+	text-indent: 15px !important;}
 }
 
 .photo-of-the-day-container {
@@ -2351,6 +2037,7 @@ div#mc_embed_signup {
 .wppb-form-field .wppb-checkboxes label, .wppb-form-field .wppb-radios label{
 	width:90% !important;
 	float:left !important;
+
 }	
 .wppb-radios,.wppb-checkboxes{
 	width:80%!important;

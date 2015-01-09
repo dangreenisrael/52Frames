@@ -24,13 +24,9 @@
 				<div class="entry-content clearfix">	
 
 				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
-
-					<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail pull-left">
-
+					
 						<?php the_post_thumbnail('full'); ?>
 
-
-					</a>
 
 				<?php endif; ?>
 
@@ -67,12 +63,24 @@
 				<?php the_content();?>
 				<!-- End Content -->
 				<div class="extra_challange">
-					Extra Credit: <?php echo (($extra_credit == '1') ? $extra_credit : 'No') ?>
+				<?php
+					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
+					if ($extra_credit) {
+						$album = get_active_album();
+						$album_credit = get_field('extra_challange_desc', $album);
+						echo 'Extra Credit: '.$album_credit;
+					}
+				?>
 				</div>
-				<div><?php echo types_render_field("type-of-photo", array("show_name"=>"true","output"=>"html","id"=>"type-of-photo"));?></div>
+				<div class="actions">
+				<?php
+					$for_sale = types_render_field("for_sale", array());
+					if ($for_sale != '') echo 'Buy Photo';
+
+					?>
+				</div>
 			</div>
 		</div>
-		
 	</div>
 	<div class="row container">
 			<ul class="social clearfix"> 
@@ -86,13 +94,6 @@
 
 				<!-- Start Custom Fileds -->
 
-				<?php
-
-			
-
-			
-
-			?>
 		</div>
 	</div>
 </div>
@@ -109,13 +110,50 @@
 <div class="row-fluid">
 	<div class="row container">
 		<div class="span6 discussion">
-			<?php comments_template(); ?>		
+			<?php
+			$moderate_critique = get_field('moderate_critique');
+			$author_id = get_the_author_meta( 'ID' );
+			$author_badge = get_field('moderator', 'user_'. $author_id ); // image field, return type = "Image Object"
+
+			?>
+			<?php if ($moderate_critique) {
+				echo '<div class="moderate-critique">';
+				echo '<img src="'.$author_badge['url'].'" alt="'.$author_badge['alt'].'" />';
+				echo '<p>'.$moderate_critique.'</p>';
+				echo '</div>';
+				
+			}
+			 comments_template(); ?>		
 
 		</div>
 		
 		<div class="span6">
-			
-<!-- Tags -->
+			<div class="exif">
+				<h3> Exif</h3>
+				<ul>
+				<?php
+				 
+				$shutter =  types_render_field("shutter-speed", array("show_name"=>"true","output"=>"raw","id"=>"shutter-speed"));
+				$aperture  = types_render_field("aperture", array("show_name"=>"true","output"=>"raw","id"=>"aperture"));
+				$iso  = types_render_field("iso", array("show_name"=>"true","output"=>"raw","id"=>"iso"));
+				$focal_length  = types_render_field("focal-length", array("show_name"=>"true","output"=>"raw","id"=>"focal-length"));
+				$camera_manufacturer  = types_render_field("camera-manufacturer", array("show_name"=>"true","output"=>"raw","id"=>"camera-manufacturer"));
+				$camera_model  = types_render_field("camera-model", array("show_name"=>"true","output"=>"raw","id"=>"camera-model"));
+				$lens  = types_render_field("lens", array("show_name"=>"true","output"=>"raw","id"=>"lens"));
+				$flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw","id"=>"flash"));
+
+
+				 if($shutter != '') echo '<li><label>Shutter Speed</label><span>'.$shutter.'</span></li>';
+				 if($aperture  != '') echo '<li><label>Aperture</label><span>'.$aperture .'</span></li>';
+				 if($iso != '') echo '<li><label>ISO</label><span>'.$iso.'</span></li>';
+			     if($focal_length != '') echo '<li><label>Focal Lenth</label><span>'.$focal_length.'</span></li>';
+				 if($camera_manufacturer != '') echo '<li><label>Camera Manufacturer</label><span>'.$camera_manufacturer.'</span></li>';
+				 if($camera_model  != '') echo '<li><label>Camera Model</label><span>'.$camera_model .'</span></li>';
+				 if($lens != '') echo '<li><label>Lens</label><span>'.$lens.'</span></li>';
+				 if($flash != '') echo '<li><label>Flash</label><span>'.$flash.'</span></li>';
+				?> 
+			</ul>
+		</div>
 		<!--exifograpgy Shortcode -->
 
 		<?php
@@ -127,6 +165,7 @@
 		}
 
 		?>
+		<!-- Tags -->
 		<?php if (has_category() || has_tag() ):?>
 
 				<p>

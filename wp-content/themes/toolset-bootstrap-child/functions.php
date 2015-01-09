@@ -78,6 +78,12 @@ function add_photo_js() {
 		$('#album_name').text('<?php echo $album_title; ?>');
 		$('#challange_desc').text('<?php echo  $extra_challange; ?>');
 		$('#weekno').text('<?php echo  $weekno; ?>');
+		$('.cred-field-contains-nudity input[type="checkbox"]').attr('checked', false);
+		$('.cred-field-extra-challange input[type="checkbox"]').attr('checked', false);
+		$('.cred-field-for-sale input[type="checkbox"]').attr('checked', false);
+		$('.creation input[type="checkbox"]').attr('checked', false);
+		$('.cred-field-post_title input[type="text"]').attr('maxlength', 40);
+		$('.cred-field-post_content textarea').attr('maxlength', 1000);
 	});
 	</script>
 	<?php
@@ -85,13 +91,16 @@ function add_photo_js() {
 
 add_action('wp_footer', 'add_photo_js');
 
+/*
+ * Add custom fields to album on submission
+ */
 add_action('cred_save_data', 'add_data_to_photo',10,2);
 function add_data_to_photo($post_id, $form_data){
 	// if Photo Add Form
 	if ($form_data['id'] == 92) {
 		$active_album = get_active_album();
 		// Add Photo association to the album
-		var_dump(wp_set_object_terms($post_id, $active_album->slug, 'photo_alboms'));
+		wp_set_object_terms($post_id, $active_album->slug, 'photo_alboms');
 
 		// Add Photo association to Editor tags
 		$album_tag_ids = get_field('album_tags', $active_album);
