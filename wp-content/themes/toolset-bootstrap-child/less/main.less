@@ -48,7 +48,7 @@ a.thumbnail:hover, a.thumbnail:focus,.thumbnail{
 @gray-dark:              lighten(#000, 20%);   // #333
 @gray:                   lighten(#000, 33.5%); // #555
 @gray-light:             lighten(#000, 60%);   // #999
-@gray-lighter:           lighten(#000, 93.5%); // #eee
+@gray-lighter:           lighten(#000, 90%); // #eee
 
 // Brand colors
 // -------------------------
@@ -91,15 +91,17 @@ a.thumbnail:hover, a.thumbnail:focus,.thumbnail{
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    @font-family-base;
+@headings-font-family:    Helvetica, Arial, sans-serif;
 @headings-font-weight:    500;
 @headings-line-height:    1.1;
 @headings-color:          inherit;
-
+h1,h2,h3{
+	 	font-family:@headings-font-family;
+}
 
 
 body{
-	font-family: 'proxima_nova_rgregular';
+	font-family: @sans-serif;
   	overflow-x:hidden;
   	padding:0;
 }
@@ -183,7 +185,7 @@ body:not(.page-template-page-home-php) #main{
 }
 #mc_embed_signup {	
 	clear: left;	
-	font: 14px Helvetica,Arial,sans-serif;	
+	font: 14px @headings-font-family;	
 	background: transparent !important;
 }
 #mc_embed_signup input.email {	
@@ -252,7 +254,6 @@ body:not(.page-template-page-home-php) #main{
   		color:#fff;
   		font-size:36px;
   		margin-top:20px;
-  		font-family:Helvetica, Arial, sans-serif;
   	}
 	h3{color:#87CDF5;}
 	.teaser{
@@ -371,7 +372,7 @@ body:not(.page-template-page-home-php) #main{
 			text-transform: uppercase;
 			letter-spacing: -1px;
 			line-height: normal;
-			font-family: helvetica;
+			font-family: @headings-font-family;
 			font-weight: bold;
 		}
 		small{color:#444;}
@@ -1504,9 +1505,7 @@ div#mc_embed_signup {
 	}
 
 	
-	h1,h2,h3{
-	
-	}
+
 	p,li{
 		font-size:16px;
 		line-height: 24px;
@@ -1791,7 +1790,7 @@ span.week-number-hp {
 }
 #mc_embed_signup {	
 	clear: left;	
-	font: 14px Helvetica,Arial,sans-serif;	
+	font: 14px @headings-font-family;	
 	background: transparent !important;
 }#mc_embed_signup input.email {	
 	display: block;	
@@ -2054,8 +2053,6 @@ div#mc_embed_signup {
 	color:red !important;
 	}
 
-
-
 /****** SINGLE PHOTO *****/
 	
 .single-photo{
@@ -2076,7 +2073,7 @@ div#mc_embed_signup {
 			 font-weight:200;
 
 			span{
-				font-family: helvetica,arial,sans-serif;
+				font-family: @headings-font-family;
 				font-weight:500;
 			}
 		}
@@ -2086,22 +2083,118 @@ div#mc_embed_signup {
 		background-color: @theme-dark;
 		padding:30px 0 20px;
 		color:#fff;
+
+	}
+	.photo-thumbnail{
+		margin-right: 3.5%;
+	}
+	.photo-description{
+		margin-left:15%;
+		position:relative;
+		.photo-caption{
+			font-family: 'proxima_novalight';
+			color:@gray-lighter;
+		}		
+		h1{
+			font-size:22px;
+			font-weight:300;
+		}		
+	}
+	#author_det {
+		a{
+			color:#fff;				
+		}
+		img{
+			float: left;
+			width: 70px;
+			height:70px;
+			border-radius:50%;
+			margin-right:20px;
+		}
+		.author_name{
+			float: left;
+			h2{
+				margin:0;
+				font-weight:300;
+				line-height:normal;
+				a{
+					font-size:28px;
+					display: block;
+					padding:5px 0 8px;
+				}				
+			}
+			input{
+				background:#fff;
+				paddijng:2pxc 10px;
+				color:@sub-color;
+				border-radius:5px;
+				border:0 none;
+				outline:none;
+			}			
+		}
+	}
+	.extra-challenge {
+		padding: .5em 1em;
+		margin: 0;
+		margin-top: 5%;
+		position:relative;
+		color: #ffffff;
+		font-size: 16px ;
+		text-align: center;
+		font-weight:300;
+		 background:@sub-color;
+      	display: inline-block;
+      	 &:after {
+			content: "";
+			width:.2em;
+			top:0;
+			position:absolute;
+			display:block;
+			border: 1.15em solid @sub-color;
+			right:-1.35em;
+			border-left-width: .75em;
+			border-right-color:transparent;
+		}
+	}
+	.actions{
+		.zilla-likes,.ico{
+			border:1px solid #797979 !important;
+			border-radius:5px;
+			background-position:center 6px;
+			background-repeat: no-repeat;
+			text-align:center;
+			padding-top:30px;
+			width:80px;
+			display: inline-block;
+			font-size:9px;
+			text-transform: uppercase;
+			color:#797979 !important;
+		}
+		.ico.comments{background-image: url('../images/ico-comments.png')}
+		.ico.buy{background-image: url('../images/ico-cart.png')}
+		.zilla-likes{
+			background:url('../images/ico-like.png') no-repeat center 6px !important;
+			
+		}
+		.zilla-likes:hover, .zilla-likes.active{
+			padding-left:0 !important;
+		}
 	}
 	.social{
 		list-style-type: none;
-		margin:10px 0 0;
+		margin:20px 0 0;
 		li{
 			display:inline-block;
 			margin-right:18px;
 			}
 		a{	
-			color: #FFF;
+			color: @gray-lighter;
 			text-decoration: none;
-			font-size: 28px;
+			font-size: 22px;
 			border-radius: 50%;
-			border: 1px solid #FFF;
-			width: 45px;
-			height: 45px;
+			border: 1px solid @gray-lighter;
+			width: 40px;
+			height: 40px;
 			display: block;
 			text-align: center;
 			line-height: 44px;
@@ -2137,10 +2230,6 @@ div#mc_embed_signup {
     font-family: 'proxima_novalight';
 }
 
-#author_pic {
-	float: left;
-	width: 14%;
-}
 .album-week, .album-title, .album-description{text-align: center;}
 .photo-description .entry-meta {
 	float: right;

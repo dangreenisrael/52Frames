@@ -57140,15 +57140,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/entry-meta-photo.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/entry-meta-photo.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/font-awesome.min.css": {
 		"fileType": 16,
 		"ignore": 0,
@@ -57232,6 +57223,39 @@
 		"initialSize": 47223,
 		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/footer-pic.jpg",
 		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/footer-pic.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-cart.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 480,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-cart.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-cart.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-comments.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 704,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-comments.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-comments.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 873,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -57402,6 +57426,26 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/style.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/style.less",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/css\/style.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
 		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/taxonomy-photo_alboms.php": {
 		"fileType": 8192,
@@ -70154,7 +70198,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Ronenrer",
+"lastSavedByUser": "admin",
 "manualImportLinks": {
 	},
 "projectAttributes": {

@@ -82,11 +82,13 @@
 					$album_name 	= $album->name;
 					$album_slug 	= $album->slug;
 					$author_name	= $user->display_name;
-					$author_pic		= get_avatar( $user->ID, '256');
+					$author_pic		= get_avatar( $user->ID, '70');
 					$week_num		= get_field('week_number',$album);
 					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
 				 ?>
 					<h1><?php echo'Week '.$week_num . ' <span>'.$album_name.'</span>'?></h1>	
+				<?php elseif(is_404()): ?>
+					<h1>404 - Page Not Found</h1>
 				<?php else: ?>
 				<h1><?php the_title(); ?></h1>
 				<?php endif; ?>

@@ -57,3 +57,8 @@ function convertToServerTimeZone(){
 	});
 	
 });
+
+
+document.getElementById("_featured_image_file").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};

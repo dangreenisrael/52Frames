@@ -4,7 +4,20 @@
  * The default template for displaying a photo page.
  *
  */
-
+$photo_caption =  types_render_field("photo-caption", array());
+$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
+$moderate_critique = get_field('moderate_critique');
+$author_id = get_the_author_meta( 'ID' );
+$author_badge = get_field('moderator', 'user_'. $author_id ); // image field, return type = "Image Object"
+$for_sale = types_render_field("for_sale", array());
+$shutter =  types_render_field("shutter-speed", array("show_name"=>"true","output"=>"raw","id"=>"shutter-speed"));
+$aperture  = types_render_field("aperture", array("show_name"=>"true","output"=>"raw","id"=>"aperture"));
+$iso  = types_render_field("iso", array("show_name"=>"true","output"=>"raw","id"=>"iso"));
+$focal_length  = types_render_field("focal-length", array("show_name"=>"true","output"=>"raw","id"=>"focal-length"));
+$camera_manufacturer  = types_render_field("camera-manufacturer", array("show_name"=>"true","output"=>"raw","id"=>"camera-manufacturer"));
+$camera_model  = types_render_field("camera-model", array("show_name"=>"true","output"=>"raw","id"=>"camera-model"));
+$lens  = types_render_field("lens", array("show_name"=>"true","output"=>"raw","id"=>"lens"));
+$flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw","id"=>"flash"));
 
 ?>
 
@@ -35,18 +48,25 @@
 			</div><!-- .entry-content -->
 
 		</div>
-		<div class=" span4">
+		<div class="span4">
 			<div class="photo-description">
 				
-				<div id="author_pic">
+				<div id="author_det" class="clearfix">
 
 					<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
 
-					<?php echo get_avatar( get_the_author_meta('ID'), 60); ?></a>
-
+					<?php echo get_avatar( get_the_author_meta('ID'), 70); ?>
+					</a>
+					<div class="author_name">
+						<h2><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
+							<?php echo the_author_meta('first_name'); ?> <?php echo the_author_meta('last_name'); ?>
+							</a>
+						</h2>
+						<input type="button" class="follow" value="Follow" data-author="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" />
+					</div>
 				</div>
 
-				<div class="auth_follow"><input type="button" class="follow" value="Follow" data-author="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" /></div>
+				
 
 				<h1><?php the_title(); ?></h1>
 
@@ -59,23 +79,27 @@
 				<?php endif ?>	
 
 				<!-- Content -->
-
-				<?php the_content();?>
+				<p class="photo-caption">
+					<?php echo $photo_caption;?>
+				</p>
 				<!-- End Content -->
 				<div class="extra_challange">
 				<?php
-					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
+					
 					if ($extra_credit) {
 						$album = get_active_album();
 						$album_credit = get_field('extra_challange_desc', $album);
-						echo 'Extra Credit: '.$album_credit;
+						echo '<div class="extra-challenge">Extra Credit: '.$album_credit,'</div>';
 					}
 				?>
 				</div>
 				<div class="actions">
+				<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
+				<a class="ico comments" href="<?php the_permalink(); ?>#disqus_thread"><span class="disqus-comment-count" data-disqus-url="<?php the_permalink(); ?>"></span></a>
 				<?php
-					$for_sale = types_render_field("for_sale", array());
-					if ($for_sale != '') echo 'Buy Photo';
+					
+					if ($for_sale != '') 
+						echo '<a class="ico buy" href="">Buy Photo</a>';
 
 					?>
 				</div>
@@ -83,40 +107,30 @@
 		</div>
 	</div>
 	<div class="row container">
-			<ul class="social clearfix"> 
-		        <li class="facebook"><a href="https://www.facebook.com/oktopost"  target="_blank"><i class="fa fa-facebook"></i></a></li>
-                <li class="twitter"><a href="https://twitter.com/oktopost" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                <li class="googleplus"><a href="https://plus.google.com/+Oktopost/posts"  target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                <li class="linkedin"><a href="https://www.linkedin.com/company/oktopost" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-             </ul>
-		</div>
+		<ul class="social clearfix"> 
+	        <li class="facebook"><a href="https://www.facebook.com/oktopost"  target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li class="twitter"><a href="https://twitter.com/oktopost" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/+Oktopost/posts"  target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li class="linkedin"><a href="https://www.linkedin.com/company/oktopost" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+         </ul>
+	</div>
 </div>
 
 				<!-- Start Custom Fileds -->
-
-		</div>
-	</div>
-</div>
 
 
 <?php //setPostViews(get_the_ID()); ?>
 
 <?php //echo getPostViews(get_the_ID()); ?>
-</article>
-
-</div>
-
-
-<div class="row-fluid">
+ <div class="row-fluid">
 	<div class="row container">
 		<div class="span6 discussion">
 			<?php
-			$moderate_critique = get_field('moderate_critique');
-			$author_id = get_the_author_meta( 'ID' );
-			$author_badge = get_field('moderator', 'user_'. $author_id ); // image field, return type = "Image Object"
+			
 
 			?>
 			<?php if ($moderate_critique) {
+				echo '<h3>moderate Critique</h3>';
 				echo '<div class="moderate-critique">';
 				echo '<img src="'.$author_badge['url'].'" alt="'.$author_badge['alt'].'" />';
 				echo '<p>'.$moderate_critique.'</p>';
@@ -132,17 +146,6 @@
 				<h3> Exif</h3>
 				<ul>
 				<?php
-				 
-				$shutter =  types_render_field("shutter-speed", array("show_name"=>"true","output"=>"raw","id"=>"shutter-speed"));
-				$aperture  = types_render_field("aperture", array("show_name"=>"true","output"=>"raw","id"=>"aperture"));
-				$iso  = types_render_field("iso", array("show_name"=>"true","output"=>"raw","id"=>"iso"));
-				$focal_length  = types_render_field("focal-length", array("show_name"=>"true","output"=>"raw","id"=>"focal-length"));
-				$camera_manufacturer  = types_render_field("camera-manufacturer", array("show_name"=>"true","output"=>"raw","id"=>"camera-manufacturer"));
-				$camera_model  = types_render_field("camera-model", array("show_name"=>"true","output"=>"raw","id"=>"camera-model"));
-				$lens  = types_render_field("lens", array("show_name"=>"true","output"=>"raw","id"=>"lens"));
-				$flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw","id"=>"flash"));
-
-
 				 if($shutter != '') echo '<li><label>Shutter Speed</label><span>'.$shutter.'</span></li>';
 				 if($aperture  != '') echo '<li><label>Aperture</label><span>'.$aperture .'</span></li>';
 				 if($iso != '') echo '<li><label>ISO</label><span>'.$iso.'</span></li>';
@@ -172,7 +175,7 @@
 
 					<?php if (has_tag()): ?>
 
-					<?php _e( 'Tags:', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?>.
+					<?php _e( '<h3>Tags</h3>', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?>.
 
 					<?php endif; ?>
 
@@ -182,6 +185,11 @@
 		
 
 		</div>
+	</div>
 </div>
-</div>
+
+</article>
+
+
+
 
