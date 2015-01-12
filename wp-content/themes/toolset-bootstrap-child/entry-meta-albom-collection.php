@@ -30,7 +30,7 @@ if ((is_single()) && ( 'post' != get_post_type() )) {
 			</a>
 		</p>
 
-		<?php GetWtiLikePost(); ?>
+		<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
 		
 	</div><!-- .entry-meta -->
 <?php endif; ?>

@@ -33,7 +33,7 @@
 	?>
 	<script>
 	$(document).ready(function(){
-	  $(".search-top").hover(function(){
+	  $(".search-top").click(function(){
 		$("#search-form").toggle();
 	  });
 	});
@@ -51,6 +51,7 @@
 
 		<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) || wpbootstrap_get_setting('general_settings','display_header_nav') ): ?>
 	<header id="header"  role="banner">
+		<div class="overlay"></div>
 		<div class="row-fluid">
 			<div class="container top-bar">	
 				<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) ): ?>
@@ -72,18 +73,25 @@
 		
 		<div class="row-fluid page-title">
 			<div class="container ">
-				<?php if ( is_singular( 'photo' )):
+				<?php 
+					$cat = $wp_query->get_queried_object();
+					if (is_tax()):					
+					$term_week_num	= get_field('week_number','photo_alboms_'. $cat->term_id);
+					 echo '<h1><span>Week '. $term_week_num .' (' .get_the_date('Y').')</span>';
+					 echo single_cat_title().'</h1>';
+					 echo term_description($cat->term_id, 'photo_alboms'  ); 
+					elseif ( is_singular( 'photo' )):
 				/*
 					 * Page Variables
 					 */
-					$album 			= wp_get_post_terms(get_the_ID(),'photo_alboms')[0];
 					$user_id		= $post->post_author;
 					$user 			= get_user_by( 'id', $user_id );
+					$author_name	= $user->display_name;
+					$album 			= wp_get_post_terms(get_the_ID(),'photo_alboms')[0];
+					$week_num	= get_field('week_number',$album);
+					$author_pic		= get_avatar( $user->ID, '70');
 					$album_name 	= $album->name;
 					$album_slug 	= $album->slug;
-					$author_name	= $user->display_name;
-					$author_pic		= get_avatar( $user->ID, '70');
-					$week_num		= get_field('week_number',$album);
 					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
 				 ?>
 					<h1><?php echo'Week '.$week_num . ' <span>'.$album_name.'</span>'?></h1>	
@@ -103,7 +111,7 @@
 	<div class="row-fluid">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
-			<?php if (!is_page_template( 'page-home.php' ) && !is_singular( 'photo' )) {
+			<?php if (!is_page_template( 'page-home.php' ) && !is_singular( 'photo' ) && !is_tax( 'photo_alboms' )) {
 				$container = 'class="container"';
 				
 			}?>

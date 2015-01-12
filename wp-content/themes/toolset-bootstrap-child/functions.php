@@ -14,7 +14,7 @@ add_filter('wp_enqueue_scripts', 'enqueue_my_scripts', 20);
 
 function enqueue_my_scripts() {
 
-    wp_enqueue_style('main-css', get_stylesheet_directory_uri() . '/css/main.css');
+    wp_enqueue_style('main-css', get_stylesheet_directory_uri() . '/css/main.css', array(), false);
     wp_enqueue_style( 'fontAwesome', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
     wp_enqueue_style( 'glyphicons', get_stylesheet_directory_uri() . '/font-awesome.min.css', array(), '' );
    	wp_enqueue_style( 'parent-style', get_stylesheet_directory_uri() . '/assets/styles.css' ); 
@@ -23,6 +23,8 @@ function enqueue_my_scripts() {
 	wp_enqueue_script('blur', get_stylesheet_directory_uri() . '/js/blur.js');
 	wp_enqueue_script('script', get_stylesheet_directory_uri() . '/js/script.js');
 	wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.countdown.js', array('jquery') ); 
+	wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.counterup.min.js', array('jquery') ); 
+
 }
 
 
@@ -69,6 +71,8 @@ function add_photo_js() {
 		$tags = implode(',', $tags);
 		$extra_challange = addslashes(get_field('extra_challange_desc', $active_album));
 		$weekno = get_field('week_number', $active_album);
+		if (is_user_logged_in())
+			$user = wp_get_current_user()->display_name;
 	}
 
 	?>
@@ -84,6 +88,9 @@ function add_photo_js() {
 		$('.creation input[type="checkbox"]').attr('checked', false);
 		$('.cred-field-post_title input[type="text"]').attr('maxlength', 40);
 		$('.cred-field-post_content textarea').attr('maxlength', 1000);
+		<?php if (is_user_logged_in()) { ?>
+			// $('.nav .users').text($('.nav .users').text().replace('My Account', '<?php echo $user; ?>'));
+		<?php } ?>
 	});
 	</script>
 	<?php

@@ -56,9 +56,9 @@
 					  <h3><?php the_field('footer_text_title',194); ?></h3>
 					  <p><?php the_field('footer_text_body',194); ?></p>
 					  <div class="social-footer-container">
-						  <div class="social-footer"><a href="<?php the_field('facebooks_link',194); ?>"><i class="fa fa-facebook"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('instagrams_link',194); ?>"><i class="fa fa-instagram"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('twiters_link',194); ?>"><i class="fa fa-twitter"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('facebooks_link',194); ?>" target="_blank"><i class="fa fa-facebook"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('instagrams_link',194); ?>" target="_blank"><i class="fa fa-instagram"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('twiters_link',194); ?>" target="_blank"><i class="fa fa-twitter"></i></a></div>
 					  </div>
 					</div>
 				</div>

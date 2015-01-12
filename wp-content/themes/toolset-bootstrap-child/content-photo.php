@@ -31,6 +31,9 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 <div class="photo-content">
 	<div class="row container">
+		<div class="photo-nav prev">
+				<?php previous_post_smart( '%link', '' . '<i class="fa fa-angle-left"></i>' ); ?>
+		</div>
 		<div class="span8">
 			<div class="photo-thumbnail">
 
@@ -105,9 +108,13 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				</div>
 			</div>
 		</div>
+		<div class="photo-nav next">
+				</i><?php next_post_smart( '%link', '<i class="fa fa-angle-right"></i>'); ?>
+		</div>
 	</div>
 	<div class="row container">
 		<ul class="social clearfix"> 
+			<li>Share This Photo:</li>
 	        <li class="facebook"><a href="https://www.facebook.com/oktopost"  target="_blank"><i class="fa fa-facebook"></i></a></li>
             <li class="twitter"><a href="https://twitter.com/oktopost" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <li class="googleplus"><a href="https://plus.google.com/+Oktopost/posts"  target="_blank"><i class="fa fa-google-plus"></i></a></li>
@@ -123,17 +130,20 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 <?php //echo getPostViews(get_the_ID()); ?>
  <div class="row-fluid">
-	<div class="row container">
+	<div class="row container lower">
 		<div class="span6 discussion">
 			<?php
 			
 
 			?>
 			<?php if ($moderate_critique) {
-				echo '<h3>moderate Critique</h3>';
-				echo '<div class="moderate-critique">';
-				echo '<img src="'.$author_badge['url'].'" alt="'.$author_badge['alt'].'" />';
+				echo '<h3>Moderate Critique</h3>';	
+				echo '<div class="row moderate-critique">';
+				echo '<div class="span2">'.get_avatar( get_the_author_meta('ID'), 70).'</div>'; 
+				echo '<div class="span9">';
+				echo '<h4>'.the_author_meta('first_name'); ?> <?php echo the_author_meta('last_name').'</h4>'; 
 				echo '<p>'.$moderate_critique.'</p>';
+				echo '</div>';
 				echo '</div>';
 				
 			}
@@ -141,19 +151,20 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 		</div>
 		
-		<div class="span6">
+		<div class="span6 specs">
+			<?php //echo do_shortcode('[display_rating_form]'); ?>
 			<div class="exif">
 				<h3> Exif</h3>
-				<ul>
+				<ul class="row-fluid">
 				<?php
-				 if($shutter != '') echo '<li><label>Shutter Speed</label><span>'.$shutter.'</span></li>';
-				 if($aperture  != '') echo '<li><label>Aperture</label><span>'.$aperture .'</span></li>';
-				 if($iso != '') echo '<li><label>ISO</label><span>'.$iso.'</span></li>';
-			     if($focal_length != '') echo '<li><label>Focal Lenth</label><span>'.$focal_length.'</span></li>';
-				 if($camera_manufacturer != '') echo '<li><label>Camera Manufacturer</label><span>'.$camera_manufacturer.'</span></li>';
-				 if($camera_model  != '') echo '<li><label>Camera Model</label><span>'.$camera_model .'</span></li>';
-				 if($lens != '') echo '<li><label>Lens</label><span>'.$lens.'</span></li>';
-				 if($flash != '') echo '<li><label>Flash</label><span>'.$flash.'</span></li>';
+				 if($shutter != '') echo '<li class="span3"><label>Shutter Speed</label><span>'.$shutter.'</span></li>';
+				 if($aperture  != '') echo '<li class="span3"><label>Aperture</label><span>ƒ/'.$aperture .'</span></li>';
+				 if($iso != '') echo '<li class="span3"><label>ISO</label><span>'.$iso.'</span></li>';
+			     if($focal_length != '') echo '<li class="span3"><label>Focal Lenth</label><span>'.$focal_length.'mm.</span></li>';
+				 if($camera_manufacturer != '') echo '<li class="span3"><label>Camera </label><span>'.$camera_manufacturer.'</span></li>';
+				 if($camera_model  != '') echo '<li class="span3"><label>Model</label><span>'.$camera_model .'</span></li>';
+				 if($lens != '') echo '<li class="span3"><label>Lens</label><span>'.$lens.'</span></li>';
+				 if($flash != '') echo '<li class="span3"><label>Flash</label><span>'.$flash.'</span></li>';
 				?> 
 			</ul>
 		</div>
@@ -171,20 +182,25 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 		<!-- Tags -->
 		<?php if (has_category() || has_tag() ):?>
 
-				<p>
+			<?php if (has_tag()): ?>
+			<div class="tags">
+			<h3>Tags</h3>
+			<?php echo get_the_tag_list('<li>','</li><li>','</li>'); ?>
 
-					<?php if (has_tag()): ?>
+			<?php endif; endif; ?>
 
-					<?php _e( '<h3>Tags</h3>', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?>.
-
-					<?php endif; ?>
-
-				</p>
-
-				<?php endif; ?>
-		
-
+			</div>
 		</div>
+	</div>
+	<div class="row container">
+		<ul class="nav-single pager" role="navigation">
+			<li class="nav-previous previous">
+				<?php previous_post_smart( '%link', '' . '&larr; '.'%title' ); ?>
+			</li>
+			<li class="nav-next next">
+				<?php next_post_smart( '%link', '%title' .' &rarr;'); ?>
+			</li>
+		</ul>
 	</div>
 </div>
 

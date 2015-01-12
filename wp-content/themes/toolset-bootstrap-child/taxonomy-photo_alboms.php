@@ -7,30 +7,30 @@
 
 get_header(); ?>
 
-<div class="for-columns-3">
-<div class="row-fluid">
-<div class="holder span4">
-<?php
-$variable = get_field('winning_photo_first', 'photo_alboms_'.$term->term_id);
-echo get_the_post_thumbnail($variable->ID, array(370, 270));
-?>
-</div>
-<div class="holder span4">
-<?php
-$variable2 = get_field('winning_photo_second', 'photo_alboms_'.$term->term_id);
-echo get_the_post_thumbnail($variable2->ID, array(370, 270));
-?>
-</div>
-<div class="holder span4">
-<?php
-$variable3 = get_field('winning_photo_third', 'photo_alboms_'.$term->term_id);
-echo get_the_post_thumbnail($variable3->ID, array(370, 270));
-?>
-</div>
-</div>
+<div class="row-fluid winners">
+	<div class="container">
+		<div class="span4 winner">
+		<?php
+		$variable = get_field('winning_photo_first', 'photo_alboms_'.$term->term_id);
+		echo get_the_post_thumbnail($variable->ID, array(440, 295));
+		?>
+		</div>
+		<div class="span4 1runner">
+		<?php
+		$variable2 = get_field('winning_photo_second', 'photo_alboms_'.$term->term_id);
+		echo get_the_post_thumbnail($variable2->ID, array(440, 295));
+		?>
+		</div>
+		<div class="span4 2runner">
+		<?php
+		$variable3 = get_field('winning_photo_third', 'photo_alboms_'.$term->term_id);
+		echo get_the_post_thumbnail($variable3->ID, array(440, 295));
+		?>
+		</div>
+	</div>
 </div>
 
-<div class="for-columns-4">
+<div class="container">
 
 <div class="row-fluid">
 
@@ -46,7 +46,7 @@ echo get_the_post_thumbnail($variable3->ID, array(370, 270));
 
 </div>
 
-</div>
+
 
 
 
@@ -56,7 +56,7 @@ echo get_the_post_thumbnail($variable3->ID, array(370, 270));
 
 <?php //endif; ?>
 
-<div class="for-columns-4">
+
 
 
 
@@ -70,7 +70,7 @@ echo get_the_post_thumbnail($variable3->ID, array(370, 270));
 
 		while ( have_posts() ) : the_post();
 
-			get_template_part( 'content', 'Albums_collection' );
+			get_template_part( 'content-albums_collection' );
 
 		endwhile;
 

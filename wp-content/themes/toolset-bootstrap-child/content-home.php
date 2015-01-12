@@ -11,14 +11,14 @@ jQuery(function() {
         var current = parseInt($this.html(), 10);
         $this.html(++current);
         if(current !== $this.data('count')){
-            setTimeout(function(){count($this)}, 50);
+            setTimeout(function(){count($this)}, 10);
         }
     }        
-  // jQuery(".counter").each(function() {
-  //     jQuery(this).data('count', parseInt(jQuery(this).html(), 10));
-  //     jQuery(this).html('0');
-  //     count(jQuery(this));
-  // });
+  jQuery(".counter").each(function() {
+       jQuery(this).data('count', parseInt(jQuery(this).html(), 10));
+      jQuery(this).html('0');
+      count(jQuery(this));
+  });
 });
 </script>
 
@@ -108,116 +108,82 @@ jQuery(function() {
               $n_comments_total = $n_comments->total_comments;
               ?>
 
-              <!--  
-<?php 
-
-  $terms = get_terms('photo_alboms'); 
-  if ( !empty( $terms ) && !is_wp_error( $terms ) ){ 
-  echo '<div class="for-columns-4" style="background-color: #76B2D4;"><div class="row-fluid">'; 
-
-  foreach ( $terms as $term ) { 
-     $term = sanitize_term( $term, 'photo_alboms' ); 
-     $term_link = get_term_link( $term, 'photo_alboms' ); 
-
-      echo '<div class="span3"><a href="' . esc_url( $term_link ) . '"><span class="counter">'.$term->count.'</span></br>' . $term->name . '</a></div>'; 
-  } 
-  // echo '</div></div>';
-  }
-
-?> 
-<div class="holder span3"><a href="http://188.240.51.133/~contest/photo_alboms/mobile-2/"><span class="counter">200</span><br>Mobile</a></div>
-</div></div> -->
+            
 
 
-<div class="for-columns-3" style="background-color: #76B2D4;padding: 51px 0;">
-	<div class="row-fluid">
-		<div class="span3 text-center"><!-- <a class="button-arrows-hp" href="#">< Previous</a> --></div>
-		<div class="child span6">
-			<div class="row-fluid">
+	<div class="row-fluid stats" style="background-color: #76B2D4;padding: 51px 0;">
 			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
-			</div>
-		</div>
-<div class="span3 text-center"><!-- <a class="button-arrows-hp" href="#">Next ></a> --></div>
-	<div class="span12">
-		<div class="counters-hp">
-			<div class="span3 counter-container text-center"><p class="counter">16067</p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-			<div class="span3 counter-container text-center"><p class="counter">697</p><p><span class="counter-bottom">Photographers to Date</span></p></div>
-			<div class="span3 counter-container text-center"><p class="counter">26</p><p><span class="counter-bottom">Countries Represented</span></p></div>
-			<div class="span3 counter-container text-center"><p class="counter">208</p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
-			<!--<div class="holder span3 text-center"><p class="counter"><?php //echo $n_cpt->publish;?></p><p>PHOTOS SUBMITTED</p></div>
-			<div class="holder span3 text-center"><p class="counter"><?php //echo $n_comments->total_comments;?></p><p>TOTAL COMMENTS</p>
-		</div>-->
+      <div class="container">
+  		<div class="counters-hp">
+  			<div class="span3 counter-container text-center"><p class="counter">16067</p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
+  			<div class="span3 counter-container text-center"><p class="counter">697</p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+  			<div class="span3 counter-container text-center"><p class="counter">26</p><p><span class="counter-bottom">Countries Represented</span></p></div>
+  			<div class="span3 counter-container text-center"><p class="counter">208</p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+  		</div>
+	   </div>
 	</div>
-	</div>
-	</div>
-</div>
+
+
+<div class="row-fluid" style="background-color:#fafafa;padding: 40px 0;">
+  <div class="container">
+    <div class="span3" style="padding-right: 40px;">
+    <h3 class="latest-hp">From the Blog</h3>
+    <?php the_field('lastest_posts_text'); ?>
+    <div class="buttons-blog-hp">
+    <a class="button-latest-hp" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
+    <?php
+
+    $post_object = get_field('lastest_posts_post');
+
+    if( $post_object ): 
+
+      // override $post
+      $post = $post_object;
+      setup_postdata( $post ); 
+
+      ?>
+          <a class="button-latest-hp" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+        <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+    <?php endif; ?>
+
+    <!-- <a href="<?php $post->guid ;?>"><?php $post->post_title; ?></a> -->
+    </div>
+    </div>
+    <div class="span9">
+    <div class="row-fluid">
+    <?php
+    	$args = array( 'numberposts' => '3' );
+    	$recent_posts = wp_get_recent_posts( $args );
+    	foreach( $recent_posts as $recent ){
+    		?>
+    	<div id="post-hp" class="holder span4">
+
+    		<div class="for-columns-1">
+    <div class="row-fluid">
+    <div class="span12"><?php the_post_thumbnail('medium' ); ?> </div>
+    </div>
+    </div>
+    <div class="for-columns-1" id="post-text-hp">
+    <div class="row-fluid">
+    <div class="holder span12">	<?php
+    		echo $recent["post_title"].'<br />';
+    				echo '<a href="' . get_permalink($recent["ID"]) . '">Read More <span style="color: red; font-weight: bold;">></span></a>';
+    		?></div>
+    </div>
+    </div>
+     </div>
+    		<?php
+    	}
+    ?>
 
 
 
-<div class="for-columns-4" style="background-color:#fafafa;padding: 40px 0;">
-<div class="row-fluid">
-<div class="span1"></div>
-<div class="span3" style="padding-right: 40px;">
-<h3 class="latest-hp">From the Blog</h3>
-<?php the_field('lastest_posts_text'); ?>
-<div class="buttons-blog-hp">
-<a class="button-latest-hp" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
-<?php
-
-$post_object = get_field('lastest_posts_post');
-
-if( $post_object ): 
-
-  // override $post
-  $post = $post_object;
-  setup_postdata( $post ); 
-
-  ?>
-      <a class="button-latest-hp" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-<?php endif; ?>
-
-<!-- <a href="<?php $post->guid ;?>"><?php $post->post_title; ?></a> -->
-</div>
-</div>
-<div class="span8">
-<div class="for-columns-3">
-<div class="row-fluid">
-<?php
-	$args = array( 'numberposts' => '3' );
-	$recent_posts = wp_get_recent_posts( $args );
-	foreach( $recent_posts as $recent ){
-		?>
-	<div id="post-hp" class="holder span4">
-
-		<div class="for-columns-1">
-<div class="row-fluid">
-<div class="span12"><?php echo get_the_post_thumbnail($recent["ID"], "medium" ); ?> </div>
-</div>
-</div>
-<div class="for-columns-1" id="post-text-hp">
-<div class="row-fluid">
-<div class="holder span12">	<?php
-		echo $recent["post_title"].'<br />';
-	// echo $recent["post_excerpt"].'<br /><br />';
-    // echo $recent["post_content"].'<br /><br />';
-				echo '<a href="' . get_permalink($recent["ID"]) . '">Read More <span style="color: red; font-weight: bold;">></span></a>';
-		?></div>
-</div>
-</div>
- </div>
-		<?php
-	}
-?>
-
-
+    </div>
+    </div>
+  </div>
 
 </div>
-</div>
-</div>
-<div class="holder span2"></div>
-</div>
-</div>
+
 
 
 <div id="photo-walk-hp">
@@ -233,14 +199,15 @@ if( $post_object ):
   <?php
 
   $user = get_field('featured_framer');
+  $framer_link = get_field('featured_framer_link');
   echo get_avatar( $user['ID'], '640');
 
   ?>
 
     <div class="overlay"></div>
     <div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
-    <div class="featured-avatar"><div class="featured-avatar-inner"><span class="winning-avatar-hp"><?php echo $user['user_avatar']; ?></span></div></div>
-    <div class="featured-name-photo"><p class="featured-photo-inner">Nomi Hirshman Rave</p></div>
+    <div class="featured-avatar"><div class="featured-avatar-inner"><span class="winning-avatar-hp"><a href="<?php echo $framer_link ?>"><?php echo $user['user_avatar']; ?></a></span></div></div>
+    <div class="featured-name-photo"><p class="featured-photo-inner"><a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a></p></div>
 </div>
 <?php
 

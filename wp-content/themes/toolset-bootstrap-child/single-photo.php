@@ -11,15 +11,6 @@ get_header(); ?>
 		endwhile;
 	?>
 
-	<ul class="nav-single pager" role="navigation">
-			<li class="nav-previous previous">
-				<?php previous_post_smart( '%link', '' . '&larr; '.'%title' ); ?>
-			</li>
-			<li class="nav-next next">
-				<?php next_post_smart( '%link', '%title' .' &rarr;'); ?>
-			</li>
-		</ul>
-
 		<?php //echo get_adjacent_id_smart( true ); ?>
 
 		<?php //wp_related_posts()?>
