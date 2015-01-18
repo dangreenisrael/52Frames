@@ -5,85 +5,70 @@
  *
  */
 
-get_header(); ?>
+get_header(); 
+
+$album = get_queried_object();
+$winners = new WP_Query(array('post_type' => 'photo', 
+	'meta_query' => array(array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')),
+	'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $album->slug))));
+if ($winners->have_posts()): while($winners->have_posts()): $winners->the_post();
+	$tag = get_field('first_place');
+	$w_arr[$tag] = get_the_id();
+endwhile; endif;
+	?>
 
 <div class="row-fluid winners">
-	<div class="container">
+	<div class="container album-list">
 		<div class="span4 winner">
-		<?php
-		$variable = get_field('winning_photo_first', 'photo_alboms_'.$term->term_id);
-		echo get_the_post_thumbnail($variable->ID, array(440, 295));
-		?>
+			<?php echo get_the_post_thumbnail($w_arr['Winner'], 'thumb-480'); 
+			 echo '<a href="'.get_the_permalink($w_arr['Winner']).'">'.get_the_title($w_arr['Winner']).'</a>';
+			 echo '<span class="badge winner">Winner</span>';
+			 //echo '<a href="'.get_author_posts_url( $w_arr['Winner'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
+			 echo get_the_author($w_arr['Winner']); 
+			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['Winner']); 
+
+			?>				
 		</div>
 		<div class="span4 1runner">
-		<?php
-		$variable2 = get_field('winning_photo_second', 'photo_alboms_'.$term->term_id);
-		echo get_the_post_thumbnail($variable2->ID, array(440, 295));
-		?>
+			<?php echo get_the_post_thumbnail($w_arr['1st Runner-up'],'thumb-480');
+			 echo '<a href="'.get_the_permalink($w_arr['1st Runner-up']).'">'.get_the_title($w_arr['1st Runner-up']).'</a>';
+			 echo '<span class="badge runner-up">1st Runner-up</span>';
+			 //echo '<a href="'.get_author_posts_url( $w_arr['1st Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
+			 echo get_the_author($w_arr['1st Runner-up']); 
+			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['1st Runner-up']); 
+			 ?>
 		</div>
 		<div class="span4 2runner">
-		<?php
-		$variable3 = get_field('winning_photo_third', 'photo_alboms_'.$term->term_id);
-		echo get_the_post_thumbnail($variable3->ID, array(440, 295));
-		?>
+			<?php echo get_the_post_thumbnail($w_arr['2nd Runner-up'],'thumb-480');
+			echo '<a href="'.get_the_permalink($w_arr['2nd Runner-up']).'">'.get_the_title($w_arr['2nd Runner-up']).'</a>';
+			 echo '<span class="badge runner-up">2nd Runner-up</span>';
+			 //echo '<a href="'.get_author_posts_url( $w_arr['2nd Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
+			 echo get_the_author($w_arr['2nd Runner-up']); 
+			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['1st Runner-up']); 
+			 ?>
+
 		</div>
 	</div>
 </div>
 
 <div class="container">
+	<div class="row-fluid">
+		<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="133"]' ); ?></div>
+		<div class="holder span6"><?php echo do_shortcode( '[searchandfilter id="130"]' ); ?></div>
+		<?php if ( current_user_can( 'judge' ) ) : ?>
+			<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="164"]' ); ?></div>
+		<?php endif;?>
+	</div>
 
-<div class="row-fluid">
-
-<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="133"]' ); ?></div>
-
-<div class="holder span6"><?php echo do_shortcode( '[searchandfilter id="130"]' ); ?></div>
-
-<?php if ( current_user_can( 'judge' ) ) : ?>
-
-<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="164"]' ); ?></div>
-
-<?php endif;?>
-
+	<?php if ( have_posts() ) : ?>
+		<div class="row-fluid">
+			<?php
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content-albums_collection' );
+				endwhile;
+				wpbootstrap_content_nav();
+			?>
+		</div>
+	<?php endif; ?>
 </div>
-
-
-
-
-
-<?php
-
-     // if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Custom Widget Area') ) : ?>
-
-<?php //endif; ?>
-
-
-
-
-
-
-
-<?php if ( have_posts() ) : ?>
-
-
-
-	<?php
-
-		while ( have_posts() ) : the_post();
-
-			get_template_part( 'content-albums_collection' );
-
-		endwhile;
-
-		wpbootstrap_content_nav();
-
-	?>
-
-
-
-<?php endif; ?>
-
-
-
-</div>
-
 <?php get_footer();

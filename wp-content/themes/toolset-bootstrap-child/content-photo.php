@@ -41,7 +41,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
 					
-						<?php the_post_thumbnail('full'); ?>
+						<?php the_post_thumbnail('thumb-h545'); ?>
 
 
 				<?php endif; ?>
@@ -72,8 +72,26 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				
 
 				<h1><?php the_title(); ?></h1>
+				<?php if( get_field('winner_photo') ):
+				 if (get_field('first_place') == 'Winner') {
+						echo 'Winner';
+					} else if (get_field('first_place') == '1st Runner-up') {
+					         echo '1st Runner-up';
+					} else if (get_field('first_place') == '2nd Runner-up') {
+					       echo '2nd Runner-up';
+					}
+				endif;
+				?>
+				<div class="actions">
+				<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
+				<a class="ico comments" href="<?php the_permalink(); ?>#disqus_thread"><span class="disqus-comment-count" data-disqus-url="<?php the_permalink(); ?>"></span></a>
+				<?php
+					
+					if ($for_sale != '') 
+						echo '<a class="ico buy" href="">Buy Photo</a>';
 
-
+					?>
+				</div>
 				<?php if ( current_user_can( 'judge' ) ) : ?>
 				<!-- Rating Widget -->
 
@@ -96,16 +114,8 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 					}
 				?>
 				</div>
-				<div class="actions">
-				<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
-				<a class="ico comments" href="<?php the_permalink(); ?>#disqus_thread"><span class="disqus-comment-count" data-disqus-url="<?php the_permalink(); ?>"></span></a>
-				<?php
-					
-					if ($for_sale != '') 
-						echo '<a class="ico buy" href="">Buy Photo</a>';
 
-					?>
-				</div>
+				
 			</div>
 		</div>
 		<div class="photo-nav next">
@@ -115,7 +125,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 	<div class="row container">
 		<ul class="social clearfix"> 
 			<li>Share This Photo:</li>
-	        <li class="facebook"><a href="https://www.facebook.com/oktopost"  target="_blank"><i class="fa fa-facebook"></i></a></li>
+	        <li class="facebook"><a href=""  target="_blank"><i class="fa fa-facebook"></i></a></li>
             <li class="twitter"><a href="https://twitter.com/oktopost" target="_blank"><i class="fa fa-twitter"></i></a></li>
             <li class="googleplus"><a href="https://plus.google.com/+Oktopost/posts"  target="_blank"><i class="fa fa-google-plus"></i></a></li>
             <li class="linkedin"><a href="https://www.linkedin.com/company/oktopost" target="_blank"><i class="fa fa-linkedin"></i></a></li>
@@ -126,9 +136,9 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				<!-- Start Custom Fileds -->
 
 
-<?php //setPostViews(get_the_ID()); ?>
+<?php setPostViews(get_the_ID()); ?>
 
-<?php //echo getPostViews(get_the_ID()); ?>
+<?php echo getPostViews(get_the_ID()); ?>
  <div class="row-fluid">
 	<div class="row container lower">
 		<div class="span6 discussion">

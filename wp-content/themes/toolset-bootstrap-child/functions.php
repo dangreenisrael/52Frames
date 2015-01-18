@@ -49,9 +49,11 @@ add_action( 'init', 'register_my_menu' );
 // add_action( 'init', 'switch_homepage' );
 
 /************* THUMBNAIL SIZE OPTIONS *************/
-
+add_image_size( 'thumb-2048', 2048, auto, true );
+add_image_size( 'thumb-h545', auto, 545, true );
 add_image_size( 'thumb-780', 780, 520, true );
 add_image_size( 'thumb-480', 480, 320, true );
+add_image_size( 'thumb-440', 440, 250, true );
 
 function get_active_album() {
 	$albums = get_terms('photo_alboms', array('hide_empty' => false));
@@ -67,7 +69,7 @@ function add_photo_js() {
 	if ($active_album != null) {
 		$album_title = addslashes($active_album->name);
 		$album_tag_ids = get_field('album_tags', $active_album);
-		$tags = get_terms('post_tag', array('include' => $album_tag_ids, 'fields' => 'names'));
+		$tags = get_terms('photo-tags', array('include' => $album_tag_ids, 'fields' => 'names'));
 		$tags = implode(',', $tags);
 		$extra_challange = addslashes(get_field('extra_challange_desc', $active_album));
 		$weekno = get_field('week_number', $active_album);
@@ -89,7 +91,7 @@ function add_photo_js() {
 		$('.cred-field-post_title input[type="text"]').attr('maxlength', 40);
 		$('.cred-field-post_content textarea').attr('maxlength', 1000);
 		<?php if (is_user_logged_in()) { ?>
-			// $('.nav .users').text($('.nav .users').text().replace('My Account', '<?php echo $user; ?>'));
+			$('.nav .users').html($('.nav .users').html().replace('My Account', '<?php echo $user; ?>'));
 		<?php } ?>
 	});
 	</script>
@@ -111,11 +113,49 @@ function add_data_to_photo($post_id, $form_data){
 
 		// Add Photo association to Editor tags
 		$album_tag_ids = get_field('album_tags', $active_album);
-		$tag_names = get_terms('post_tag', array('include' => $album_tag_ids, 'fields' => 'names'));
+		$tag_names = get_terms('photo-tags', array('include' => $album_tag_ids, 'fields' => 'names'));
 		wp_set_post_tags($post_id, $tag_names, true);
 	}
 }
+// function to display number of posts.
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+    return $count.' Views';
+}
 
+// function to count views.
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+
+
+// Add it to a column in WP-Admin
+add_filter('manage_posts_columns', 'posts_column_views');
+add_action('manage_posts_custom_column', 'posts_custom_column_views',5,2);
+function posts_column_views($defaults){
+    $defaults['post_views'] = __('Views');
+    return $defaults;
+}
+function posts_custom_column_views($column_name, $id){
+	if($column_name === 'post_views'){
+        echo getPostViews(get_the_ID());
+    }
+}
 
 /*
  *  Check if the user has posted to the open album
@@ -190,6 +230,19 @@ function zipsearch_search_where( $where ){
     return $where;
 }
 
+/**************************************************************/
+/*                     ADMIN ACF Validations                  */
+/**************************************************************/  
+
+// if it's the admin, add a hidden input with the post_id
+if ( is_admin() ){
+    // add the post_ID to the acf[] form
+    add_action( 'edit_form_after_editor', 'my_edit_form_after_editor' );
+}
+function my_edit_form_after_editor( $post ){
+    echo "<input type='hidden' name='acf[post_ID]' value='{$post->ID}'/>";
+}
+
 // restrict OPEN albums to 1
 add_filter('acf/validate_value/name=album_status', 'validate_album_status', 10, 4);
 function validate_album_status( $valid, $value, $field, $input ){
@@ -203,13 +256,61 @@ function validate_album_status( $valid, $value, $field, $input ){
 	$albums = get_terms('photo_alboms', array('hide_empty' => 0));
 	foreach ($albums as $album) {
 		if (get_field('album_status', $album) == 'OPEN')
-			 return 'The album "'.$album->name.'" already marked as OPEN';
 			 return 'Album '.$album->name." already marked as OPEN";
 	}
 	return $valid;
 }
 
-// Add albums column befor author
+// make sure there are only 3 winners on active album
+add_filter('acf/validate_value/name=winner_photo', 'validate_up_to_tree_winners', 10, 4);
+function validate_up_to_tree_winners( $valid, $value, $field, $input ){
+	if( !$valid ) {
+		return $valid;
+	}
+
+	if ($value != '1')
+		return $valid;
+	
+	$post_id = $_POST['acf']['post_ID'];
+	if (get_field('winner_photo', $post_id) == $value)
+		return $valid;
+
+	$album = get_active_album();
+	$winners = new WP_Query(array('post_type' => 'photo', 
+			'meta_query' => array(array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')),
+			'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $album->slug))));
+	if ($winners->found_posts > 2) {
+		return "Only 3 photoes can be marked as winners (per album), currently there are :".$winners->found_posts;
+	}
+	return $valid;
+}
+
+// make sure there are only 1 winner per place
+add_filter('acf/validate_value/name=first_place', 'validate_winner_type_restriction', 10, 4);
+function validate_winner_type_restriction( $valid, $value, $field, $input ){
+	if( !$valid ) {
+		return $valid;
+	}
+
+	$post_id = $_POST['acf']['post_ID'];
+	if (get_field('first_place', $post_id) == $value)
+		return $valid;
+
+	$album = get_active_album();
+	$winners = new WP_Query(array('post_type' => 'photo', 
+			'meta_query' => array(array('key' => 'first_place', 'value' => $value, 'compare' => '=')),
+			'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $album->slug))));
+	if ($winners->found_posts != 0) {
+		return "Only 1 photo can be marked can be marked as $value (per album)";
+	}
+	return $valid;
+}
+
+/**********************************************************/
+/*                   Admin Photo Listing                  */
+/**********************************************************/
+
+// Add Photo Extra columns (each on it's right place)
 add_filter('manage_photo_posts_columns', 'add_albums_to_photos_list');
 function add_albums_to_photos_list( $posts_columns ) {
 	if (!isset($posts_columns['author'])) {
@@ -220,15 +321,23 @@ function add_albums_to_photos_list( $posts_columns ) {
 		foreach($posts_columns as $key => $posts_column) {
 			if ($key=='author') {
 				$new_posts_columns['albums'] = null;
+				$new_posts_columns['winner'] = null;
+			}
+			else if ($key == 'title') {
+				$new_posts_columns['photo_thumb'] = null;
 			}
 			$new_posts_columns[$key] = $posts_column;
+
 		}
 	}
 	$new_posts_columns['albums'] = 'Albums';
+	$new_posts_columns['winner'] = 'Winner';
+	$new_posts_columns['photo_thumb'] = __('Thumbs');
+
 	return $new_posts_columns;
 }
 
-// Show data on albums column
+// Show data on Photo Extra columns
 add_action('manage_photo_posts_custom_column', 'show_albums_for_photos_list',10,2);
 function show_albums_for_photos_list( $column_id,$post_id ) {
 	switch ($column_id) {
@@ -242,6 +351,15 @@ function show_albums_for_photos_list( $column_id,$post_id ) {
 				echo implode(' | ',$albums);
 			}
 		break;
+		case 'photo_thumb':
+        	echo the_post_thumbnail(array(125, 80));
+        break;
+        case 'winner': 
+        	$winner = get_post_meta(get_the_id(), 'winner_photo', true );
+        	if ($winner == '1')
+        		$pos = get_post_meta(get_the_id(), 'first_place', true );
+        	echo (($winner == '1') ? $pos : 'No');
+        break;
 	}
 }
 

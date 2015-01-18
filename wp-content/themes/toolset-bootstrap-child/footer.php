@@ -56,9 +56,9 @@
 					  <h3><?php the_field('footer_text_title',194); ?></h3>
 					  <p><?php the_field('footer_text_body',194); ?></p>
 					  <div class="social-footer-container">
-						  <div class="social-footer"><a href="<?php the_field('facebooks_link',194); ?>" target="_blank"><i class="fa fa-facebook"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('instagrams_link',194); ?>" target="_blank"><i class="fa fa-instagram"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('twiters_link',194); ?>" target="_blank"><i class="fa fa-twitter"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('facebooks_link',194); ?>"><i class="fa fa-facebook"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('instagrams_link',194); ?>"><i class="fa fa-instagram"></i></a></div>
+						  <div class="social-footer"><a href="<?php the_field('twiters_link',194); ?>"><i class="fa fa-twitter"></i></a></div>
 					  </div>
 					</div>
 				</div>
@@ -77,28 +77,19 @@
 
 	</div><!-- .container -->
 <script>
-
     $( "#FileInput" ).change(function() {
       $( "#Up" ).click();
     });
 
-	
+	$(document).ready(function(){
+	  $(".search-top").click(function(){
+		$("#search-form").toggle();
+	  });
+	});
 </script>
 <?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
 <?php wp_footer(); ?>
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 
-<script type="text/javascript">
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-var disqus_shortname = '52frames'; // required: replace example with your forum shortname
-
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function () {
-var s = document.createElement('script'); s.async = true;
-s.type = 'text/javascript';
-s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
 </body>
 </html>

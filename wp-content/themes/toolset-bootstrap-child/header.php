@@ -15,8 +15,8 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />	
 	<?php if ( of_get_option( 'favicon' ) ): ?>
 		<link rel="shortcut icon" href="<?php echo of_get_option( 'favicon' ); ?>">
-		
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/favicon.ico">
+	<?php else: ?>
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri() ?>/favicon.ico">
 	<?php endif ?>
 	<!--[if lt IE 9]>
 		<?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IEs: http://code.google.com/p/html5shiv/ ?>
@@ -31,27 +31,27 @@
 		wp_head();
 		do_action( 'wpbootstrap_after_wp_head' );
 	?>
-	<script>
-	$(document).ready(function(){
-	  $(".search-top").click(function(){
-		$("#search-form").toggle();
-	  });
-	});
-	</script>
-
-
+<script type=”text/javascript”>
+ $(document).keydown(function(e) {
+ 	var url = false; if (e.which == 37) {
+ 	 // Left arrow key code 
+ 	 url = $(‘.prev’).attr(‘href’); 
+ 	 } else if (e.which == 39) {
+ 	  // Right arrow key code
+ 	   url = $(‘.next’).attr(‘href’); 
+ 	} if (url) { window.location = url; } 
+ });
+</script>
 </head>
 
 <body <?php body_class(); ?>>
 
 	<?php do_action( 'wpbootstrap_before_container' ); ?>
-	
 
-		
-
-		<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) || wpbootstrap_get_setting('general_settings','display_header_nav') ): ?>
-	<header id="header"  role="banner">
-		<div class="overlay"></div>
+<header id="header"  role="banner">
+	<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' ))
+		echo'<div class="overlay"></div>';
+	?>		
 		<div class="row-fluid">
 			<div class="container top-bar">	
 				<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) ): ?>
@@ -60,8 +60,6 @@
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/logo.png"></a>
 					</h1>
 				</hgroup>
-				<?php endif; ?>
-
 				<?php
 					if ( wpbootstrap_get_setting('general_settings','display_header_nav') ):
 						get_template_part('_navbar');

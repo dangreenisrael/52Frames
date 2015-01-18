@@ -25,67 +25,93 @@ jQuery(function() {
 <!-- Load the slider with "slider1" alias every time -->
       <?php //putRevSlider("homepage") ?>
           <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
-             <div id="bg_container">
-              <!--<iframe src="//player.vimeo.com/video/115478018?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1" width="1920" height="599" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              -->
-		      	<video width="1920" height="600" autoplay>
-              <source src="<?php echo get_stylesheet_directory_uri()?>/video/video_background-HD.mp4" type="video/mp4"></video>
+             <div id="bg_container">              
+  		      	<video width="1920" height="600" autoplay loop class="hidden-phone">
+                <source src="<?php echo get_stylesheet_directory_uri()?>/video/video_background-HD.mp4" type="video/mp4">
+              </video>
+              <div class="overlay"></div>
             </div>  
             <div class="container uber">
               <div class="row span12"><h1 class="site-description"><?php bloginfo( 'description' ); ?></h1></div>
-              <div class="span6 text-slider">
-                <?php if (function_exists('rps_show')) echo rps_show(); ?>
+              <div class="span6 content-slider">
+                <?php //if (function_exists('rps_show')) echo rps_show(); ?>
+                <?php 
+                 $args = array(
+                   'post_type' => 'homepage-slider', 
+                   'showposts' => -1
+                   
+                 );?>
+                 <div class="home-slider">
+                   
+                    <?php $loop = new WP_Query( $args );
+                    while ( $loop->have_posts() ) : $loop->the_post();
+                      $title = get_the_title();
+                      $link = get_field('slide_link');
+                      ?>      
+                       <div class="slide row">               
+                          <div class="span4 slider-img visible-desktop">
+                              <?php echo the_post_thumbnail('full'); ?>
+                          </div>
+                          <div class="span8 caption">
+                            <h3><?php echo $title;?></h3>
+                            <?php the_content();?>
+                            <a href="<?php echo $link; ?>" class="slider-button-hp">More Details</a>
+                          </div>
+                        </div>
+                    <?php 
+                  endwhile;
+                    wp_reset_query();
+                     ?>          
+                </div>  
               </div>
-              <div class="submission-form-hp span3 pull-right">
+              <div class="submission-form-hp span6 pull-right">
                 <div class="camera-text">
-                  <a href="<?php echo home_url()?>/submit-new-photo/">This Weeks Challenge</a>
-					<?php
-					$term = get_field('albums_name_above_camera');
-					?>
-                    <p class="camera-album-span">&ldquo;Self-Portrait<?php //the_field('name', $term); ?>&rdquo;</p>
-					<p class="camera-span">Ends Sunday at noon, U.S. Eastern</p>
-					<?php
-					if ( is_user_logged_in() ) {
-					
-					echo '<a href="http://52frames.com/submit-new-photo/"><p class="red-circle"><span class="submit-text">Submit</span><br /><span class="your-photo-text">Your Photo</span></p></a>
-                    <div class="camera-icn">
-                      <img src="'.get_stylesheet_directory_uri().'/images/camera.png"></img>';
-					  
-					} else {
-					
-						echo '<a href="http://52frames.com/register-a-new-account/"><p class="red-circle"><span class="submit-text">Submit</span><br /><span class="your-photo-text">Your Photo</span></p></a>
-                    <div class="camera-icn">
-                      <img src="'.get_stylesheet_directory_uri().'/images/camera.png"></img>';
-					  } 
-					  ?>
-                    </div>
+                  <a href="<?php echo home_url()?>/submit/">This Weeks Challenge</a>
+          					<?php
+          					$term = get_field('albums_name_above_camera');
+          					?>
+                    <span class="camera-album-name">&ldquo;Self-Portrait<?php //the_field('name', $term); ?>&rdquo;</span>
+          					<span class="camera-deadline">Ends Sunday at noon, U.S. Eastern</span>
+          					<?php
+          					if ( is_user_logged_in() ) {
+          					 $submit = 'submit';
+                     } else {
+                       $submit = 'register-a-new-account';
+                      } 
+                      ?>
+                      <div class="camera-action">
+              					<a class="red-circle" href="<?php echo home_url().'/'.$submit ?>">
+                            <span class="submit-text">Submit</span><br />
+                            <span class="your-photo-text">Your Photo</span>
+                        </a>                   
+                    </div>          					  
                 </div>
-              </div>
+             </div>
             </div>
-             <div class="row-fluid latest-albums">
+            <div class="row-fluid latest-albums">
                  <div class="title-container">
                    <h1 class="title">Our Latest Challenges</h1>
                  </div>
                  <div class="albums-carousel">
-              <?php
-              $terms2 = get_terms('photo_alboms'); 
-                if ( !empty( $terms2 ) && !is_wp_error( $terms2 ) ){
-                	 foreach ( $terms2 as $term2 ) {
-                      if (get_field('', $term2) == 'CLOSE')
-                        continue;
-                      $week = get_field('week_number', $term2);
-                      $term_link = get_term_link( $term2, 'photo_alboms' ); 
-                      $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
-                      $term_link = get_field('fb_link', $term2);
-                      // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
-                      echo '<div class="span3 winning_image"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
-                      echo '<div class="week-name"><div class="album-stats"><span class="week-number-hp">Week '.$week.'</span></br><a class="album-name-hp" href="'.esc_url( $term_link ).'">'.$term2->name.'</a></div></div></div>';
+                    <?php
+                    $terms2 = get_terms('photo_alboms'); 
+                      if ( !empty( $terms2 ) && !is_wp_error( $terms2 ) ){
+                      	 foreach ( $terms2 as $term2 ) {
+                            if (get_field('', $term2) == 'CLOSE')
+                              continue;
+                            $week = get_field('week_number', $term2);
+                            $term_link = get_term_link( $term2, 'photo_alboms' ); 
+                            $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
+                            $term_link = get_field('fb_link', $term2);
+                            // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
+                            echo '<div class="album"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
+                            echo '<div class="week-name"><div class="album-stats"><span class="week-number-hp">Week '.$week.'</span></br><a class="album-name-hp" href="'.esc_url( $term_link ).'">'.$term2->name.'</a></div></div></div>';
 
+                          }
                     }
-              }
-              ?>
+                    ?>
                  </div>
-              </div>   
+            </div>   
               <?php
               // count posts
               $n_post = wp_count_posts();
@@ -108,172 +134,224 @@ jQuery(function() {
               $n_comments_total = $n_comments->total_comments;
               ?>
 
-            
+          	<div class="row-fluid stats" style="background-color: #76B2D4;padding: 30px 0;">
+          			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
+                <div class="container hidden-phone">
+              		<div class="counters-hp">
+              			<div class="span3 counter-container text-center"><p class="counter">16067</p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="counter">697</p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="counter">38</p><p><span class="counter-bottom">Countries Represented</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="counter">210</p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+              		</div>
+          	   </div>
+          	</div>
 
+            <!-- Latest Posts -->
+            <div class="row-fluid latest-posts">
+              <div class="container ">
+                  <div class="span3 blog-preview">
+                    <h3 class="title">From the Blog</h3>
+                     <div class="hidden-phone"><?php the_field('lastest_posts_text'); ?></div>
+                      <div class="buttons-blog-hp hidden-phone">
+                          <a class="button-latest-hp" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
+                       <?php
+                       $post_object = get_field('lastest_posts_post');
+                        if( $post_object ): 
+                           // override $post
+                           $post = $post_object;
+                           setup_postdata( $post ); 
+                          ?>
+                            <a class="button-latest-hp" href="">Photo Guid 101</a>
+                          <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                       <?php endif; ?>
 
-	<div class="row-fluid stats" style="background-color: #76B2D4;padding: 51px 0;">
-			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
-      <div class="container">
-  		<div class="counters-hp">
-  			<div class="span3 counter-container text-center"><p class="counter">16067</p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-  			<div class="span3 counter-container text-center"><p class="counter">697</p><p><span class="counter-bottom">Photographers to Date</span></p></div>
-  			<div class="span3 counter-container text-center"><p class="counter">26</p><p><span class="counter-bottom">Countries Represented</span></p></div>
-  			<div class="span3 counter-container text-center"><p class="counter">208</p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
-  		</div>
-	   </div>
-	</div>
+                      <!-- <a href="<?php $post->guid ;?>"><?php $post->post_title; ?></a> -->
+                      </div>  
+                  </div>
+                  <div class="span9 pull-right">
+                    <div class="row-fluid">
+                    <?php
+                    	 $args = array(
+                   'post_type' => 'post', 
+                   'showposts' => 3
+                   
+                 );?>
+                    	<?php $postloop = new WP_Query( $args );
+                    while ( $postloop->have_posts() ) : $postloop->the_post();
+                    		?>
+                    	<div class="span4"> 
+                        <div article class="post">           	
+                          <div><a href="<?php the_permalink()?>"><?php the_post_thumbnail('thumb-440' ); ?></a></div>            
+                          <h3><a href="<?php the_permalink()?>"><?php	the_title() ?></a></h3>
+                        </div>
+                     </div>
+                		<?php
+                	 endwhile;
+                   wp_reset_query();
+                    ?>
+                    </div>
+                  </div>
+              </div>
 
+            </div>
+            <div id="photo-walk-hp" class="row-fluid">
+                <div class="container">
+                    <div class="span2 photowalk-monster"><?php $image = wp_get_attachment_image_src(get_field('photo_walk_image'), 'full'); ?>
+                      <img src="<?php echo $image[0]; ?>" alt="<?php echo get_the_title(get_field('photo_walk_image')) ?>" />
+                    </div>
+                    <div class="span9" id="photowalk-text-hp">
+                      <div class="row">
+                        <div class="pull-left">
+                          <h3 class="title">Photowalk</h3>
+                           <?php the_field('photo_walk_text'); ?>
+                        </div>
+                        <div class="pull-right"  id="photo-walk-button">
+                          <a class="button" href="#"><?php the_field('photo_walk_button'); ?></a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid featured hidden-phone">
+             
+                <?php
 
-<div class="row-fluid" style="background-color:#fafafa;padding: 40px 0;">
-  <div class="container">
-    <div class="span3" style="padding-right: 40px;">
-    <h3 class="latest-hp">From the Blog</h3>
-    <?php the_field('lastest_posts_text'); ?>
-    <div class="buttons-blog-hp">
-    <a class="button-latest-hp" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
-    <?php
+                $user = get_field('featured_framer');
+                $framer_link = get_field('featured_framer_link');
+                 ?>
+                <div id="featured-framer" class="featured-item span4">
+                  <?php echo get_wp_user_avatar( $user['ID'], 'thumb-640');?>
+                  <div class="overlay"></div>
+                  <div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
+                    <div class="framer-avatar">
+                        <a href="<?php echo $framer_link ?>"><?php echo get_wp_user_avatar( $user['ID'], '150'); ?></a>
+                    </div>
+                  <div class="framer-name">                      
+                        <a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a>
+                   </div>
+              </div>
+              <?php
 
-    $post_object = get_field('lastest_posts_post');
+              $post_object = get_field('photo_of_the_day');
 
-    if( $post_object ): 
+              if( $post_object ): 
 
-      // override $post
-      $post = $post_object;
-      setup_postdata( $post ); 
+                // override $post
+                $post = $post_object;
+                setup_postdata( $post ); 
+                ?>
+              <div class="span4 featured-item">
+                <?php $image = get_the_post_thumbnail($post->ID, 'thumb-780'); ?>
+                <div><a href="<?php the_permalink(); ?>"><?php echo $image; ?></a>
+                  <div class="overlay"></div>
+                </div>
+                <div class="photo-of-the-day-hp"style="top: 100px;">
+                  <div class="photo-hp">
+                    <span>Photo of <strong>the Day</strong></span>
+                  </div>
+                </div>
+                <div class="photo-title-hp">
+                  <div class="title-hp">
+                    <span class="week-number-hp"><a href="<?php the_permalink()?>"><?php the_title();?></a></span>
+                  </div>
+                </div>
+                <div class="photographer-name-hp"style="top: 400px;">
+                  <div class="photographer-hp">
+                    <a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                  </div>
+                </div>
+              </div>
 
-      ?>
-          <a class="button-latest-hp" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-        <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-    <?php endif; ?>
+                  <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+              <?php endif; ?>
 
-    <!-- <a href="<?php $post->guid ;?>"><?php $post->post_title; ?></a> -->
-    </div>
-    </div>
-    <div class="span9">
-    <div class="row-fluid">
-    <?php
-    	$args = array( 'numberposts' => '3' );
-    	$recent_posts = wp_get_recent_posts( $args );
-    	foreach( $recent_posts as $recent ){
-    		?>
-    	<div id="post-hp" class="holder span4">
+              <?php
+              $post_object = get_field('audience_award');
 
-    		<div class="for-columns-1">
-    <div class="row-fluid">
-    <div class="span12"><?php the_post_thumbnail('medium' ); ?> </div>
-    </div>
-    </div>
-    <div class="for-columns-1" id="post-text-hp">
-    <div class="row-fluid">
-    <div class="holder span12">	<?php
-    		echo $recent["post_title"].'<br />';
-    				echo '<a href="' . get_permalink($recent["ID"]) . '">Read More <span style="color: red; font-weight: bold;">></span></a>';
-    		?></div>
-    </div>
-    </div>
-     </div>
-    		<?php
-    	}
-    ?>
+              if( $post_object ): 
 
+                // override $post
+                $post = $post_object;
+                setup_postdata( $post ); 
+                ?>
 
-
-    </div>
-    </div>
-  </div>
-
-</div>
-
-
-
-<div id="photo-walk-hp">
-    <div class="container">
-        <div class="span2"><?php $image = wp_get_attachment_image_src(get_field('photo_walk_image'), 'full'); ?>
-        <img src="<?php echo $image[0]; ?>" alt="<?php echo get_the_title(get_field('photo_walk_image')) ?>" /></div>
-        <div class="span5" id="photowalk-text-hp"><h3 class="title">Photowalk</h3><?php the_field('photo_walk_text'); ?></div>
-        <div class="span4 text-center" id="photo-walk-button"><a class="button" href="#"><?php the_field('photo_walk_button'); ?></a></div>
-    </div>
-</div>
-<div class="for-columns-3"><div class="row-fluid">
-<div id="blur-dropshadow" class="holder span4 featured-framer_image " style="width:33.33%;">
-  <?php
-
-  $user = get_field('featured_framer');
-  $framer_link = get_field('featured_framer_link');
-  echo get_avatar( $user['ID'], '640');
-
-  ?>
-
-    <div class="overlay"></div>
-    <div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
-    <div class="featured-avatar"><div class="featured-avatar-inner"><span class="winning-avatar-hp"><a href="<?php echo $framer_link ?>"><?php echo $user['user_avatar']; ?></a></span></div></div>
-    <div class="featured-name-photo"><p class="featured-photo-inner"><a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a></p></div>
-</div>
-<?php
-
-$post_object = get_field('photo_of_the_day');
-
-if( $post_object ): 
-
-  // override $post
-  $post = $post_object;
-  setup_postdata( $post ); 
-  ?>
-<div class="span4 winning_image" style="width:33.33%;"><?php $image = get_the_post_thumbnail($post->ID, 'full'); ?>
-<div><?php //the_permalink(); ?><?php echo $image; ?><div class="overlay"></div></div>
-<div class="photo-of-the-day-hp"style="top: 100px;"><div class="photo-hp"><span>Photo of <strong>the Day</strong></span></div></div>
-<div class="photo-title-hp"><div class="title-hp"><span class="week-number-hp"><?php the_title();?></span></div></div>
-<div class="photographer-name-hp"style="top: 400px;"><div class="photographer-hp"><a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a></div></div>
-
-</div>
-
-    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-<?php endif; ?>
-
-<?php
-$post_object = get_field('audience_award');
-
-if( $post_object ): 
-
-  // override $post
-  $post = $post_object;
-  setup_postdata( $post ); 
-  ?>
-
-<div class="span4 winning_image" style="width:33.33%;"><?php $image = get_the_post_thumbnail($post->ID, 'full'); ?>
-<div><?php //the_permalink(); ?><?php echo $image; ?></div>
-<div class="overlay"></div>
-<div class="photo-of-the-day-hp" style="top: 100px;"><div class="photo-hp"><span>Audience <strong>Award</strong></span></div></div>
-<div class="photo-title-hp" style="top: 130px; left: 31%;"><div class="title-hp"><span class="week-number-hp"><?php the_title();?></span></div></div>
-<div class="photographer-name-hp" style="top: 400px;"><div class="photographer-hp"><a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a></div></div>
-</div>
-
-    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-<?php endif; ?>
-
-</div></div>
-
-
-
-
-
-</div>
-</article>
+              <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-780'); ?>
+                <div><?php //the_permalink(); ?><?php echo $image; ?></div>
+                <div class="overlay"></div>
+                <div class="photo-of-the-day-hp" style="top: 100px;">
+                  <div class="photo-hp">
+                    <span>Audience <strong>Award</strong></span>
+                  </div>
+                </div>
+                <div class="photo-title-hp" style="top: 130px; left: 31%;">
+                    <div class="title-hp">
+                      <span class="week-number-hp"><a href="<?php the_permalink()?>"><?php the_title();?></a></span>
+                    </div>
+                </div>
+                <div class="photographer-name-hp" style="top: 400px;">
+                  <div class="photographer-hp">
+                    <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
+                    <a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                  </div>
+                </div>
+              </div>
+                  <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+              <?php endif; ?>
+            </div>
+          </div>
+          </article>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/slick/slick.min.js"></script>
 
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script> -->
-<!--<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.carouFredSel-6.2.1.js" type="text/javascript"></script>-->
 <script type="text/javascript">
 $(document).ready(function() {
-  $('.albums-carousel').slick({
-      lazyLoad: 'ondemand',
-      slidesToShow: 4,
+      $('.home-slider').slick({
+      slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: false,
-      autoplaySpeed: 2000
+      autoplaySpeed: 2000,
+      dots: true,
+      arrows: false,
+      speed: 500,
+      fade: true,
+      slide: 'div',
+      cssEase: 'linear'
   });
+   $('.home-slider').show();   
+
+     $('.albums-carousel').slick({
+      lazyLoad: 'ondemand',
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 2000,
+      responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+  });
+ 
 });
 </script>
 <?php wpbootstrap_link_pages(); ?>
