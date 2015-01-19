@@ -29,7 +29,7 @@
 				<?php if ( of_get_option( 'navbar_search' ) ): ?>
 				<form style="display:none;" id="search-form" class="navbar-form pull-right" role="search" method="get" action="<?php echo home_url( '/' ); ?>">
 					<input type="text" name="s" id="s" class="input-medium">
-					<button type="submit" class="btn"><?php _e('Search','wpbootstrap'); ?></button>
+					<button type="submit" class="btn"><i class="fa fa-search"></i></button>
 				</form><!-- .navbar-form -->
 				<?php endif; ?>
 

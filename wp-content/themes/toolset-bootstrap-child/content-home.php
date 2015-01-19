@@ -105,7 +105,7 @@ jQuery(function() {
                             $term_link = get_field('fb_link', $term2);
                             // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
                             echo '<div class="album"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
-                            echo '<div class="week-name"><div class="album-stats"><span class="week-number-hp">Week '.$week.'</span></br><a class="album-name-hp" href="'.esc_url( $term_link ).'">'.$term2->name.'</a></div></div></div>';
+                            echo '<div class="details"><div class="detai  ls-inner"><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></div></div></div>';
 
                           }
                     }
@@ -199,35 +199,32 @@ jQuery(function() {
                     <div class="span2 photowalk-monster"><?php $image = wp_get_attachment_image_src(get_field('photo_walk_image'), 'full'); ?>
                       <img src="<?php echo $image[0]; ?>" alt="<?php echo get_the_title(get_field('photo_walk_image')) ?>" />
                     </div>
-                    <div class="span9" id="photowalk-text-hp">
-                      <div class="row">
-                        <div class="pull-left">
-                          <h3 class="title">Photowalk</h3>
+                    <div class="span7" id="photowalk-text-hp">
+                         <h3 class="title">Photowalk</h3>
                            <?php the_field('photo_walk_text'); ?>
-                        </div>
-                        <div class="pull-right"  id="photo-walk-button">
-                          <a class="button" href="#"><?php the_field('photo_walk_button'); ?></a>
-                      </div>
-                    </div>
-                </div>
+                     </div>
+                      <div class="span3 pull-right"  id="photo-walk-button">
+                        <a class="button" href="#"><?php the_field('photo_walk_button'); ?></a>
+                     </div>
+                 </div>
             </div>
-            <div class="row-fluid featured hidden-phone">
-             
+            <div class="row-fluid featured hidden-phone">             
                 <?php
-
                 $user = get_field('featured_framer');
                 $framer_link = get_field('featured_framer_link');
                  ?>
-                <div id="featured-framer" class="featured-item span4">
+              <div id="featured-framer" class="featured-item span4">
                   <?php echo get_wp_user_avatar( $user['ID'], 'thumb-640');?>
                   <div class="overlay"></div>
-                  <div class="featured-name"><div class="featured-name-inner"><span>Featured Framer</span></div></div>
+                  <div class="featured-name">
+                    <span>Featured <strong>Framer</strong></span>
+                  </div>
                     <div class="framer-avatar">
                         <a href="<?php echo $framer_link ?>"><?php echo get_wp_user_avatar( $user['ID'], '150'); ?></a>
                     </div>
-                  <div class="framer-name">                      
+                  <div class="featured-details">                      
                         <a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a>
-                   </div>
+                  </div>
               </div>
               <?php
 
@@ -244,19 +241,15 @@ jQuery(function() {
                 <div><a href="<?php the_permalink(); ?>"><?php echo $image; ?></a>
                   <div class="overlay"></div>
                 </div>
-                <div class="photo-of-the-day-hp"style="top: 100px;">
-                  <div class="photo-hp">
+                <div class="featured-name">
                     <span>Photo of <strong>the Day</strong></span>
-                  </div>
                 </div>
-                <div class="photo-title-hp">
+                <div class="featured-details">
                   <div class="title-hp">
-                    <span class="week-number-hp"><a href="<?php the_permalink()?>"><?php the_title();?></a></span>
+                     <a href="<?php the_permalink()?>"><?php the_title();?></a>
                   </div>
-                </div>
-                <div class="photographer-name-hp"style="top: 400px;">
-                  <div class="photographer-hp">
-                    <a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                  <div class="framer-name">
+                      <a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
                   </div>
                 </div>
               </div>
@@ -277,28 +270,23 @@ jQuery(function() {
               <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-780'); ?>
                 <div><?php //the_permalink(); ?><?php echo $image; ?></div>
                 <div class="overlay"></div>
-                <div class="photo-of-the-day-hp" style="top: 100px;">
-                  <div class="photo-hp">
+                <div class="featured-name">
                     <span>Audience <strong>Award</strong></span>
+                </div>
+                <div class="featured-details">
+                  <div class="title-hp">
+                     <a href="<?php the_permalink()?>"><?php the_title();?></a>
                   </div>
-                </div>
-                <div class="photo-title-hp" style="top: 130px; left: 31%;">
-                    <div class="title-hp">
-                      <span class="week-number-hp"><a href="<?php the_permalink()?>"><?php the_title();?></a></span>
-                    </div>
-                </div>
-                <div class="photographer-name-hp" style="top: 400px;">
-                  <div class="photographer-hp">
-                    <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
-                    <a class="album-name-hp" href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
-                  </div>
-                </div>
+                 <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
+                    <div class="framer-name">
+                      <a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                    </div>   
+                  </div>            
               </div>
                   <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
               <?php endif; ?>
-            </div>
           </div>
-          </article>
+        </article>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/slick/slick.min.js"></script>

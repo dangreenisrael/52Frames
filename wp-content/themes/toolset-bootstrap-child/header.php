@@ -31,17 +31,7 @@
 		wp_head();
 		do_action( 'wpbootstrap_after_wp_head' );
 	?>
-<script type=”text/javascript”>
- $(document).keydown(function(e) {
- 	var url = false; if (e.which == 37) {
- 	 // Left arrow key code 
- 	 url = $(‘.prev’).attr(‘href’); 
- 	 } else if (e.which == 39) {
- 	  // Right arrow key code
- 	   url = $(‘.next’).attr(‘href’); 
- 	} if (url) { window.location = url; } 
- });
-</script>
+
 </head>
 
 <body <?php body_class(); ?>>

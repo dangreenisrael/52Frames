@@ -83,9 +83,16 @@
 
 	$(document).ready(function(){
 	  $(".search-top").click(function(){
-		$("#search-form").toggle();
+		$("#search-form").fadeToggle();
 	  });
+	$('.navbar .dropdown').hover(function() {
+		  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
+		}, function() {
+	  	$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
 	});
+
+});
+
 </script>
 <?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
 <?php wp_footer(); ?>
