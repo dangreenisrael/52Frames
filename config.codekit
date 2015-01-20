@@ -57432,6 +57432,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/page-blog.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/page-blog.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/page-home.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -70259,7 +70268,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "admin",
+"lastSavedByUser": "Ronenrer",
 "manualImportLinks": {
 	},
 "projectAttributes": {

@@ -24,7 +24,7 @@ endwhile; endif;
 			 echo '<a href="'.get_the_permalink($w_arr['Winner']).'">'.get_the_title($w_arr['Winner']).'</a>';
 			 echo '<span class="badge winner">Winner</span>';
 			 //echo '<a href="'.get_author_posts_url( $w_arr['Winner'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
-			 echo get_the_author($w_arr['Winner']); 
+			 echo get_the_author_meta('display_name', get_post($w_arr['Winner'])->post_author); 
 			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['Winner']); 
 
 			?>				
@@ -34,7 +34,7 @@ endwhile; endif;
 			 echo '<a href="'.get_the_permalink($w_arr['1st Runner-up']).'">'.get_the_title($w_arr['1st Runner-up']).'</a>';
 			 echo '<span class="badge runner-up">1st Runner-up</span>';
 			 //echo '<a href="'.get_author_posts_url( $w_arr['1st Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
-			 echo get_the_author($w_arr['1st Runner-up']); 
+			 echo get_the_author_meta('display_name', get_post($w_arr['1st Runner-up'])->post_author); 
 			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['1st Runner-up']); 
 			 ?>
 		</div>
@@ -43,8 +43,8 @@ endwhile; endif;
 			echo '<a href="'.get_the_permalink($w_arr['2nd Runner-up']).'">'.get_the_title($w_arr['2nd Runner-up']).'</a>';
 			 echo '<span class="badge runner-up">2nd Runner-up</span>';
 			 //echo '<a href="'.get_author_posts_url( $w_arr['2nd Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author">';
-			 echo get_the_author($w_arr['2nd Runner-up']); 
-			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['1st Runner-up']); 
+			 echo get_the_author_meta('display_name', get_post($w_arr['2nd Runner-up'])->post_author); 
+			 if( function_exists('zilla_likes') ) zilla_likes( $w_arr['2nd Runner-up']); 
 			 ?>
 
 		</div>

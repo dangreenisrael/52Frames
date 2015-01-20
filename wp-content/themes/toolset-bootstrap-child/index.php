@@ -4,7 +4,7 @@
  *
  */
 get_header(); ?>
-
+<div class="span8">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<?php get_template_part( 'content', get_post_format() ); ?>
 	<?php endwhile; ?>
@@ -25,5 +25,7 @@ get_header(); ?>
 		</article><!-- .post .no-results -->
 
 	<?php endif; ?>
+	 </div>
+    <?php get_sidebar(); ?>
 
 <?php get_footer();

@@ -105,7 +105,7 @@ jQuery(function() {
                             $term_link = get_field('fb_link', $term2);
                             // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
                             echo '<div class="album"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
-                            echo '<div class="details"><div class="detai  ls-inner"><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></div></div></div>';
+                            echo '<div class="details"><div class="details-inner"><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></div></div></div>';
 
                           }
                     }

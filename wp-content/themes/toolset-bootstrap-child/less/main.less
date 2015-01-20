@@ -1,48 +1,17 @@
 /***** RESET *****/
 
-a.thumbnail:hover, a.thumbnail:focus,.thumbnail{
+a.thumbnail:hover, a.thumbnail:focus,.thumbnail,.post-thumbnail{
 	border:0 none;
 	box-shdow:0 none !important;
-	border-radius:0
+	border-radius:0;
+	padding:0;
+
 }
 
 
 /*  Typography */
-
-@font-face {
-    font-family: 'proxima_nova_rgregular';
-    src: url('../fonts/proximanova-regular-webfont.eot');
-    src: url('../fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-regular-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-regular-webfont.woff') format('woff'),
-         url('../fonts/proximanova-regular-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'proxima_novasemibold';
-    src: url('../fonts/proximanova-semibold-webfont.eot');
-    src: url('../fonts/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-semibold-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-semibold-webfont.woff') format('woff'),
-         url('../fonts/proximanova-semibold-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-semibold-webfont.svg#proxima_novasemibold') format('svg');
-    font-weight: 700;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'proxima_novalight';
-    src: url('../fonts/proximanova-light-webfont.eot');
-    src: url('../fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-light-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-light-webfont.woff') format('woff'),
-         url('../fonts/proximanova-light-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-light-webfont.svg#proxima_novalight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic,900italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,300,600,700,800);
 
 @gray-darker:            lighten(#000, 18%); // #2E2E2E
 @gray-dark:              lighten(#000, 28%);   // #474747
@@ -72,7 +41,7 @@ a.thumbnail:hover, a.thumbnail:focus,.thumbnail{
 // Typography
 // -------------------------
 
-@sans-serif:  "proxima_nova_rgregular","Helvetica Neue", Helvetica, Arial, sans-serif;
+@sans-serif:  'Open Sans', Helvetica, Arial, sans-serif;
 @serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @sans-serif;
@@ -91,16 +60,10 @@ a.thumbnail:hover, a.thumbnail:focus,.thumbnail{
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    Helvetica, Arial, sans-serif;
-@headings-font-weight:    500;
-@headings-line-height:    1.1;
-@headings-color:          inherit;
-
-h1,h2,h3{
-	 	font-family:@headings-font-family;
-}
 a{color:@link-color;outline:0 none !important;}
 
+// General
+// -------------------------
 body{
 	font-family: @sans-serif;
   	overflow-x:hidden;
@@ -116,9 +79,9 @@ body:not(.page-template-page-home-php) #main{
   padding-bottom:100px;
 }	
 #header{
+	position:relative;
 	background: #242d36;
 	z-index: 100;
-	position:relative;
 	background-position: center top;
 }
 .page-template-page-home-php #header{
@@ -131,6 +94,7 @@ body:not(.page-template-page-home-php) #main{
 #header .top-bar{
 	padding-top:17px;
 	padding-bottom:17px;
+	position:relative;
 	hgroup{
 		width:auto ;
 		float:left;
@@ -139,12 +103,10 @@ body:not(.page-template-page-home-php) #main{
 
 }
 .site-title{margin-top:5px;}
-.page-template-default #header{
-	height:300px;
-	background-image:url('../images/header-pix/header2.jpg');
-	.page-title h1{
-		margin-top:40px;
-		position:relative;
+.blog , .page-template-default{
+ 	#header{
+		height:300px;
+		background-image:url('../images/header-pix/header2.jpg');
 	}
 }
 .overlay {
@@ -169,7 +131,7 @@ body:not(.page-template-page-home-php) #main{
 .page-template-page-home-php #main {margin-top:0;}
 .title {
 	color: #76B2D4;
-	font-family: 'proxima_novalight';
+	font-weight:300;
 	font-size: 35px;
 	letter-spacing:-1px;
 	margin-top: 0;
@@ -177,6 +139,8 @@ body:not(.page-template-page-home-php) #main{
 .page-title {
 	text-align:center;
 	padding-bottom: 40px;
+	margin-top:40px;
+	position:relative;
 }
 /* .button */
 .button{
@@ -436,7 +400,6 @@ form#search-form {
 
 	}
 	.camera-album-name{
-		font-family:@headings-font-family;
 		color: #fff;	
 		font-weight: 700;
 		text-align: left;	
@@ -497,8 +460,7 @@ form#search-form {
 		font-size: 38px;
 		color: #FFF;
 	    line-height:110px;
-		font-weight: normal;
-	    font-family: 'proxima_novalight';
+		font-weight: 400;
 	}
 	.album{
 		position: relative;
@@ -520,12 +482,11 @@ form#search-form {
 		.album-name-hp {
 			font-size: 16px !important;
 			color: #fff;	
-			font-weight: bold;
+			font-weight: 300;
 			text-decoration:none !important;
 			span{
 				font-weight: 700;
 				display:block;
-				font-family: @headings-font-family;
 			}
 		 }	
 	}
@@ -603,9 +564,6 @@ form#search-form {
 		text-align:center;
 	}
 }
-
-
-
 .latest-posts{
 	background-color:#f2f2f2;
 	padding: 40px 0;
@@ -655,8 +613,6 @@ form#search-form {
 		&:first-child{margin-right:10px}
 	}
 }
-
-
 #photo-walk-hp { 
 	background-color: #D8D8D8; 
 	.container{
@@ -686,7 +642,6 @@ form#search-form {
 
 /* Featured */
 .featured{
-	 font-family: 'proxima_novalight';
 	.featured-name{
 		position: absolute;
 		top: 50px;
@@ -694,11 +649,11 @@ form#search-form {
 		transform: translateX(-50%);
 		text-align: center;
 		font-size:36px;
+		font-weight:200;
 		color:#fff;
 		padding-bottom:14px;
 		border-bottom:4px solid #fff;
-		 font-family: 'proxima_novalight';
-		 strong{font-family:@headings-font-family}
+		 strong{font-weight:800}
 	}
 	.featured-details{
   		-webkit-transform: translateX(-50%);
@@ -751,9 +706,8 @@ form#search-form {
 }
 .title-newsletter { 
 	color: #ed4e4a; 
-	font-weight: normal;	
-	font-size: 35px;	
-	font-family: 'proxima_novalight'; 
+	font-weight: 300;	
+	font-size: 35px;	 
 	margin-top: 0; 
 }
 #newsletter-text-hp { 
@@ -762,7 +716,7 @@ form#search-form {
 }
 #mc_embed_signup {	
 	clear: left;	
-	font: 14px @headings-font-family;	
+	font: 14px ;	
 	background: transparent !important;
 }
 #mc_embed_signup input.email {	
@@ -842,17 +796,6 @@ div#mc_embed_signup {
 
 /****SUBMIT PHOTO *****/
 
-.page-id-86 section#content{width:100%;}
-.page-id-86 #main{
-  margin-top:0;
-  background: #F9F9FB;
-}
-.vc_row-fluid.container{
-  margin:0 auto !important;
-}
-
-/****SUBMIT PHOTO *****/
-
 .page-id-86,.page-id-2185 {
 	#header{
 	  background-image:url('../images/submition-pic.jpg');
@@ -880,6 +823,8 @@ div#mc_embed_signup {
 .submit-photo-title{
   text-align:center;
   margin-top: -155px;
+  z-index: 200;
+  position: relative;
   	h2{
   		color:#fff;
   		font-size:36px;
@@ -975,7 +920,7 @@ div#mc_embed_signup {
 	
 	 input[type="radio"], input[type="checkbox"] {
 		width: 20px;
-		height: 16px;
+		height: 17px;
 		margin: 0;
 		line-height: 0;
 	}
@@ -1003,8 +948,7 @@ div#mc_embed_signup {
 			text-transform: uppercase;
 			letter-spacing: -1px;
 			line-height: normal;
-			font-family: @headings-font-family;
-			font-weight: bold;
+			font-weight: 700;
 		}
 		small{color:#444;}
 	}
@@ -1229,6 +1173,66 @@ input[type="file"] {
 
 /** REGISTER TEMPLATE Ends ***/
 
+/****** ALBUM PAGE **********/
+
+.tax-photo_alboms{
+	#header{
+		height:440px;
+		position:relative;
+		overflow:hidden;	 
+		 .overlay {
+			  background:url('../images/album-bg.jpg') no-repeat center ;
+			  -webkit-filter: blur(10px);
+			  filter: blur(10px);
+			  // Browser Specific
+			  -webkit-filter: blur(10px);
+			  -moz-filter: blur(10px);
+			  -o-filter: blur(10px);
+			  -ms-filter: blur(10px);
+		  &:after{
+		  	content: '';
+		  	display:block;
+		  	position:absolute;
+		  	height:100%;
+		  	width:100%;
+		  	background: rgba(36,44,73,0.5);
+		  }
+		}
+	}
+	.row-fluid{
+		position:relative;
+	}
+	.page-title{
+		margin-top:0;
+		 h1{
+			color:@theme-color;
+			font-size:48px;
+			font-weight: 500;
+			margin-top:34px;
+			span{
+				margin-bottom:15px;
+				font-size:36px;
+				font-weight: 300;
+				display: block;
+			}
+		}
+		p{
+			color:#fff;
+			font-size: 15px;
+			margin-top:35px;
+		}
+	}
+	#main{margin:0;}
+	.winners{
+		background-color:@theme-dark;
+		padding:50px 0;
+		.span4{padding-left:6px;}
+		.winner{padding:0}
+	}
+}
+
+/****** ALBUM PAGE ENDS**********/
+
 /****** SINGLE PHOTO *****/
 	
 .single-photo{
@@ -1236,6 +1240,7 @@ input[type="file"] {
 		background-color: #1E252C;
 		height:110px;
 		padding-bottom:0;
+		margin-top:0;
 		.container{
 			 position: relative;
 		 	 top: 50%;
@@ -1245,11 +1250,9 @@ input[type="file"] {
 		}
 		h1{
 			color:@theme-color;
-			 font-family: 'proxima_novalight';
 			 font-weight:200;
 
 			span{
-				font-family: @headings-font-family;
 				font-weight:500;
 			}
 		}
@@ -1283,7 +1286,6 @@ input[type="file"] {
 		margin-left:15%;
 		position:relative;
 		.photo-caption{
-			font-family: 'proxima_novalight';
 			color:@gray-lighter;
 		}		
 		h1{
@@ -1415,7 +1417,6 @@ input[type="file"] {
 			color:@gray-darker;
 			display:block;
 			margin-bottom:8px;
-			font-family:@headings-font-family;
 			font-weight:700;
 			font-size:15px;
 		}
@@ -1495,66 +1496,64 @@ input[type="file"] {
 	}
 }
 
-/****** ALBUM PAGE **********/
+/* BLOG */
 
-.tax-photo_alboms{
-	#header{
-		height:440px;
-		position:relative;
-		overflow:hidden;	 
-		 .overlay {
-			  background:url('../images/album-bg.jpg') no-repeat center ;
-			  -webkit-filter: blur(10px);
-			  filter: blur(10px);
-			  // Browser Specific
-			  -webkit-filter: blur(10px);
-			  -moz-filter: blur(10px);
-			  -o-filter: blur(10px);
-			  -ms-filter: blur(10px);
-		  &:after{
-		  	content: '';
-		  	display:block;
-		  	position:absolute;
-		  	height:100%;
-		  	width:100%;
-		  	background: rgba(36,44,73,0.5);
-		  }
-		}
+.blog #header{
+	background:#fff url('../images/blog_header.jpg') center top ;
+	.overlay{
+		background: rgba(255, 255, 255, 0.8);
 	}
-	.row-fluid{
-		position:relative;
+	.top-bar{
+		background:#fff;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	}
-	.page-title{
-		 h1{
-			color:@theme-color;
-			font-size:48px;
-			font-weight: 500;
-			margin-top:34px;
-			span{
-				margin-bottom:15px;
-				font-size:36px;
-				font-weight: 300;
-				display: block;
-			}
+	.navbar .nav>li>a:not(:hover){color:#797979;}
+	.page-title {
+		h1{color:lighten(@gray,5%);}
+		h2{
+			font-weight:300;color:@theme-accent;
+			a{color:@sub-color;}
 		}
-		p{
-			font-family: 'proxima_novalight';
-			color:#fff;
-			font-size: 15px;
-			margin-top:35px;
-		}
-	}
-	#main{margin:0;}
-	.winners{
-		background-color:@theme-dark;
-		padding:50px 0;
-		.span4{padding-left:6px;}
-		.winner{padding:0}
 	}
 }
+.blog{
+	article{
+		margin-bottom: 40px;
+		padding-bottom: 30px;
+		border-bottom: 1px solid @gray-lighter;
+		}
 
-/****** ALBUM PAGE ENDS**********/
-
+	.entry-title{
+		font-size:36px;
+		font-weight:300;
+		margin-bottom:8px;
+		a{
+			color:@gray;text-decoration: none;
+			&:hover{
+				color:@theme-accent;
+			}
+		}
+	}
+	.author{
+		color:@gray-light;
+		text-transform:uppercase;
+		margin-bottom:20px;
+	}
+	p{
+		font-size:16px;
+		line-height:1.9;
+		color:lighten(@gray,5%);
+	}
+	.btn-primary{
+		background: 0 0;
+		color: #56A3CE;
+		text-shadow: none;
+		border: 0;
+		box-shadow: none;
+		padding-left: 0;
+		&:hover{color:@sub-color;}
+	}
+}
 
 /** Footer  **/
 

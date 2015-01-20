@@ -42,8 +42,8 @@
 	<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' ))
 		echo'<div class="overlay"></div>';
 	?>		
-		<div class="row-fluid">
-			<div class="container top-bar">	
+		<div class="row-fluid top-bar">
+			<div class="container">	
 				<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) ): ?>
 				<hgroup class="span2">
 					<h1 class="site-title">
@@ -61,9 +61,12 @@
 		
 		<div class="row-fluid page-title">
 			<div class="container ">
-				<?php 
+				<?php if (is_home()) :?>
+					<h1>Our Blog</h1>
+					<H2>52Frames is a weekly photo challenge. <a href="">Join us!</a></h2>
+				<?php
 					$cat = $wp_query->get_queried_object();
-					if (is_tax()):					
+					elseif (is_tax()):					
 					$term_week_num	= get_field('week_number','photo_alboms_'. $cat->term_id);
 					 echo '<h1><span>Week '. $term_week_num .' (' .get_the_date('Y').')</span>';
 					 echo single_cat_title().'</h1>';
