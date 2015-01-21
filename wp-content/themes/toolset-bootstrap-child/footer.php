@@ -27,7 +27,7 @@
 						<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
 						<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 						<div style="position: absolute; left: -5000px;"><input type="text" name="b_ca0e4a185c9c1a4999da516b1_76a97343f6" tabindex="-1" value=""></div>
-						<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+						<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button big"></div>
 						</div>
 					</form>
 					</div>
@@ -76,6 +76,10 @@
 		<?php do_action( 'wpbootstrap_after_footer' ); ?>
 
 	</div><!-- .container -->
+
+<?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
+<?php wp_footer(); ?>
+<?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 <script>
     $( "#FileInput" ).change(function() {
       $( "#Up" ).click();
@@ -90,13 +94,13 @@
 		}, function() {
 	  	$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
 	});
+	//$(window).load(function(){
+	//$('#preloader').fadeOut('slow',function(){$(this).remove();});
+//});
 
 });
 
 </script>
-<?php do_action( 'wpbootstrap_before_wp_footer' ); ?>
-<?php wp_footer(); ?>
-<?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
-
 </body>
+<!--/div-->
 </html>

@@ -44,5 +44,18 @@ if ((is_single()) && ( 'post' != get_post_type() )) {
 				<?php echo sprintf( ', %s ', get_the_date()); ?>
 			</time>	
 		</p>
+		<div class="entry-meta">
+			<p>
+			<?php if (has_category() || has_tag() ):?>			
+				<?php if (has_category()): ?>
+				<?php _e( 'Categories:', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?>.
+				<?php endif; ?>
+				<?php if (has_tag()): ?>
+				<?php _e( 'Tags:', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?>.
+				<?php endif; ?>
+				<?php comments_popup_link( __( '<span>No</span> Comments', 'wpbootstrap' ), __( '<span>One</span> Comment', 'wpbootstrap' ), __( '<span>%</span> Comments', 'wpbootstrap' ) );?>
+			<?php endif; ?>
+			</p>
+		</div>
 <?php endif; ?>
 <?php }

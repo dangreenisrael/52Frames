@@ -12,12 +12,14 @@
 	<!--<div class="col-md-8">-->
 		<div class="photo-thumbnail">
 			<div class="entry-content clearfix">
-
+				<?php $nudity = get_post_meta( get_the_id(), 'wpcf-this-photo-contains-nudity', true);
+					$nude = '';
+					if ($nudity != 0) $nude = " nude" ?>
 					<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
-						<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail pull-left">
+						<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail pull-left<?php echo $nude ?>">
 							<?php the_post_thumbnail('thumb-480'); ?>
 							<?php if (function_exists('exifography_display_exif')) exifography_display_exif($options); ?>
-							<?php echo "nudity:".get_post_meta( get_the_id(), 'wpcf-this-photo-contains-nudity', true);?>
+							
 						</a>
 					<?php endif; ?>
 				

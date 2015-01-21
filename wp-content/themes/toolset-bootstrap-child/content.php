@@ -26,19 +26,7 @@
 		</a>
 	<?php endif; ?>
 	<?php if (!is_single()):?>
-		<div class="entry-meta">
-			<p>
-			<?php if (has_category() || has_tag() ):?>			
-				<?php if (has_category()): ?>
-				<?php _e( 'Categories:', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?>.
-				<?php endif; ?>
-				<?php if (has_tag()): ?>
-				<?php _e( 'Tags:', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?>.
-				<?php endif; ?>
-				<?php comments_popup_link( __( '<span>No</span> Comments', 'wpbootstrap' ), __( '<span>One</span> Comment', 'wpbootstrap' ), __( '<span>%</span> Comments', 'wpbootstrap' ) );?>
-			<?php endif; ?>
-			</p>
-		</div>
+		
 		<?php the_excerpt(); ?>
 		<a class="btn btn-primary btn-large" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to', 'wpbootstrap' ).' %s', the_title_attribute( 'echo=0' ) ) ); ?>">
 		<?php _e( 'Read more', 'wpbootstrap' ) ?>

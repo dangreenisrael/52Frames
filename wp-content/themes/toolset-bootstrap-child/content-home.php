@@ -21,9 +21,6 @@ jQuery(function() {
   });
 });
 </script>
-
-<!-- Load the slider with "slider1" alias every time -->
-      <?php //putRevSlider("homepage") ?>
           <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
              <div id="bg_container">              
   		      	<video width="1920" height="600" autoplay loop class="hidden-phone">
@@ -55,7 +52,7 @@ jQuery(function() {
                           <div class="span8 caption">
                             <h3><?php echo $title;?></h3>
                             <?php the_content();?>
-                            <a href="<?php echo $link; ?>" class="slider-button-hp">More Details</a>
+                            <a href="<?php echo $link; ?>" class="button red small">More Details</a>
                           </div>
                         </div>
                     <?php 
@@ -103,12 +100,17 @@ jQuery(function() {
                             $term_link = get_term_link( $term2, 'photo_alboms' ); 
                             $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
                             $term_link = get_field('fb_link', $term2);
-                            // echo '<div class="span3 winning_image"><a href="'.get_permalink($variable->ID).'">'.get_the_post_thumbnail($variable->ID, "thumb-480").'</a>';
-                            echo '<div class="album"><a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
-                            echo '<div class="details"><div class="details-inner"><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></div></div></div>';
-
+                             echo '<div class="album">';
+                                echo '<figure class="effect-albums">';
+                                   echo '<a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
+                                    echo '<figcaption>';
+                                       echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
+                                       echo '<p class="winner">Shai Davis</p>';
+                                    echo '</figcaption>';
+                                echo '</figure>' ;
+                            echo '</div>';
                           }
-                    }
+                      }
                     ?>
                  </div>
             </div>   
@@ -134,7 +136,7 @@ jQuery(function() {
               $n_comments_total = $n_comments->total_comments;
               ?>
 
-          	<div class="row-fluid stats" style="background-color: #76B2D4;padding: 30px 0;">
+          	<div class="row-fluid stats">
           			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
                 <div class="container hidden-phone">
               		<div class="counters-hp">
@@ -153,7 +155,7 @@ jQuery(function() {
                     <h3 class="title">From the Blog</h3>
                      <div class="hidden-phone"><?php the_field('lastest_posts_text'); ?></div>
                       <div class="buttons-blog-hp hidden-phone">
-                          <a class="button-latest-hp" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
+                          <a class="button small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
                        <?php
                        $post_object = get_field('lastest_posts_post');
                         if( $post_object ): 
@@ -161,14 +163,12 @@ jQuery(function() {
                            $post = $post_object;
                            setup_postdata( $post ); 
                           ?>
-                            <a class="button-latest-hp" href="">Photo Guid 101</a>
+                            <a class="button small" href="">Photo Guid 101</a>
                           <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
                        <?php endif; ?>
-
-                      <!-- <a href="<?php $post->guid ;?>"><?php $post->post_title; ?></a> -->
                       </div>  
                   </div>
-                  <div class="span9 pull-right">
+                  <div class="span9 post-container pull-right">
                     <div class="row-fluid">
                     <?php
                     	 $args = array(
@@ -204,7 +204,7 @@ jQuery(function() {
                            <?php the_field('photo_walk_text'); ?>
                      </div>
                       <div class="span3 pull-right"  id="photo-walk-button">
-                        <a class="button" href="#"><?php the_field('photo_walk_button'); ?></a>
+                        <a class="button big" href="#"><?php the_field('photo_walk_button'); ?></a>
                      </div>
                  </div>
             </div>
@@ -219,12 +219,14 @@ jQuery(function() {
                   <div class="featured-name">
                     <span>Featured <strong>Framer</strong></span>
                   </div>
-                    <div class="framer-avatar">
-                        <a href="<?php echo $framer_link ?>"><?php echo get_wp_user_avatar( $user['ID'], '150'); ?></a>
-                    </div>
-                  <div class="featured-details">                      
-                        <a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a>
-                  </div>
+                   <div class="featured-details"> 
+                      <div class="framer-avatar">
+                          <a href="<?php echo $framer_link ?>"><?php echo get_wp_user_avatar( $user['ID'], '150'); ?></a>
+                      </div>   
+                        <div class="framer-name">            
+                            <a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a>
+                        </div>
+                   </div>
               </div>
               <?php
 
@@ -237,7 +239,7 @@ jQuery(function() {
                 setup_postdata( $post ); 
                 ?>
               <div class="span4 featured-item">
-                <?php $image = get_the_post_thumbnail($post->ID, 'thumb-780'); ?>
+                <?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
                 <div><a href="<?php the_permalink(); ?>"><?php echo $image; ?></a>
                   <div class="overlay"></div>
                 </div>
@@ -267,7 +269,7 @@ jQuery(function() {
                 setup_postdata( $post ); 
                 ?>
 
-              <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-780'); ?>
+              <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
                 <div><?php //the_permalink(); ?><?php echo $image; ?></div>
                 <div class="overlay"></div>
                 <div class="featured-name">

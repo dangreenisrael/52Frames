@@ -33,9 +33,9 @@
 	?>
 
 </head>
-
+<!--div class="js"-->
 <body <?php body_class(); ?>>
-
+<div id="preloader"></div>
 	<?php do_action( 'wpbootstrap_before_container' ); ?>
 
 <header id="header"  role="banner">

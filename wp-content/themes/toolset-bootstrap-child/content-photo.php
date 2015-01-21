@@ -32,7 +32,8 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 <div class="photo-content">
 	<div class="row container">
 		<div class="photo-nav prev">
-				<?php previous_post_smart( '%link', '' . '<i class="fa fa-angle-left"></i>' ); ?>
+			<?php $id = get_adjacent_id_smart( false ); ?>
+			<a href='<?php echo get_permalink($id); ?>'><i class="fa fa-angle-left"></i></a>
 		</div>
 		<div class="span8">
 			<div class="photo-thumbnail">
@@ -41,7 +42,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
 					
-						<?php the_post_thumbnail('thumb-h545'); ?>
+						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>' class='thickbox'><?php the_post_thumbnail('thumb-h545'); ?></a>
 
 
 				<?php endif; ?>
@@ -104,7 +105,6 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 					<?php echo $photo_caption;?>
 				</p>
 				<!-- End Content -->
-				<div class="extra_challange">
 				<?php
 					
 					if ($extra_credit) {
@@ -113,13 +113,11 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 						echo '<div class="extra-challenge">Extra Credit: '.$album_credit,'</div>';
 					}
 				?>
-				</div>
-
-				
 			</div>
 		</div>
 		<div class="photo-nav next">
-				</i><?php next_post_smart( '%link', '<i class="fa fa-angle-right"></i>'); ?>
+			<?php $id = get_adjacent_id_smart( true ); ?>
+			<a href='<?php echo get_permalink($id); ?>'><i class="fa fa-angle-right"></i></a>
 		</div>
 	</div>
 	<div class="row container">
@@ -205,10 +203,12 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 	<div class="row container">
 		<ul class="nav-single pager" role="navigation">
 			<li class="nav-previous previous">
-				<?php previous_post_smart( '%link', '' . '&larr; '.'%title' ); ?>
+				<?php $id = get_adjacent_id_smart( false ); ?>
+				<a href='<?php echo get_permalink($id); ?>'><?php echo get_the_post_thumbnail($id, 'thumb-440' ); ?></a>
 			</li>
 			<li class="nav-next next">
-				<?php next_post_smart( '%link', '%title' .' &rarr;'); ?>
+				<?php $id = get_adjacent_id_smart( true ); ?>
+				<a href='<?php echo get_permalink($id); ?>'><?php echo get_the_post_thumbnail($id, 'thumb-440' ); ?></a>
 			</li>
 		</ul>
 	</div>

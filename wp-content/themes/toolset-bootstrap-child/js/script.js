@@ -1,22 +1,22 @@
-$(function(){
+jQuery(function($){
 
 
-function convertToServerTimeZone(){
+	function convertToServerTimeZone(){
 
-    //EST
-    offset = -5.0
+	    //EST
+	    offset = -5.0
 
-    clientDate = new Date();
-    utc = clientDate.getTime() + (clientDate.getTimezoneOffset() * 60000);
+	    clientDate = new Date();
+	    utc = clientDate.getTime() + (clientDate.getTimezoneOffset() * 60000);
 
-    serverDate = new Date(utc + (3600000*offset));
-    return serverDate;
+	    serverDate = new Date(utc + (3600000*offset));
+	    return serverDate;
 
-    
-    // alert (serverDate.toLocaleString());
+	    
+	    // alert (serverDate.toLocaleString());
 
 
-}
+	}
 
 
 	// var today = new Date(); // Israel time
@@ -34,7 +34,6 @@ function convertToServerTimeZone(){
 	}
 		
 	$('#countdown').countdown({
-		addClass('boo');
 		timestamp	: ts,
 		callback	: function(days, hours, minutes, seconds){
 			
@@ -54,6 +53,6 @@ function convertToServerTimeZone(){
 			
 			note.html(message);
 		}
-	});
+	})
 	
 });
