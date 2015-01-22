@@ -53,6 +53,7 @@ jQuery(function($){
 			
 			note.html(message);
 		}
-	})
+	});
 	
 });
+

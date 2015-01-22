@@ -30,6 +30,7 @@
 					echo get_the_author(); ?>
 			</p>
 			<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
+			<i class="fa fa-comments"></i><?php comments_popup_link( __( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
 			<h4 class="photo-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 	
 				<?php if ( current_user_can( 'judge' ) ) : ?>

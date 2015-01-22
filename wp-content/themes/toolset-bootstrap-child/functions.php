@@ -20,8 +20,7 @@ function enqueue_my_scripts() {
 	   	wp_enqueue_style( 'parent-style', get_stylesheet_directory_uri() . '/assets/styles.css' ); 
 		wp_enqueue_style( 'countdown', get_stylesheet_directory_uri() . '/assets/jquery.countdown.css' ); 
 
-		wp_enqueue_script('blur', get_stylesheet_directory_uri() . '/js/blur.js');
-		wp_enqueue_script('script', get_stylesheet_directory_uri() . '/js/script.js');
+		wp_enqueue_script('script', get_stylesheet_directory_uri() . '/js/script.js' ,array('jquery'));
 		wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.countdown.js', array('jquery') ); 
 		wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.counterup.min.js', array('jquery') );
 

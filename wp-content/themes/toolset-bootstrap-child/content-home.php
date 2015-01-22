@@ -78,7 +78,7 @@ jQuery(function() {
                       ?>
                       <div class="camera-action">
               					<a class="red-circle" href="<?php echo home_url().'/'.$submit ?>">
-                            <span class="submit-text">Submit</span><br />
+                            <span class="submit-text">Submit</span>
                             <span class="your-photo-text">Your Photo</span>
                         </a>                   
                     </div>          					  
@@ -102,10 +102,10 @@ jQuery(function() {
                             $term_link = get_field('fb_link', $term2);
                              echo '<div class="album">';
                                 echo '<figure class="effect-albums">';
-                                   echo '<a href="'.$term_link.'">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
+                                   echo '<a href="'.$term_link.'" target="_blank">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
                                     echo '<figcaption>';
-                                       echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
-                                       echo '<p class="winner">Shai Davis</p>';
+                                       echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
+                                       echo '<p class="winner"><span>Shai Davis</span></p>';
                                     echo '</figcaption>';
                                 echo '</figure>' ;
                             echo '</div>';
@@ -154,7 +154,7 @@ jQuery(function() {
                   <div class="span3 blog-preview">
                     <h3 class="title">From the Blog</h3>
                      <div class="hidden-phone"><?php the_field('lastest_posts_text'); ?></div>
-                      <div class="buttons-blog-hp hidden-phone">
+                      <div class="buttons-blog-hp">
                           <a class="button small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
                        <?php
                        $post_object = get_field('lastest_posts_post');
@@ -163,7 +163,7 @@ jQuery(function() {
                            $post = $post_object;
                            setup_postdata( $post ); 
                           ?>
-                            <a class="button small" href="">Photo Guid 101</a>
+                            <a class="button small hidden-phone" href="">Photo Guid 101</a>
                           <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
                        <?php endif; ?>
                       </div>  
@@ -291,7 +291,7 @@ jQuery(function() {
         </article>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/slick/slick.min.js"></script>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/slick/slick.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -317,26 +317,26 @@ $(document).ready(function() {
       autoplaySpeed: 2000,
       responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 980,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
+        slidesToScroll: 3
       }
     },
     {
       breakpoint: 600,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToScroll: 2,
+        arrows: false,
       }
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+         arrows: false,
       }
     }
   ]
