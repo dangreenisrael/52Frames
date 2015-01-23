@@ -52,11 +52,17 @@ endwhile; endif;
 </div>
 
 <div class="container">
-	<div class="row-fluid">
-		<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="133"]' ); ?></div>
-		<div class="holder span6"><?php echo do_shortcode( '[searchandfilter id="130"]' ); ?></div>
+	<div class="row-fluid filter-container">
+		<div class="filterbox span3"><?php echo do_shortcode( '[searchandfilter id="133"]' ); ?></div>
 		<?php if ( current_user_can( 'judge' ) ) : ?>
-			<div class="holder span3"><?php echo do_shortcode( '[searchandfilter id="164"]' ); ?></div>
+		<div class="filterbox span6">
+		<?php else :?>
+		<div class="filterbox span9">
+		<?php endif;?>
+			<h4>Filter By</h4>
+			<?php echo do_shortcode( '[searchandfilter id="130"]' ); ?></div>
+		<?php if ( current_user_can( 'judge' ) ) : ?>
+			<div class="filterbox span3"><?php echo do_shortcode( '[searchandfilter id="164"]' ); ?></div>
 		<?php endif;?>
 	</div>
 

@@ -471,10 +471,8 @@ form#search-form {
 			}
 			figcaption{
 				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				padding: 20px 30px;
+				bottom: 20px;
+				left: 30px;
 				color: #FFF;
 				-webkit-backface-visibility: hidden;
 				backface-visibility: hidden;
@@ -486,7 +484,7 @@ form#search-form {
 				padding: 5px;	
 				color: #FFFFFF;		
 				border: 1px solid rgba(0,0,0,.5);
-				-webkit-transition: -webkit-transform 0.35s;
+				-webkit-transition: -webkit-transform 0.35s ease;
 				transition: transform 0.35s;			
 			}
 			 h2 {	
@@ -1304,9 +1302,27 @@ input[type="file"] {
 }
 
 /*** Filter Bar  ***/
-
-.searchandfilter ul li{
-	float:left;
+.filter-container{
+	margin:40px 0;
+	border-bottom:1px solid @sub-color;
+}
+.filterbox{
+	padding:0 10px;
+}
+.searchandfilter {
+	margin:0;
+	ul{
+	margin-left:0!important;
+	&:after{
+		content:'';
+		display:table;
+		clear:both;
+		}
+	}
+	 li{
+		float:left;
+	}
+	select, textarea, input{margin-bottom:0;}
 }
 
 /****** ALBUM PAGE ENDS**********/
@@ -1681,6 +1697,9 @@ input[type="file"] {
 	  		bottom:: 30%;
 	  		left:250px;
 		}
+	}
+	.tax-photo_alboms .winners .span4{
+		width:33.333333333333%;
 	}
 }
 @media (min-width: 980px){

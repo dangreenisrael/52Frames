@@ -85,7 +85,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				?>
 				<div class="actions">
 				<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
-				<a class="ico comments" href="<?php the_permalink(); ?>#disqus_thread"><span class="disqus-comment-count" data-disqus-url="<?php the_permalink(); ?>"></span></a>
+				<span class="ico comments"><?php comments_popup_link( __( '<span>0 Comments</span>', 'wpbootstrap' ), __( '<span>1 Comment</span>', 'wpbootstrap' ), __( '<span>% Comments</span>', 'wpbootstrap' ) );?></span>
 				<?php
 					
 					if ($for_sale != '') 
