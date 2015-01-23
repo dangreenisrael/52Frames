@@ -57108,29 +57108,11 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/content-photo.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/content-photo.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/content.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/content.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/css\/main.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/css\/main.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -57286,6 +57268,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like-white.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 665,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like-white.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like-white.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/ico-like.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -57394,26 +57387,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/less\/main.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 0,
-		"ignoreWasSetByUser": 1,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/less\/main.less",
-		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/css\/main.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 1,
-		"outputStyle": 2,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/models\/Album.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -57495,12 +57468,12 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/slick-min.js": {
+	"\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/slick.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/slick-min.js",
-		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/min\/slick-min-min.js",
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/slick.min.js",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/slick\/min\/min\/slick.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -57581,15 +57554,6 @@
 		"strictImports": 0,
 		"strictMath": 0,
 		"strictUnits": 0
-		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/taxonomy-photo_alboms.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/taxonomy-photo_alboms.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		},
 	"\/wp-content\/themes\/toolset-bootstrap\/_navbar.php": {
 		"fileType": 8192,
