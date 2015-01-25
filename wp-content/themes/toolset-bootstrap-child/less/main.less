@@ -1205,10 +1205,14 @@ input[type="file"] {
 #wppb-register-user .wppb-field-error, #wppb-edit-user .wppb-field-error, #wppb-recover-password .wppb-field-error{
 	background:none;
 }
+#wppb-register-user .wppb-field-error, #wppb-edit-user .wppb-field-error, #wppb-recover-password .wppb-field-error{
+	background:none!important;
+	border:0 none !important;	
+}
+#wppb_general_top_error_message, .wppb-error, .wppb-warning, .wppb-required,
 .wppb-form-field > span.wppb-form-error{
-	color:red !important;
+		color:@sub-color !important;
 	}
-
 /** REGISTER TEMPLATE ***/
 .page-template-page-register-php{
 	background:url('../images/register-pic.jpg') no-repeat center top;

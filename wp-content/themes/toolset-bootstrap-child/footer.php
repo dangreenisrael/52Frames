@@ -80,24 +80,24 @@
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 <script>
     
+    
     jQuery( "#FileInput" ).change(function() {
-      $( "#Up" ).click();
+      jQuery( "#Up" ).click();
     });
 
-	 jQuery(document).ready(function(){
-	  $(".search-top").click(function(){
-		$("#search-form").fadeToggle();
-	  });
-	$('.navbar .dropdown').hover(function() {
+	jQuery(document).ready(function($){
+		$(".search-top").click(function(){
+			$("#search-form").fadeToggle();
+		});
+		$('.navbar .dropdown').hover(function() {
 		  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
 		}, function() {
-	  	$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
-	});
+			$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
+		});
 	//$(window).load(function(){
 	//$('#preloader').fadeOut('slow',function(){$(this).remove();});
 //});
-
-});
+	});
 
 </script>
 </body>

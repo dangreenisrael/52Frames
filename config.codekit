@@ -57108,6 +57108,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/content-photo.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/content-photo.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/content.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -57554,6 +57563,15 @@
 		"strictImports": 0,
 		"strictMath": 0,
 		"strictUnits": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/taxonomy-photo_alboms.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/taxonomy-photo_alboms.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/wp-content\/themes\/toolset-bootstrap\/_navbar.php": {
 		"fileType": 8192,
