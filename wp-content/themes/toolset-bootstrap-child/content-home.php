@@ -67,7 +67,7 @@ jQuery(function() {
           					<?php
           					$term = get_field('albums_name_above_camera');
           					?>
-                    <span class="camera-album-name">&ldquo;Self-Portrait<?php //the_field('name', $term); ?>&rdquo;</span>
+                    <span class="camera-album-name">&ldquo;<?php echo get_active_album()->name ?>&rdquo;</span>
           					<span class="camera-deadline">Ends Sunday at noon, U.S. Eastern</span>
           					<?php
           					if ( is_user_logged_in() ) {
@@ -98,17 +98,23 @@ jQuery(function() {
                               continue;
                             $week = get_field('week_number', $term2);
                             $term_link = get_term_link( $term2, 'photo_alboms' ); 
+                            $winner = new WP_Query(array('post_type' => 'photo', 'posts_per_page' => 1, 
+                                'meta_query' => array(array('key' => 'first_place', 'value' => 'Winner', 'compare' => '='), 
+                                                      array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')),
+                                'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $term2->slug))));
+                            $winner->the_post();
                             $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
                             $term_link = get_field('fb_link', $term2);
                              echo '<div class="album">';
                                 echo '<figure class="effect-albums">';
-                                   echo '<a href="'.$term_link.'" target="_blank">'.get_the_post_thumbnail($variable->ID, "thumb-780").'</a>';
+                                   echo '<a href="'.$term_link.'" target="_blank">'.get_the_post_thumbnail(get_the_id(), "thumb-780").'</a>';
                                     echo '<figcaption>';
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
-                                       echo '<p class="winner"><span>Shai Davis</span></p>';
+                                       echo '<p class="winner"><span>'.get_the_author_meta('display_name', $post->post_author).'</span></p>';
                                     echo '</figcaption>';
                                 echo '</figure>' ;
                             echo '</div>';
+                            wp_reset_postdata();
                           }
                       }
                     ?>

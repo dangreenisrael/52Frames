@@ -34,8 +34,6 @@
 
 					<!--End mc_embed_signup-->
 				</div>
-				<div class="holder span2"><?php do_shortcode( '[mc4wp_form]')?></div>
-
 			</div>
 		</div>
 		<?php
@@ -81,11 +79,12 @@
 <?php wp_footer(); ?>
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 <script>
-    $( "#FileInput" ).change(function() {
+    
+    jQuery( "#FileInput" ).change(function() {
       $( "#Up" ).click();
     });
 
-	$(document).ready(function(){
+	 jQuery(document).ready(function(){
 	  $(".search-top").click(function(){
 		$("#search-form").fadeToggle();
 	  });

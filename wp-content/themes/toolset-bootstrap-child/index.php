@@ -7,13 +7,14 @@ get_header(); ?>
 <div class="span8">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<?php get_template_part( 'content', get_post_format() ); ?>
-	<?php endwhile; ?>
+		<?php endwhile; 
+		if ( function_exists( 'aero_page_navi' ) ) 	:			
+				aero_page_navi();
+		 endif;
 
-	<?php wpbootstrap_content_nav(); ?>
+	 else : ?>
 
-	<?php else : ?>
-
-		<article id="post-0 qqq" class="post no-results not-found">
+		<article id="post-0" class="post no-results not-found">
 
 			<h1 class="entry-title"><?php _e('Page not found','wpbootstrap'); ?></h1>
 

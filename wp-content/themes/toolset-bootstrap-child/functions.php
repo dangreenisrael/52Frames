@@ -305,7 +305,8 @@ function validate_winner_type_restriction( $valid, $value, $field, $input ){
 
 	$album = get_active_album();
 	$winners = new WP_Query(array('post_type' => 'photo', 
-			'meta_query' => array(array('key' => 'first_place', 'value' => $value, 'compare' => '=')),
+			'meta_query' => array(array('key' => 'first_place', 'value' => $value, 'compare' => '='),
+				array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')),
 			'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $album->slug))));
 	if ($winners->found_posts != 0) {
 		return "Only 1 photo can be marked can be marked as $value (per album)";
@@ -404,3 +405,53 @@ function new_excerpt_more( $more ) {
 	return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+/*********************
+Register Widget Area
+*********************/
+
+register_sidebar(array(
+    'name' => __('Blog Ads', 'wpbootstrap'),
+    'id' => 'blog-ads',
+    'description' => __('Ad unit For Blog Sidebar ', 'wpbootstrap'),
+    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget' => '</aside>',
+    'before_title' => '<h3 class="widget-title">',
+    'after_title' => '</h3>',
+));
+
+/*********************
+PAGE NAVI
+*********************/
+
+// Numeric Page Navi (built into the theme by default)
+function aero_page_navi() {
+	global $wp_query;
+    $big = 999999999; // need an unlikely integer
+    $pages = paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, get_query_var('paged') ),
+            'total' => $wp_query->max_num_pages,
+            'prev_next' => false,
+            'type'  => 'array',
+            'prev_next'   => TRUE,
+			'prev_text'    => __('previous'),
+			'next_text'    => __('next'),
+        ) );
+        if( is_array( $pages ) ) {
+            $paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
+            echo '<div class="pagination-holder">';
+            echo '<ul class="pagination col-sm-9  col-sm-push-3">';
+            foreach ( $pages as $page ) {
+                    echo "<li>$page</li>";
+            }
+           echo '</ul></div>';
+        }
+} /* end page navi */
+
+function countdown_time() {
+	$ts = strtotime('next sunday noon')-strtotime();
+	return '<span id="countdown_ts" style="display:none">'.$ts.'</span>';
+}
+add_shortcode( 'countdown','countdown_time' );

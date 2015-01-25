@@ -22,7 +22,7 @@ get_header(); ?>
 			</li>
 		</ul>
 	</div>
-	?php get_sidebar(); ?>z
+	<?php get_sidebar(); ?>
 </div>
 
 <?php get_footer();

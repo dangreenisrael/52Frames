@@ -7,17 +7,15 @@
 
 <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
 	 <header>
-	 	<?php if (is_single()): ?>
-		<h1><?php the_title(); ?></h1>			
-		<?php else: 
+	 	<?php if (!is_single()):
 		$archive_looped_page=TRUE;?>
 		<h2 class="entry-title">
 			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to', 'wpbootstrap' ).' %s', the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
 			<?php the_title(); ?>
 			</a>
 		</h2>
-		<?php get_template_part('entry-meta'); ?>
 		<?php endif; ?>
+		<?php get_template_part('entry-meta'); ?>
 	</header>
 	<div class="entry-content clearfix">
 	<?php if ( has_post_thumbnail()): ?>
@@ -33,7 +31,6 @@
 		</a>
 		<?php else:
 			the_content( '<span class="btn btn-small btn-primary pull-right">'.__( 'Read more', 'wpbootstrap' ).' &raquo;</span>' ); 
-		 wpbootstrap_link_pages(); 
 	 endif; ?>
 	</div><!-- .entry-content -->
 

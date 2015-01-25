@@ -80,14 +80,18 @@ endwhile; endif;
 	</div>
 
 	<?php if ( have_posts() ) : ?>
-		<div class="row-fluid album-lists">
+		<div class="row-fluid album-lists clearfix">
 			<?php
 				while ( have_posts() ) : the_post();
 					get_template_part( 'content-albums_collection' );
 				endwhile;
-				wpbootstrap_content_nav();
+				
 			?>
 		</div>
-	<?php endif; ?>
+	<?php endif; 
+	 if ( function_exists( 'aero_page_navi' ) ) 				
+				aero_page_navi()
+	?>
+
 </div>
 <?php get_footer();

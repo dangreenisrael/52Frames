@@ -91,23 +91,6 @@ body.menu-fixed-top.admin-bar .navbar-fixed-top {
 
 /* Make sure embeds and iframes fit their containers */
 
-embed,
-iframe,
-object,
-video {
-	margin-bottom: 24px;
-	max-width: inherit;
-	position: absolute;
-	right: 0;
-}
 
-p > embed,
-p > iframe,
-p > object,
-span > embed,
-span > iframe,
-span > object {
-	margin-bottom: 0;
-}
 
 .clear { clear: both; }

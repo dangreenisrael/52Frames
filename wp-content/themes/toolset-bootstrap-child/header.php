@@ -35,26 +35,37 @@
 </head>
 <!--div class="js"-->
 <body <?php body_class(); ?>>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=422585397892387&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="preloader"></div>
 	<?php do_action( 'wpbootstrap_before_container' ); ?>
+	<?php if(is_singular('post')):
+		$background = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
+	
+	 endif; ?>
 
-<header id="header"  role="banner">
-	<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' ))
-		echo'<div class="overlay"></div>';
+<header id="header"  role="banner" >
+		<?php if (is_singular('post'))
+		echo '<div class="post-image" style="background-image:url('.$background[0] .')"></div>';
+		?>
+		<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' )) :
+			echo '<div class="overlay"></div>';
+		endif;
 	?>		
 		<div class="row-fluid top-bar">
 			<div class="container">	
-				<?php if ( wpbootstrap_get_setting( 'general_settings', 'display_header_site_title' ) ): ?>
 				<hgroup class="span2">
 					<h1 class="site-title">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/logo.png"></a>
 					</h1>
 				</hgroup>
-				<?php
-					if ( wpbootstrap_get_setting('general_settings','display_header_nav') ):
-						get_template_part('_navbar');
-					endif
-				?>	
+				<?php get_template_part('_navbar'); ?>	
 			</div>
 		</div>
 			<?php if ( wpbootstrap_get_setting('titles_settings', 'display_pages_titles' ) && !is_page_template( 'page-home.php' )): ?>
@@ -64,6 +75,16 @@
 				<?php if (is_home()) :?>
 					<h1>Our Blog</h1>
 					<H2>52Frames is a weekly photo challenge. <a href="">Join us!</a></h2>
+				<?php elseif(is_singular('post')): ?>	
+					<h1><?php the_title(); ?></h1>
+					<p class="author">
+						<?php echo __( 'By', 'wpbootstrap' ); ?> <!--a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author"-->
+							<?php echo get_the_author(); ?>
+						<!--/a-->
+						<time datetime="<?php echo get_the_time( 'c' ); ?>">
+							<?php echo sprintf( ' / %s ', get_the_date()); ?>
+						</time>	
+					</p>
 				<?php
 					$cat = $wp_query->get_queried_object();
 					elseif (is_tax()):					
@@ -96,14 +117,13 @@
 	<?php endif; ?>		
 
 	</header><!-- #header -->
-		<?php endif; ?>
+	
 
 		<?php do_action( 'wpbootstrap_after_header' ); ?>
 	<div class="row-fluid">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
 			<?php if (!is_page_template( 'page-home.php' ) && !is_singular( 'photo' ) && !is_tax( 'photo_alboms' )) {
-				$container = 'class="container"';
-				
+				$container = 'class="container"';				
 			}?>
 			<section <?php echo $container ?> id="content" role="main">
