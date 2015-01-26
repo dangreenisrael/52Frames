@@ -24,7 +24,9 @@ jQuery(function($){
 	var note = $('#note'),
 		// ts = new Date(2012, 0, 1),
 		ts = new Date(today.getFullYear(),today.getMonth(),today.getDate()+(7-today.getDay()),today.getHours(),today.getMinutes(),today.getSeconds());
-		newYear = true;
+		var td = new Date();
+		var nextSunday= new Date(td.getFullYear(),td.getMonth(),td.getDate()+(7-td.getDay()));
+		newYear = false;
 
 	if((new Date()) > ts){
 		// The new year is here! Count towards something else.
@@ -32,6 +34,8 @@ jQuery(function($){
 		ts = (new Date()).getTime() + 10*24*60*60*1000;
 		newYear = false;
 	}
+	//ts = parseInt($('#countdown_ts').text());
+	//newYear = false;
 		
 	$('#countdown').countdown({
 		timestamp	: ts,

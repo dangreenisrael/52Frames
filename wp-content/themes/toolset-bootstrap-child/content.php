@@ -15,15 +15,14 @@
 			</a>
 		</h2>
 		<?php endif; ?>
-		<?php get_template_part('entry-meta'); ?>
 	</header>
 	<div class="entry-content clearfix">
+	<?php if (!is_single()):?>
 	<?php if ( has_post_thumbnail()): ?>
 		<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail pull-left">
 		<?php the_post_thumbnail('thumb-780'); ?>
 		</a>
 	<?php endif; ?>
-	<?php if (!is_single()):?>
 		
 		<?php the_excerpt(); ?>
 		<a class="btn btn-primary btn-large" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to', 'wpbootstrap' ).' %s', the_title_attribute( 'echo=0' ) ) ); ?>">
@@ -31,9 +30,29 @@
 		</a>
 		<?php else:
 			the_content( '<span class="btn btn-small btn-primary pull-right">'.__( 'Read more', 'wpbootstrap' ).' &raquo;</span>' ); 
-	 endif; ?>
+			?>
+			<div class="entry-meta">
+				<?php if (has_category() || has_tag() ):?>			
+					<?php if (has_category()): ?>
+					<span class="post-cat"><?php _e( '<strong>Categories</strong>', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?></span>
+					<?php endif; ?>
+					<?php if (has_tag()): ?>
+					<span class="post-tags"><?php _e( '<strong>Tags</strong>', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?></span>
+					<?php endif; ?>
+				<?php endif; ?>
+			</div>
+			<div class="about-author-container clearfix">
+	            <div class="avatar-cell span3">
+	              <?php echo get_avatar(get_the_author_meta('email'), '100'); ?>
+	            </div>
+	            <div class="description span9">
+	            	<h2 class="title"><?php the_author(); ?></h2>
+	             	 <?php the_author_meta("description"); ?>
+	            	<!--div class="author-link">View All Posts By <?php the_author_posts_link(''); ?></div-->
+	            </div>
+          </div>
+	<?php  endif; ?>
 	</div><!-- .entry-content -->
-
+	<?php comments_template();?>
 </article>
 
-<?php comments_template();

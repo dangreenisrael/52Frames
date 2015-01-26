@@ -406,6 +406,7 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
+
 /*********************
 Register Widget Area
 *********************/
@@ -451,7 +452,7 @@ function aero_page_navi() {
 } /* end page navi */
 
 function countdown_time() {
-	$ts = strtotime('next sunday noon')-strtotime();
-	return '<span id="countdown_ts" style="display:none">'.$ts.'</span>';
+	$ts = getdate(strtotime('next sunday noon'));
+	return '<span id="countdown_ts" style="display:none"><span id="year">'.$ts['year'].'</span><span id="month">'.$ts['mon'].'</span><span id="day">'.$ts['mday'].'</span><span id="hour">'.$ts['hours'].'</span><span id="min">'.$ts['minutes'].'</span><span id="sec">'.$ts['seconds'].'</span></span>';
 }
 add_shortcode( 'countdown','countdown_time' );

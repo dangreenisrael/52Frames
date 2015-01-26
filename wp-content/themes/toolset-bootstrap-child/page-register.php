@@ -65,7 +65,7 @@ Template Name: Register and Edit Profile
 	</div>	
 <script>
 
-	$(document).ready(function(){
+	jQuery(document).ready(function($){
 		if ( $('#wppb_general_top_error_message').length ) { 
 			$(".register-form").show();
 			$(".welcome-text").hide();
