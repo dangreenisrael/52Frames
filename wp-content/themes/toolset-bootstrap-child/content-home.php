@@ -5,22 +5,6 @@
  */
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/slick/slick.css"/>
-<script>
-jQuery(function() {
-    function count($this){
-        var current = parseInt($this.html(), 10);
-        $this.html(++current);
-        if(current !== $this.data('count')){
-            setTimeout(function(){count($this)}, 10);
-        }
-    }        
-  jQuery(".counter").each(function() {
-       jQuery(this).data('count', parseInt(jQuery(this).html(), 10));
-      jQuery(this).html('0');
-      count(jQuery(this));
-  });
-});
-</script>
           <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
              <div id="bg_container">              
   		      	<video width="1920" height="600" autoplay loop class="hidden-phone">
@@ -31,11 +15,11 @@ jQuery(function() {
             <div class="container uber">
               <div class="row span12"><h1 class="site-description"><?php bloginfo( 'description' ); ?></h1></div>
               <div class="span6 content-slider">
-                <?php //if (function_exists('rps_show')) echo rps_show(); ?>
                 <?php 
                  $args = array(
                    'post_type' => 'homepage-slider', 
-                   'showposts' => -1
+                   'showposts' => -1,
+                   'orderby' => 'menu_order'
                    
                  );?>
                  <div class="home-slider">
@@ -52,7 +36,10 @@ jQuery(function() {
                           <div class="span8 caption">
                             <h3><?php echo $title;?></h3>
                             <?php the_content();?>
-                            <a href="<?php echo $link; ?>" class="button red small">More Details</a>
+                            <?php if (!empty($link)):
+                              echo'<a href="'.$link.'" class="button red small">More Details</a>';
+                            endif;?>
+                           
                           </div>
                         </div>
                     <?php 
@@ -110,7 +97,7 @@ jQuery(function() {
                                    echo '<a href="'.$term_link.'" target="_blank">'.get_the_post_thumbnail(get_the_id(), "thumb-780").'</a>';
                                     echo '<figcaption>';
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
-                                       echo '<p class="winner"><span>'.get_the_author_meta('display_name', $post->post_author).'</span></p>';
+                                       echo '<p class="winner"><span>Photo by: '.get_the_author_meta('display_name', $post->post_author).'</span></p>';
                                     echo '</figcaption>';
                                 echo '</figure>' ;
                             echo '</div>';
@@ -257,7 +244,8 @@ jQuery(function() {
                      <a href="<?php the_permalink()?>"><?php the_title();?></a>
                   </div>
                   <div class="framer-name">
-                      <a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                      <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
+                      <a href="https://www.facebook.com/52frames/photos/a.833602159998239.1073742020.180889155269546/833611539997301/?type=3&theater)" target="_blank"><?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                   </div>
                 </div>
               </div>
@@ -276,7 +264,7 @@ jQuery(function() {
                 ?>
 
               <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
-                <div><?php //the_permalink(); ?><?php echo $image; ?></div>
+                <div> <a href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank"><?php echo $image; ?></a></div>
                 <div class="overlay"></div>
                 <div class="featured-name">
                     <span>Audience <strong>Award</strong></span>
@@ -287,7 +275,8 @@ jQuery(function() {
                   </div>
                  <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                     <div class="framer-name">
-                      <a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"><?php echo get_the_author_meta( 'nickname', $post->post_author ); ?></a>
+                      <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
+                      <a href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank"><?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                     </div>   
                   </div>            
               </div>

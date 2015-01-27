@@ -75,6 +75,15 @@
 				<?php if (is_home()) :?>
 					<h1>Our Blog</h1>
 					<H2>52Frames is a weekly photo challenge. <a href="">Join us!</a></h2>
+					<?php
+						elseif ( is_day() ) :?>
+						<h1><?php printf __( 'Daily Archives:', 'wpbootstrap' ).' %s', get_the_date());?></h1>
+						<?php elseif ( is_month() ) :?>
+						<h1><?php	printf( __( 'Monthly Archives:', 'wpbootstrap' ).' %s', date_i18n('F Y', get_post_time()));?></h1>
+						<?php elseif ( is_year() ) :?>
+						<?php printf( __( 'Yearly Archives:', 'wpbootstrap' ).' %s', date_i18n('Y', get_post_time()) );?></h1>
+						<?php elseif :?>
+						<h1><?php _e( 'Archives', 'wpbootstrap' );?></h1>			
 				<?php elseif(is_singular('post')): ?>	
 					<h1><?php the_title(); ?></h1>
 					<p class="author">

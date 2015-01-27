@@ -450,6 +450,26 @@ function aero_page_navi() {
            echo '</ul></div>';
         }
 } /* end page navi */
+/* VIDEO CONTAINER*/
+function div_wrapper($content) {
+    // match any iframes
+    $pattern = '~<iframe.*</iframe>|<embed.*</embed>~';
+    preg_match_all($pattern, $content, $matches);
+
+    foreach ($matches[0] as $match) {
+        // wrap matched iframe with div
+        $wrappedframe = '<div class="video-container">' . $match . '</div>';
+
+        //replace original iframe with new in content
+        $content = str_replace($match, $wrappedframe, $content);
+    }
+
+    return $content;    
+}
+add_filter('the_content', 'div_wrapper');
+add_filter('the_excerpt', 'div_wrapper');
+
+
 
 function countdown_time() {
 	$ts = getdate(strtotime('next sunday noon'));

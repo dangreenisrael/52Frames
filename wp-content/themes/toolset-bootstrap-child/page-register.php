@@ -21,7 +21,7 @@ Template Name: Register and Edit Profile
 	<?php if ( of_get_option( 'favicon' ) ): ?>
 		<link rel="shortcut icon" href="<?php echo of_get_option( 'favicon' ); ?>">
 	<?php else: ?>
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/favicon.ico">
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri() ?>/favicon.ico">
 	<?php endif ?>
 	<!--[if lt IE 9]>
 		<?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IEs: http://code.google.com/p/html5shiv/ ?>

@@ -79,7 +79,20 @@
 <?php wp_footer(); ?>
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 <script>
-    
+    jQuery(function() {
+    function count($this){
+        var current = parseInt($this.html(), 10);
+        $this.html(++current);
+        if(current !== $this.data('count')){
+            setTimeout(function(){count($this)}, 10);
+        }
+    }        
+	  jQuery(".counter").each(function() {
+	       jQuery(this).data('count', parseInt(jQuery(this).html(), 10));
+	      jQuery(this).html('0');
+	      count(jQuery(this));
+	  });
+	});
     jQuery( "#FileInput" ).change(function($) {
       $( "#Up" ).click();
     });
@@ -100,7 +113,6 @@
 		//$('#preloader').fadeOut('slow',function(){$(this).remove();});
 	//});
 });
-
 </script>
 </body>
 <!--/div-->

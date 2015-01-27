@@ -42,6 +42,24 @@ figcaption {
 .comment-form pre {
   display: none;
 }
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  margin: 20px 0;
+  height: 0;
+  overflow: hidden;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+.video-wrapper .video-container {
+  margin: 0;
+}
 /*  Typography */
 h2 {
   font-size: 24px;
@@ -512,7 +530,7 @@ form#search-form .btn i {
   opacity: 0;
   -webkit-transform: translate3d(0, 140%, 0);
   transform: translate3d(0, 140%, 0);
-  font-size: 20px;
+  font-size: 16px;
   clear: left;
 }
 .latest-albums .album figure .album-name-hp,
@@ -860,9 +878,10 @@ form#search-form .btn i {
   top: 50px;
 }
 /*** MAILCHIMP FORM END ******/
-/*** FAQ ****/
+/*** FAQ and Toggles****/
 .wpb_tour_tabs_wrapper {
   border-radius: 0 !important;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 .wpb_tour .wpb_tabs_nav {
   width: 22%!important;
@@ -870,7 +889,7 @@ form#search-form .btn i {
   background: none !important;
   border: 0 !important;
   border-right: 1px solid #e6e6e6 !important;
-  padding-bottom: 20px;
+  padding: 12px 0;
 }
 .wpb_tour .wpb_tabs_nav li {
   background: none !important;
@@ -881,10 +900,27 @@ form#search-form .btn i {
 .wpb_tour .wpb_tabs_nav li a {
   width: auto !important;
   white-space: normal !important;
+  font-weight: 400;
+  color: #555555;
+}
+.wpb_tour .wpb_tabs_nav li.ui-state-active a,
+.wpb_tour .wpb_tabs_nav li.ui-state-active a:link,
+.wpb_tour .wpb_tabs_nav li.ui-state-active a:visited {
+  background: #76b2d4;
+  color: #fff;
 }
 .ui-widget-content {
   background: none !important;
   border: 0 !important;
+}
+.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.wpb_content_element.wpb_tabs .wpb_tour_tabs_wrapper .wpb_tab {
+  background: #fff;
+  border: 1px solid #56a3ce;
+}
+.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header a,
+.wpb_content_element.wpb_tabs .wpb_tour_tabs_wrapper .wpb_tab a {
+  color: #56a3ce;
 }
 /*** END FAQ ****/
 /****SUBMIT PHOTO *****/
@@ -2222,7 +2258,7 @@ button.exif-toggle i {
     margin-left: 0;
   }
   .single-post article {
-    padding-left: 90px;
+    padding-left: 15%;
     padding-right: 4%;
   }
 }
