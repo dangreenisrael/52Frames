@@ -99,6 +99,7 @@
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
                                        echo '<p class="winner"><span>Photo by: '.get_the_author_meta('display_name', $post->post_author).'</span></p>';
                                     echo '</figcaption>';
+                                    echo '<a class="view" href="'.$term_link.'">View more</a>'; 
                                 echo '</figure>' ;
                             echo '</div>';
                             wp_reset_postdata();
@@ -209,6 +210,7 @@
               <div id="featured-framer" class="featured-item span4">
                   <?php echo get_wp_user_avatar( $user['ID'], 'thumb-640');?>
                   <div class="overlay"></div>
+                   <a class="view" href="<?php echo $framer_link ?>">view more</a>
                   <div class="featured-name">
                     <span>Featured <strong>Framer</strong></span>
                   </div>
@@ -233,19 +235,20 @@
                 ?>
               <div class="span4 featured-item">
                 <?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
-                <div><a href="<?php the_permalink(); ?>"><?php echo $image; ?></a>
+                <div><a href="<?php// the_permalink(); ?>"><?php echo $image; ?></a>
                   <div class="overlay"></div>
+                   <a class="view" href="https://www.facebook.com/52frames/photos/a.833602159998239.1073742020.180889155269546/833611539997301/?type=3&theater)" target="_blank">view more</a>
                 </div>
                 <div class="featured-name">
                     <span>Photo of <strong>the Day</strong></span>
                 </div>
                 <div class="featured-details">
                   <div class="title-hp">
-                     <a href="<?php the_permalink()?>"><?php the_title();?></a>
+                     <a href="<?php // the_permalink()?>"><?php the_title();?></a>
                   </div>
                   <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
-                      <a href="https://www.facebook.com/52frames/photos/a.833602159998239.1073742020.180889155269546/833611539997301/?type=3&theater)" target="_blank"><?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
+                     <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                   </div>
                 </div>
               </div>
@@ -264,8 +267,11 @@
                 ?>
 
               <div class="span4 featured-item"><?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
-                <div> <a href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank"><?php echo $image; ?></a></div>
+                <div>
+                     <?php echo $image; ?>
+                </div>
                 <div class="overlay"></div>
+                 <a class="view" href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank">view more</a>
                 <div class="featured-name">
                     <span>Audience <strong>Award</strong></span>
                 </div>
@@ -276,7 +282,7 @@
                  <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                     <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
-                      <a href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank"><?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
+                     <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                     </div>   
                   </div>            
               </div>

@@ -53,19 +53,17 @@
 					<div class="container">
 					  <h3><?php the_field('footer_text_title',194); ?></h3>
 					  <p><?php the_field('footer_text_body',194); ?></p>
-					  <div class="social-footer-container">
-						  <div class="social-footer"><a href="<?php the_field('facebooks_link',194); ?>"><i class="fa fa-facebook"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('instagrams_link',194); ?>"><i class="fa fa-instagram"></i></a></div>
-						  <div class="social-footer"><a href="<?php the_field('twiters_link',194); ?>"><i class="fa fa-twitter"></i></a></div>
-					  </div>
+					  <ul class="social-footer-container">
+						  <li class="facebook"><a href="<?php the_field('facebooks_link',194); ?>"><i class="fa fa-facebook"></i></a></li>
+						  <li class="instagram"><a href="<?php the_field('instagrams_link',194); ?>"><i class="fa fa-instagram"></i></a></li>
+						  <li class="twitter"><a href="<?php the_field('twiters_link',194); ?>"><i class="fa fa-twitter"></i></a></li>
+					  </ul>
 					</div>
 				</div>
 				<div class="container-fluid bottom-footer">
 					<div class="container ">
-						<p class="pull-left"><?php //echo of_get_option('display_credit_footer_left'); ?></p>
-						<p class="pull-left"><div class="footer-menu"><?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?></div></p>
-						<p class="pull-right"><?php echo of_get_option('display_credit_footer_right'); ?></p>
-						
+						<div class="footer-menu pull-left"><?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?></div>
+						<div class="pull-right"><?php echo of_get_option('display_credit_footer_right'); ?></div>
 					</div>
 				</div>
 			</footer>
