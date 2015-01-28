@@ -14,6 +14,7 @@
 			<?php the_title(); ?>
 			</a>
 		</h2>
+		<?php get_template_part('entry-meta'); ?>
 		<?php endif; ?>
 	</header>
 	<div class="entry-content clearfix">

@@ -90,14 +90,21 @@
                                                       array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')),
                                 'tax_query' => array(array('taxonomy' => 'photo_alboms', 'field' => 'slug', 'terms' => $term2->slug))));
                             $winner->the_post();
-                            $variable = get_field('winning_photo_1th', 'photo_alboms_'.$term2->term_id);
                             $term_link = get_field('fb_link', $term2);
+                            $winner_name = get_field('winner_name', $term2);
+                            $image = get_field('winning_image', $term2);
+                            $url = $image['url'];
+                            $size = 'thumb-780';
+                            $thumb = $image['sizes'][ $size ];
+                            $width = $image['sizes'][ $size . '-width' ];
+                            $height = $image['sizes'][ $size . '-height' ];
+                            //get_the_post_thumbnail(get_the_id(), "thumb-780").'*/
                              echo '<div class="album">';
                                 echo '<figure class="effect-albums">';
-                                   echo '<a href="'.$term_link.'" target="_blank">'.get_the_post_thumbnail(get_the_id(), "thumb-780").'</a>';
+                                   echo '<a href="'.$term_link.'" target="_blank"><img src="'.$thumb.'" width="'. $width .'" height="'.$height.'"></a>';
                                     echo '<figcaption>';
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
-                                       echo '<p class="winner"><span>Photo by: '.get_the_author_meta('display_name', $post->post_author).'</span></p>';
+                                       echo '<p class="winner"><span>Photo by: '. $winner_name ./*.get_the_author_meta('display_name', $post->post_author).*/'</span></p>';
                                     echo '</figcaption>';
                                     echo '<a class="view" href="'.$term_link.'">View more</a>'; 
                                 echo '</figure>' ;
@@ -248,7 +255,7 @@
                   </div>
                   <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
-                     <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
+                    Photo by: <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                   </div>
                 </div>
               </div>
@@ -276,13 +283,13 @@
                     <span>Audience <strong>Award</strong></span>
                 </div>
                 <div class="featured-details">
+                  <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                   <div class="title-hp">
                      <a href="<?php the_permalink()?>"><?php the_title();?></a>
                   </div>
-                 <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                     <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
-                     <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
+                    Photo by: <?php echo get_the_author_meta( 'display_name', $post->post_author ); ?></a>
                     </div>   
                   </div>            
               </div>

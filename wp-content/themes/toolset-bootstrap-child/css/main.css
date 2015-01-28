@@ -10,6 +10,9 @@ a.thumbnail:focus,
   border-radius: 0;
   padding: 0;
 }
+.wp-caption {
+  max-width: 100%;
+}
 .js div#preloader {
   position: fixed;
   left: 0;
@@ -782,7 +785,7 @@ form#search-form .btn i {
     color: #fff;
   }
   .featured .featured-details .framer-name {
-    font-size: 22px;
+    font-size: 20px;
   }
   .featured .featured-details .framer-name:before {
     content: '';
@@ -2457,6 +2460,13 @@ h3 {
   }
   #sidebar #mc_embed_signup .button {
     font-size: 14px !important;
+  }
+  #sidebar ul.pop-widget-tabs li {
+    padding: 0px 5px 0 0;
+  }
+  #sidebar ul.pop-widget-tabs li a {
+    font-size: 13px !important;
+    padding: 0;
   }
 }
 @media (max-width: 979px) {
