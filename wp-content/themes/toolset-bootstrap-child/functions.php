@@ -58,6 +58,18 @@ add_image_size( 'thumb-640', 640, 427, true );
 add_image_size( 'thumb-480', 480, 320, true );
 add_image_size( 'thumb-440', 440, 250, true );
 
+add_filter( 'image_size_names_choose', 'aero_custom_image_sizes' );
+
+function aero_custom_image_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'thumb-2048' => __('2048px by auto'),
+        'thumb-h545' => __('auto by 545px'),
+        'thumb-780' => __('780x by 520px'),
+        'thumb-640' => __('640px by 427px'),
+        'thumb-480' => __('480px by 320px'),
+        'thumb-440' => __('440 by 250px'),
+    ) );
+}
 function get_active_album() {
 	$albums = get_terms('photo_alboms', array('hide_empty' => false));
 	foreach ($albums as $a):
@@ -468,6 +480,12 @@ function div_wrapper($content) {
 }
 add_filter('the_content', 'div_wrapper');
 add_filter('the_excerpt', 'div_wrapper');
+
+/* Custom Comments */
+if ( class_exists( 'CommentPopularity\HMN_Comment_Popularity' ) ) {
+    $cp = CommentPopularity\HMN_Comment_Popularity::get_instance();
+    remove_filter( 'comments_template', array( $cp, 'custom_comments_template' ) );
+}
 
 
 

@@ -75,24 +75,22 @@
 				<?php if (is_home()) :?>
 					<h1>Our Blog</h1>
 					<H2>52Frames is a weekly photo challenge. <a href="">Join us!</a></h2>
-					<?php
-						elseif ( is_day() ) :?>
-						<h1><?php printf __( 'Daily Archives:', 'wpbootstrap' ).' %s', get_the_date());?></h1>
-						<?php elseif ( is_month() ) :?>
-						<h1><?php	printf( __( 'Monthly Archives:', 'wpbootstrap' ).' %s', date_i18n('F Y', get_post_time()));?></h1>
-						<?php elseif ( is_year() ) :?>
-						<?php printf( __( 'Yearly Archives:', 'wpbootstrap' ).' %s', date_i18n('Y', get_post_time()) );?></h1>
-						<?php elseif :?>
-						<h1><?php _e( 'Archives', 'wpbootstrap' );?></h1>			
+				<?php elseif (is_category()) :?>
+					<h1><?php printf('%s', single_cat_title( '', false ) );?><h1>
+				<?php elseif (is_tag()) :?>
+					<h1><?php printf('%s', single_tag_title( '', false ) ); ?>
+				<?php elseif ( is_day() ) :?>
+					<h1><?php printf (__( 'Daily Archives:', 'wpbootstrap' ).' %s', get_the_date());?></h1>
+				<?php elseif ( is_month() ) :?>
+					<h1><?php	printf( __( 'Monthly Archives:', 'wpbootstrap' ).' %s', date_i18n('F Y', get_post_time()));?></h1>
+				<?php elseif ( is_year() ) :?>
+					<h1><?php printf( __( 'Yearly Archives:', 'wpbootstrap' ).' %s', date_i18n('Y', get_post_time()) );?></h1>				
 				<?php elseif(is_singular('post')): ?>	
 					<h1><?php the_title(); ?></h1>
 					<p class="author">
 						<?php echo __( 'By', 'wpbootstrap' ); ?> <!--a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author"-->
 							<?php echo get_the_author(); ?>
 						<!--/a-->
-						<time datetime="<?php echo get_the_time( 'c' ); ?>">
-							<?php echo sprintf( ' / %s ', get_the_date()); ?>
-						</time>	
 					</p>
 				<?php
 					$cat = $wp_query->get_queried_object();
@@ -129,7 +127,7 @@
 	
 
 		<?php do_action( 'wpbootstrap_after_header' ); ?>
-	<div class="row-fluid">	
+	<div id="main-container" class="row-fluid">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
 			<?php if (!is_page_template( 'page-home.php' ) && !is_singular( 'photo' ) && !is_tax( 'photo_alboms' )) {

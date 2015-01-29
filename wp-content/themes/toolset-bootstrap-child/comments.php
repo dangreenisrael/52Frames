@@ -16,9 +16,9 @@ if ( post_password_required() ) {
 				<?php
 					$comment_count_actual = get_comments_number();
 					if ($comment_count_actual = 1) {
-						printf( __( 'One thought on', 'wpbootstrap' ).' &ldquo;%1$s&rdquo;', '<span>' . get_the_title() . '</span>' );
+						printf( __( '1 Comment', 'wpbootstrap' ));
                     } elseif ($comment_count_actual > 1) {
-						printf( '%1$s '.__( 'thoughts on', 'wpbootstrap' ).' &ldquo;%2$s&rdquo;',number_format_i18n( get_comments_number() ),'<span>' . get_the_title() . '</span>' );
+						printf( '%1$s '.__( 'Comments', 'wpbootstrap' ).' &ldquo;%2$s&rdquo;',number_format_i18n( get_comments_number() ));
 					}
 				?>
 				</h2>

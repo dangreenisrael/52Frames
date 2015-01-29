@@ -50,7 +50,7 @@
               </div>
               <div class="submission-form-hp span6 pull-right">
                 <div class="camera-text">
-                  <a href="<?php echo home_url()?>/submit/">This Weeks Challenge</a>
+                  <a href="<?php echo get_page_link(564)?>">This Weeks Challenge</a>
           					<?php
           					$term = get_field('albums_name_above_camera');
           					?>
@@ -58,10 +58,11 @@
           					<span class="camera-deadline">Ends Sunday at noon, U.S. Eastern</span>
           					<?php
           					if ( is_user_logged_in() ) {
-          					 $submit = 'submit';
+          					 $submit = get_page_link(86);
                      } else {
-                       $submit = 'register-a-new-account';
+                       $submit = get_page_link(57);
                       } 
+                      $submit = get_page_link(564);
                       ?>
                       <div class="camera-action">
               					<a class="red-circle" href="<?php echo home_url().'/'.$submit ?>">
@@ -141,10 +142,10 @@
           			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
                 <div class="container hidden-phone">
               		<div class="counters-hp">
-              			<div class="span3 counter-container text-center"><p class="counter">16067</p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="counter">697</p><p><span class="counter-bottom">Photographers to Date</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="counter">38</p><p><span class="counter-bottom">Countries Represented</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="counter">210</p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="16067" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="697" data-speed="1500"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="38" data-speed="1500"></p><p><span class="counter-bottom">Countries Represented</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="210" data-speed="1500"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
               		</div>
           	   </div>
           	</div>
@@ -156,7 +157,7 @@
                     <h3 class="title">From the Blog</h3>
                      <div class="hidden-phone"><?php the_field('lastest_posts_text'); ?></div>
                       <div class="buttons-blog-hp">
-                          <a class="button small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a>
+                          <a class="button small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a><br/>
                        <?php
                        $post_object = get_field('lastest_posts_post');
                         if( $post_object ): 
@@ -164,7 +165,7 @@
                            $post = $post_object;
                            setup_postdata( $post ); 
                           ?>
-                            <a class="button small hidden-phone" href="">Photo Guid 101</a>
+                            Just getting started?<a class="hidden-phone" href="<?php echo get_page_link(1135)?>"> Visit our Beginner’s Guide to Photography</a>
                           <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
                        <?php endif; ?>
                       </div>  

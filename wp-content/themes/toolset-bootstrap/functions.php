@@ -859,7 +859,6 @@ class Wpbootstrap_Nav_Walker extends Walker_Nav_Menu {
             $item_html = preg_replace('/<a[^>]*>.*?<\/a>/iU', '', $item_html);
 
         } elseif (stristr($item_html, 'li class="nav-header')) {
-
             $item_html = preg_replace('/<a[^>]*>(.*)<\/a>/iU', '$1', $item_html);
 
         }
@@ -1554,11 +1553,11 @@ class Wpbootstrap_Comments extends Walker_Comment {
 
                 if ($comment->user_id === $post->post_author) {
 
-                    echo get_avatar($comment, 54);
+                    echo get_avatar($comment, 70);
 
                 } else {
 
-                    echo get_avatar($comment, 64);
+                    echo get_avatar($comment, 70);
 
                 }
 
@@ -1582,7 +1581,7 @@ class Wpbootstrap_Comments extends Walker_Comment {
 
                 <?php
 
-                printf('<a href="%1$s"><time datetime="%2$s">%3$s</time></a>', esc_url(get_comment_link($comment->comment_ID)), get_comment_time('c'), sprintf('%1$s '.__('at', 'wpbootstrap').' %2$s', get_comment_date(), get_comment_time())
+                printf('<a href="%1$s"><i class="fa fa-clock-o"></i><time datetime="%2$s">%3$s</time></a>', esc_url(get_comment_link($comment->comment_ID)), get_comment_time('c'), sprintf('%1$s '.__('at', 'wpbootstrap').' %2$s', get_comment_date(), get_comment_time())
 
                 );
 
@@ -1598,7 +1597,7 @@ class Wpbootstrap_Comments extends Walker_Comment {
 
 
 
-                <div class="comment-content">
+                <div class="comment-content clearfix">
 
                     <?php comment_text(); ?>
 
@@ -1607,7 +1606,7 @@ class Wpbootstrap_Comments extends Walker_Comment {
 
 
                 <div class="reply">
-
+                   <?php  hmn_cp_the_comment_upvote_form();?>
                     <a class="btn btn-small edit-link" href="<?php echo get_edit_comment_link(); ?>"><?php _e('Edit', 'wpbootstrap') ?></a>
 
                     <?php comment_reply_link(array_merge($args, array('reply_text' => '<span class="btn btn-small">' . __('Reply', 'wpbootstrap') . '</span>', 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
