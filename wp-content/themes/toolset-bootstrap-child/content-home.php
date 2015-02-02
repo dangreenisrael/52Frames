@@ -28,6 +28,12 @@
                     while ( $loop->have_posts() ) : $loop->the_post();
                       $title = get_the_title();
                       $link = get_field('slide_link');
+                      $link_label = get_field('link_label');
+                      if (!empty($link_label)) :
+                        $label = $link_label;
+                      else :
+                        $label= 'More Details';
+                      endif;
                       ?>      
                        <div class="slide row">               
                           <div class="span4 slider-img visible-desktop">
@@ -37,7 +43,7 @@
                             <h3><?php echo $title;?></h3>
                             <?php the_content();?>
                             <?php if (!empty($link)):
-                              echo'<a href="'.$link.'" class="button red small">More Details</a>';
+                              echo'<a href="'.$link.'" class="button red small">'.$label.'</a>';
                             endif;?>
                            
                           </div>
@@ -50,7 +56,7 @@
               </div>
               <div class="submission-form-hp span6 pull-right">
                 <div class="camera-text">
-                  <a href="<?php echo get_page_link(564)?>">This Weeks Challenge</a>
+                  <a href="<?php echo get_page_link(564)?>">This Week's Challenge</a>
           					<?php
           					$term = get_field('albums_name_above_camera');
           					?>
@@ -65,7 +71,7 @@
                       $submit = get_page_link(564);
                       ?>
                       <div class="camera-action">
-              					<a class="red-circle" href="<?php echo home_url().'/'.$submit ?>">
+              					<a class="red-circle" href="<?php echo $submit ?>">
                             <span class="submit-text">Submit</span>
                             <span class="your-photo-text">Your Photo</span>
                         </a>                   
@@ -107,7 +113,7 @@
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
                                        echo '<p class="winner"><span>Photo by: '. $winner_name ./*.get_the_author_meta('display_name', $post->post_author).*/'</span></p>';
                                     echo '</figcaption>';
-                                    echo '<a class="view" href="'.$term_link.'">View more</a>'; 
+                                    echo '<a class="view" href="'.$term_link.'" target="_blank">View more</a>'; 
                                 echo '</figure>' ;
                             echo '</div>';
                             wp_reset_postdata();
@@ -165,7 +171,8 @@
                            $post = $post_object;
                            setup_postdata( $post ); 
                           ?>
-                            Just getting started?<a class="hidden-phone" href="<?php echo get_page_link(1135)?>"> Visit our Beginner’s Guide to Photography</a>
+                            Just getting started?<br/>
+                            <a href="<?php echo get_page_link(1135)?>"> Visit our Beginner’s Guide to Photography</a>
                           <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
                        <?php endif; ?>
                       </div>  
@@ -183,7 +190,7 @@
                     		?>
                     	<div class="span4"> 
                         <div article class="post">           	
-                          <div><a href="<?php the_permalink()?>"><?php the_post_thumbnail('thumb-440' ); ?></a></div>            
+                          <div><a href="<?php the_permalink()?>"><?php the_post_thumbnail('thumb-480' ); ?></a></div>            
                           <h3><a href="<?php the_permalink()?>"><?php	the_title() ?></a></h3>
                         </div>
                      </div>
@@ -227,7 +234,7 @@
                           <a href="<?php echo $framer_link ?>"><?php echo get_wp_user_avatar( $user['ID'], '150'); ?></a>
                       </div>   
                         <div class="framer-name">            
-                            <a href="<?php echo $framer_link ?>">Nomi Hirshman Rave</a>
+                            <a href="<?php echo $framer_link ?>"><?php echo $user['display_name'] ?></a>
                         </div>
                    </div>
               </div>
@@ -245,14 +252,14 @@
                 <?php $image = get_the_post_thumbnail($post->ID, 'thumb-640'); ?>
                 <div><a href="<?php// the_permalink(); ?>"><?php echo $image; ?></a>
                   <div class="overlay"></div>
-                   <a class="view" href="https://www.facebook.com/52frames/photos/a.833602159998239.1073742020.180889155269546/833611539997301/?type=3&theater)" target="_blank">view more</a>
+                   <!--a class="view" href="https://www.facebook.com/52frames/photos/a.833602159998239.1073742020.180889155269546/833611539997301/?type=3&theater)" target="_blank">view more</a-->
                 </div>
                 <div class="featured-name">
                     <span>Photo of <strong>the Day</strong></span>
                 </div>
                 <div class="featured-details">
                   <div class="title-hp">
-                     <a href="<?php // the_permalink()?>"><?php the_title();?></a>
+                     <a <?php // the_permalink()?>><?php the_title();?></a>
                   </div>
                   <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
@@ -279,14 +286,14 @@
                      <?php echo $image; ?>
                 </div>
                 <div class="overlay"></div>
-                 <a class="view" href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank">view more</a>
+                 <!--a class="view" href="https://www.facebook.com/52frames/photos/a.864942296864225.1073742044.180889155269546/864943163530805/?type=3&theater)" targe="_blank">view more</a-->
                 <div class="featured-name">
                     <span>Audience <strong>Award</strong></span>
                 </div>
                 <div class="featured-details">
-                  <?php if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
+                  <?php //if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                   <div class="title-hp">
-                     <a href="<?php the_permalink()?>"><?php the_title();?></a>
+                     <a><?php the_title();?></a>
                   </div>
                     <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
@@ -307,20 +314,29 @@ $(document).ready(function() {
       $('.home-slider').slick({
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: false,
-      autoplaySpeed: 2000,
+      autoplay: true,
+      autoplaySpeed: 4000,
       dots: true,
       arrows: false,
       speed: 500,
       fade: true,
       slide: 'div',
-      cssEase: 'linear'
+      cssEase: 'linear',
+      responsive: [
+      {
+      breakpoint: 768,
+      settings: {
+      dots: false
+
+      }
+    }
+  ]
   });
    $('.home-slider').show();   
 
      $('.albums-carousel').slick({
       lazyLoad: 'ondemand',
-      slidesToShow: 3,
+      slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: false,
       autoplaySpeed: 2000,
@@ -350,6 +366,7 @@ $(document).ready(function() {
     }
   ]
   });
+     $('.albums-carousel').show();  
  
 });
 </script>

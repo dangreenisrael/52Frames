@@ -10,7 +10,7 @@ get_header(); ?>
 		<?php
 			while ( have_posts() ) : the_post();?>
 			<div class="toolbar pull-left">
-				<li class="comment-counter"><?php comments_popup_link( __( '<i class="fa fa-comments-o"></i><span>0</span>', 'wpbootstrap' ), __( '<i class="fa fa-comments-o"></i><span>1</span>', 'wpbootstrap' ), __( '<i class="fa fa-comments-o"></i><span>%</li>', 'wpbootstrap' ) );?></li>
+				<li id="comments-anchor" class="comment-counter"><a class="commentlink" href="#respond"/><?php comments_popup_link( __( '<i class="fa fa-comments-o"></i><span>0</span>', 'wpbootstrap' ), __( '<i class="fa fa-comments-o"></i><span>1</span>', 'wpbootstrap' ), __( '<i class="fa fa-comments-o"></i><span>%</li>', 'wpbootstrap' ));?></li>
 				<ul class="social cf">
 					<li class="share">share</li>                       
 	                <li class="twitter"><a href="http://twitthis.com/twit?url=<?php the_permalink(); ?>" class="popup" target="_blank"><i class="fa fa-twitter"></i></a></li>

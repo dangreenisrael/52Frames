@@ -12,6 +12,7 @@ if ( post_password_required() ) {
 	<?php if (comments_open()) { ?><section id="comments"><?php }?>
 		<?php if (comments_open()): ?>
 			<?php if ( have_comments() ) : ?>
+				<a name="respond" />
 				<h2 id="comments-title">
 				<?php
 					$comment_count_actual = get_comments_number();

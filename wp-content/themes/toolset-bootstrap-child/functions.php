@@ -414,7 +414,7 @@ function convert_album_id_to_taxonomy_term_in_query($query) {
 }
 // This removes the annoying […] to a Read More link
 function new_excerpt_more( $more ) {
-	return '...';
+	return '';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 

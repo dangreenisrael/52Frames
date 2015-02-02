@@ -74,11 +74,15 @@
 			<div class="container ">
 				<?php if (is_home()) :?>
 					<h1>Our Blog</h1>
-					<H2>52Frames is a weekly photo challenge. <a href="">Join us!</a></h2>
+					<p>The 52Frames blog is your one-stop shop for all the tutorials, tips, and inspiration you need to take your photography to the next level. And oh so much more. </p>
 				<?php elseif (is_category()) :?>
 					<h1><?php printf('%s', single_cat_title( '', false ) );?><h1>
 				<?php elseif (is_tag()) :?>
-					<h1><?php printf('%s', single_tag_title( '', false ) ); ?>
+					<h1><?php printf('%s', single_tag_title( '', false ) ); ?></h1>
+				<?php elseif (is_author()):
+						global $post;
+					$author_id = $post->post_author;?>
+						<h1><?php _e( 'Posts By:', 'wpbootstrap' ); ?></span> <?php the_author_meta('display_name', $author_id); ?></h1>
 				<?php elseif ( is_day() ) :?>
 					<h1><?php printf (__( 'Daily Archives:', 'wpbootstrap' ).' %s', get_the_date());?></h1>
 				<?php elseif ( is_month() ) :?>
@@ -88,9 +92,9 @@
 				<?php elseif(is_singular('post')): ?>	
 					<h1><?php the_title(); ?></h1>
 					<p class="author">
-						<?php echo __( 'By', 'wpbootstrap' ); ?> <!--a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author"-->
+						<?php echo __( 'By', 'wpbootstrap' ); ?> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
 							<?php echo get_the_author(); ?>
-						<!--/a-->
+						</a>
 					</p>
 				<?php
 					$cat = $wp_query->get_queried_object();

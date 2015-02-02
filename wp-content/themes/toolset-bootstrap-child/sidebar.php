@@ -11,7 +11,7 @@
 	</aside>
 	<?php endif; ?>
 	<aside class="cat-list">	
-		<h3 class="widget-title">Categories</h3>
+		<h3 class="widget-title">Blog Categories</h3>
 <?php		
 	$catsy = get_the_category();
 	$myCat = $catsy[0]->cat_ID;
