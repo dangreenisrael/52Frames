@@ -16,7 +16,7 @@
 <div class="entry-meta">
 	<?php if (has_category() || has_tag() ):?>			
 		<?php if (has_category()): ?>
-		<span class="post-cat"><?php _e( '<strong>Categories</strong>', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?></span>
+		<span class="post-cat"><?php _e( '<strong>Category</strong>', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?></span>
 		<?php endif; ?>
 		<span class="post-comments"><i class="fa fa-comments-o"></i><?php comments_popup_link( __( '<span>No</span> Comments', 'wpbootstrap' ), __( '<span>1</span> Comment', 'wpbootstrap' ), __( '<span>%</span> Comments', 'wpbootstrap' ) );?></span>
 	<?php endif; ?>

@@ -54,7 +54,7 @@
 		<?php if (is_singular('post'))
 		echo '<div class="post-image" style="background-image:url('.$background[0] .')"></div>';
 		?>
-		<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' )) :
+		<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' ) && !is_page()) :
 			echo '<div class="overlay"></div>';
 		endif;
 	?>		
@@ -83,6 +83,8 @@
 						global $post;
 					$author_id = $post->post_author;?>
 						<h1><?php _e( 'Posts By:', 'wpbootstrap' ); ?></span> <?php the_author_meta('display_name', $author_id); ?></h1>
+				<?php elseif ( is_search() ) :?>
+					<h1><?php printf( __( 'Search Results for:', 'wpbootstrap' ).' %s', '<span>' . get_search_query() . '</span>' ); ?></h1>
 				<?php elseif ( is_day() ) :?>
 					<h1><?php printf (__( 'Daily Archives:', 'wpbootstrap' ).' %s', get_the_date());?></h1>
 				<?php elseif ( is_month() ) :?>

@@ -81,10 +81,14 @@ a.view {
 }
 /*  Typography */
 h2 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 300;
   margin: 40px 0 14px;
-  color: #76b2d4;
+  color: #ea4858;
+}
+h3 {
+  font-size: 28px;
+  margin: 20px 0 5px;
 }
 a {
   color: #46a1d3;
@@ -165,7 +169,7 @@ body:not(.page-template-page-home-php) #main {
   margin-top: 0;
 }
 .title {
-  color: #76B2D4;
+  color: #46a1d3;
   font-weight: 300;
   font-size: 35px;
   letter-spacing: -1px;
@@ -177,22 +181,34 @@ body:not(.page-template-page-home-php) #main {
   margin-top: 20px;
   position: relative;
 }
-/* .button */
+/****** buttons ********/
 .button,
 .login-submit input {
   background-color: #fff;
   padding: 7px 18px;
   border-radius: 5px;
-  color: #ea4858;
+  color: #ea4858 !important;
   font-size: 18px;
   text-decoration: none;
   outline: 0 !important;
+  webkit-transition: all 0.35s;
+  transition: all 0.35s;
   text-transform: capitalize;
 }
 .button.red,
 .login-submit input.red {
   background-color: #ea4858;
-  color: #fff;
+  color: #fff!important;
+}
+.button.blue,
+.login-submit input.blue {
+  background-color: #46a1d3;
+  color: #fff!important;
+}
+.button.blockquote,
+.login-submit input.blockquote {
+  background-color: #46a1d3;
+  color: #fff !important;
 }
 .button.small,
 .login-submit input.small {
@@ -206,6 +222,7 @@ body:not(.page-template-page-home-php) #main {
 }
 .button:hover {
   text-decoration: none;
+  opacity: 0.8;
 }
 /* NAVBAR */
 .navbar {
@@ -556,7 +573,7 @@ form#search-form .btn i {
   font-size: 38px;
   color: #FFF;
   line-height: 110px;
-  font-weight: 400;
+  font-weight: 300;
 }
 .latest-albums .album {
   position: relative;
@@ -677,6 +694,69 @@ form#search-form .btn i {
   font-size: 14px;
   text-transform: uppercase;
 }
+/*==============================================
+	hatch
+==============================================
+*/
+.hatch {
+  animation-name: hatch;
+  -webkit-animation-name: hatch;
+  animation-duration: 2s;
+  -webkit-animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  visibility: visible !important;
+}
+@keyframes hatch {
+  0% {
+    transform: rotate(0deg) scaleY(0.6);
+  }
+  20% {
+    transform: rotate(-2deg) scaleY(1.05);
+  }
+  35% {
+    transform: rotate(2deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  65% {
+    transform: rotate(1deg);
+  }
+  80% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes hatch {
+  0% {
+    -webkit-transform: rotate(0deg) scaleY(0.6);
+  }
+  20% {
+    -webkit-transform: rotate(-2deg) scaleY(1.05);
+  }
+  35% {
+    -webkit-transform: rotate(2deg) scaleY(1);
+  }
+  50% {
+    -webkit-transform: rotate(-2deg);
+  }
+  65% {
+    -webkit-transform: rotate(1deg);
+  }
+  80% {
+    -webkit-transform: rotate(-1deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+/*
 /* slick slider */
 .albums-carousel {
   margin-bottom: 0px!important;
@@ -754,16 +834,24 @@ form#search-form .btn i {
   background-color: #f2f2f2;
   padding: 50px 0;
 }
+.latest-posts .post-container .row-fluid {
+  display: table;
+  height: 100%;
+}
 @media (min-width: 768px) {
   .latest-posts .span4 {
     width: 33.3333333%;
     padding-left: 5%;
+    display: table-cell;
+    float: none;
+    height: 100%;
   }
 }
 .latest-posts .post {
   border: 1px solid #dedede;
   padding: 5px;
   background: #f6f6f6;
+  height: 100%;
 }
 .latest-posts .post h3 {
   font-size: 15px;
@@ -797,7 +885,7 @@ form#search-form .btn i {
   margin-bottom: 10px;
 }
 #photo-walk-hp {
-  background-color: #D8D8D8;
+  background-color: #323A45;
 }
 #photo-walk-hp .container {
   position: relative;
@@ -805,6 +893,7 @@ form#search-form .btn i {
 }
 #photowalk-text-hp {
   padding: 0 3%;
+  color: #D0CFCF;
 }
 .photowalk-monster img {
   position: absolute;
@@ -1850,36 +1939,14 @@ button.exif-toggle i {
 /* BLOG */
 .blog #header,
 .archive:not(.tax-photo_alboms) #header,
+.search #header,
 .single-post #header {
   background: #ffffff url('../images/blog_header.jpg') center top;
   height: 400px;
 }
-.blog #header .navbar .nav > li > a:not(:hover),
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li > a:not(:hover),
-.single-post #header .navbar .nav > li > a:not(:hover),
-.blog #header .navbar .nav > li:not(.current_page_item) > a,
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li:not(.current_page_item) > a,
-.single-post #header .navbar .nav > li:not(.current_page_item) > a {
-  color: #555;
-}
-.blog #header .navbar .nav > li > a:not(:hover):hover,
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li > a:not(:hover):hover,
-.single-post #header .navbar .nav > li > a:not(:hover):hover,
-.blog #header .navbar .nav > li:not(.current_page_item) > a:hover,
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li:not(.current_page_item) > a:hover,
-.single-post #header .navbar .nav > li:not(.current_page_item) > a:hover {
-  color: #46a1d3;
-}
-.blog #header .navbar .nav > li.current_page_item > a,
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li.current_page_item > a,
-.single-post #header .navbar .nav > li.current_page_item > a,
-.blog #header .navbar .nav > li > a:hover,
-.archive:not(.tax-photo_alboms) #header .navbar .nav > li > a:hover,
-.single-post #header .navbar .nav > li > a:hover {
-  color: #46a1d3;
-}
 .blog #header .page-title,
 .archive:not(.tax-photo_alboms) #header .page-title,
+.search #header .page-title,
 .single-post #header .page-title {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1888,23 +1955,23 @@ button.exif-toggle i {
   top: 50%;
 }
 .blog #header,
-.archive:not(.tax-photo_alboms) #header {
+.archive:not(.tax-photo_alboms) #header,
+.search #header {
   background-size: cover;
 }
-.blog #header .overlay,
-.archive:not(.tax-photo_alboms) #header .overlay {
-  background: rgba(255, 255, 255, 0.5);
-}
 .blog #header .page-title,
-.archive:not(.tax-photo_alboms) #header .page-title {
+.archive:not(.tax-photo_alboms) #header .page-title,
+.search #header .page-title {
   text-align: center;
 }
 .blog #header .page-title h1,
-.archive:not(.tax-photo_alboms) #header .page-title h1 {
+.archive:not(.tax-photo_alboms) #header .page-title h1,
+.search #header .page-title h1 {
   /*color:lighten(@gray,5%);*/
 }
 .blog #header .page-title p,
-.archive:not(.tax-photo_alboms) #header .page-title p {
+.archive:not(.tax-photo_alboms) #header .page-title p,
+.search #header .page-title p {
   margin: 10px auto 0 ;
   font-weight: 400;
   line-height: 1.5;
@@ -1914,31 +1981,37 @@ button.exif-toggle i {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 .blog #header .page-title p a,
-.archive:not(.tax-photo_alboms) #header .page-title p a {
+.archive:not(.tax-photo_alboms) #header .page-title p a,
+.search #header .page-title p a {
   color: #ea4858;
 }
 .blog article p,
-.archive:not(.tax-photo_alboms) article p {
+.archive:not(.tax-photo_alboms) article p,
+.search article p {
   display: inline;
 }
 .blog .page-title h1,
 .single-post .page-title h1,
-.archive:not(.tax-photo_alboms) .page-title h1 {
+.archive:not(.tax-photo_alboms) .page-title h1,
+.search .page-title h1 {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
-.blog article.post,
-.single-post article.post,
-.archive:not(.tax-photo_alboms) article.post {
+.blog article.hentry,
+.single-post article.hentry,
+.archive:not(.tax-photo_alboms) article.hentry,
+.search article.hentry {
   margin-bottom: 40px;
   padding-bottom: 40px;
   border-bottom: 1px solid #cccccc;
 }
-.blog article.post h1,
-.single-post article.post h1,
-.archive:not(.tax-photo_alboms) article.post h1,
-.blog article.post .entry-title,
-.single-post article.post .entry-title,
-.archive:not(.tax-photo_alboms) article.post .entry-title {
+.blog article.hentry h1,
+.single-post article.hentry h1,
+.archive:not(.tax-photo_alboms) article.hentry h1,
+.search article.hentry h1,
+.blog article.hentry .entry-title,
+.single-post article.hentry .entry-title,
+.archive:not(.tax-photo_alboms) article.hentry .entry-title,
+.search article.hentry .entry-title {
   font-size: 35px;
   font-weight: 400;
   margin-bottom: 8px;
@@ -1946,71 +2019,91 @@ button.exif-toggle i {
   color: #555555;
   text-decoration: none;
 }
-.blog article.post h1 a,
-.single-post article.post h1 a,
-.archive:not(.tax-photo_alboms) article.post h1 a,
-.blog article.post .entry-title a,
-.single-post article.post .entry-title a,
-.archive:not(.tax-photo_alboms) article.post .entry-title a {
+.blog article.hentry h1 a,
+.single-post article.hentry h1 a,
+.archive:not(.tax-photo_alboms) article.hentry h1 a,
+.search article.hentry h1 a,
+.blog article.hentry .entry-title a,
+.single-post article.hentry .entry-title a,
+.archive:not(.tax-photo_alboms) article.hentry .entry-title a,
+.search article.hentry .entry-title a {
   color: #555555;
   text-decoration: none;
 }
-.blog article.post h1 a:hover,
-.single-post article.post h1 a:hover,
-.archive:not(.tax-photo_alboms) article.post h1 a:hover,
-.blog article.post .entry-title a:hover,
-.single-post article.post .entry-title a:hover,
-.archive:not(.tax-photo_alboms) article.post .entry-title a:hover {
+.blog article.hentry h1 a:hover,
+.single-post article.hentry h1 a:hover,
+.archive:not(.tax-photo_alboms) article.hentry h1 a:hover,
+.search article.hentry h1 a:hover,
+.blog article.hentry .entry-title a:hover,
+.single-post article.hentry .entry-title a:hover,
+.archive:not(.tax-photo_alboms) article.hentry .entry-title a:hover,
+.search article.hentry .entry-title a:hover {
   color: #46a1d3;
 }
-.blog article.post .author,
-.single-post article.post .author,
-.archive:not(.tax-photo_alboms) article.post .author {
+.blog article.hentry .author,
+.single-post article.hentry .author,
+.archive:not(.tax-photo_alboms) article.hentry .author,
+.search article.hentry .author {
   color: #999999;
   text-transform: uppercase;
   margin-bottom: 20px;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.blog article.post time,
-.single-post article.post time,
-.archive:not(.tax-photo_alboms) article.post time {
+.blog article.hentry time,
+.single-post article.hentry time,
+.archive:not(.tax-photo_alboms) article.hentry time,
+.search article.hentry time {
   margin-left: 4px;
 }
-.blog article.post .entry-meta,
-.single-post article.post .entry-meta,
-.archive:not(.tax-photo_alboms) article.post .entry-meta {
+.blog article.hentry .entry-meta,
+.single-post article.hentry .entry-meta,
+.archive:not(.tax-photo_alboms) article.hentry .entry-meta,
+.search article.hentry .entry-meta {
   border-top: 1px solid #e6e6e6;
   padding-top: 20px;
+  margin-top: 20px;
 }
-.blog article.post .entry-meta .post-cat,
-.single-post article.post .entry-meta .post-cat,
-.archive:not(.tax-photo_alboms) article.post .entry-meta .post-cat {
+.blog article.hentry .entry-meta .post-cat,
+.single-post article.hentry .entry-meta .post-cat,
+.archive:not(.tax-photo_alboms) article.hentry .entry-meta .post-cat,
+.search article.hentry .entry-meta .post-cat {
   margin-right: 20px;
 }
-.blog article.post .entry-meta strong,
-.single-post article.post .entry-meta strong,
-.archive:not(.tax-photo_alboms) article.post .entry-meta strong,
-.blog article.post .entry-meta i,
-.single-post article.post .entry-meta i,
-.archive:not(.tax-photo_alboms) article.post .entry-meta i {
+.blog article.hentry .entry-meta strong,
+.single-post article.hentry .entry-meta strong,
+.archive:not(.tax-photo_alboms) article.hentry .entry-meta strong,
+.search article.hentry .entry-meta strong,
+.blog article.hentry .entry-meta i,
+.single-post article.hentry .entry-meta i,
+.archive:not(.tax-photo_alboms) article.hentry .entry-meta i,
+.search article.hentry .entry-meta i {
   margin-right: 5px;
 }
-.blog article.post .post-thumbnail,
-.single-post article.post .post-thumbnail,
-.archive:not(.tax-photo_alboms) article.post .post-thumbnail {
+.blog article.hentry .entry-meta i,
+.single-post article.hentry .entry-meta i,
+.archive:not(.tax-photo_alboms) article.hentry .entry-meta i,
+.search article.hentry .entry-meta i {
+  font-size: 18px;
+}
+.blog article.hentry .post-thumbnail,
+.single-post article.hentry .post-thumbnail,
+.archive:not(.tax-photo_alboms) article.hentry .post-thumbnail,
+.search article.hentry .post-thumbnail {
   margin: 30px 0;
 }
-.blog article.post p,
-.single-post article.post p,
-.archive:not(.tax-photo_alboms) article.post p {
+.blog article.hentry p,
+.single-post article.hentry p,
+.archive:not(.tax-photo_alboms) article.hentry p,
+.search article.hentry p {
   font-size: 16px;
   line-height: 1.9;
   color: #6f6f6f;
 }
-.blog article.post .btn-primary,
-.single-post article.post .btn-primary,
-.archive:not(.tax-photo_alboms) article.post .btn-primary {
+.blog article.hentry .btn-primary,
+.single-post article.hentry .btn-primary,
+.archive:not(.tax-photo_alboms) article.hentry .btn-primary,
+.search article.hentry .btn-primary {
   background: none;
   color: #46a1d3;
   text-shadow: none;
@@ -2023,9 +2116,10 @@ button.exif-toggle i {
   font-weight: 700;
   line-height: 1;
 }
-.blog article.post .btn-primary:hover,
-.single-post article.post .btn-primary:hover,
-.archive:not(.tax-photo_alboms) article.post .btn-primary:hover {
+.blog article.hentry .btn-primary:hover,
+.single-post article.hentry .btn-primary:hover,
+.archive:not(.tax-photo_alboms) article.hentry .btn-primary:hover,
+.search article.hentry .btn-primary:hover {
   color: #ea4858;
 }
 /** single-post  **/
@@ -2126,25 +2220,32 @@ button.exif-toggle i {
   margin-top: 30px !important;
   font-weight: 400 !important;
 }
+.single-post .yarpp-thumbnail-title {
+  margin-top: 18px;
+}
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail {
-  width: 23%;
   height: auto;
-  margin: 5px 0 5px 2%;
+  width: 49%;
+  float: left;
+  margin: 0 0 20px 2%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  padding: 5px;
+  padding: 0;
+  position: relative;
+}
+.single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:first-child {
+  margin-left: 0 !important;
 }
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail img {
-  width: 150px;
-  height: 100px;
   margin: 0;
 }
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail .yarpp-thumbnail-title {
   width: auto !important;
   font-weight: 400 !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   margin-top: 8px !important;
   margin-bottom: 0;
+  display: block;
   color: #555555;
 }
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:first-child {
@@ -2324,6 +2425,7 @@ button.exif-toggle i {
 }
 .page-id-299 .vc_row .vc_col-sm-6 h3 {
   margin-top: 0;
+  font-weight: 300;
 }
 .page-id-299 .vc_row .vc_col-sm-6:last-child {
   padding-left: 10%;
@@ -2454,6 +2556,7 @@ button.exif-toggle i {
 }
 .commentlist .media .avatar {
   float: left;
+  margin-right: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -2512,8 +2615,9 @@ button.exif-toggle i {
   -moz-box-sizing: border-box;
   text-align: center;
 }
-h3 {
+.top-footer h3 {
   font-weight: 300;
+  font-size: 24px;
 }
 .bottom-footer {
   background: #242C35;
@@ -2551,7 +2655,7 @@ h3 {
   background-color: #517fa4;
 }
 .footer-menu ul li {
-  float: left;
+  display: inline-block;
   list-style: none;
 }
 .footer-menu ul li a {
@@ -2560,6 +2664,9 @@ h3 {
 }
 /****  RESPONSIVE ****/
 @media (min-width: 768px) {
+  .row-fluid .span3 {
+    width: 25%;
+  }
   .latest-albums {
     margin-top: -110px;
   }
@@ -2591,6 +2698,10 @@ h3 {
   .single-post article.post {
     padding-left: 15%;
     padding-right: 4%;
+  }
+  .single-post article.post .yarpp-thumbnails-horizontal .yarpp-thumbnail {
+    width: 23%;
+    margin: 0 0 0 2.666666%;
   }
   .wpb_tour .wpb_tabs_nav {
     width: 22%!important;
@@ -2775,6 +2886,7 @@ h3 {
     margin-right: 0;
   }
   .container {
+    max-width: 500px;
     padding-right: 20px;
     padding-left: 20px;
   }
@@ -2811,7 +2923,7 @@ h3 {
     padding-bottom: 100px;
   }
   .latest-posts .post {
-    background: none;
+    background: none !important;
     border: 0;
   }
   .latest-posts .title,
@@ -2834,6 +2946,9 @@ h3 {
   .top-footer {
     background-size: cover;
   }
+  #menu-footer-menu {
+    text-align: center;
+  }
   .bottom-footer .pull-right {
     float: none;
     padding-top: 10px;
@@ -2844,6 +2959,10 @@ h3 {
   .wpb_tour .wpb_tour_tabs_wrapper .wpb_tab {
     width: 100%!important;
     padding-right: 0;
+  }
+  .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:nth-child(2n+1) {
+    margin-left: 0;
+    clear: left;
   }
 }
 @media (max-width: 320px) {

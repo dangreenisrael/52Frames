@@ -99,16 +99,9 @@
                             $winner->the_post();
                             $term_link = get_field('fb_link', $term2);
                             $winner_name = get_field('winner_name', $term2);
-                            $image = get_field('winning_image', $term2);
-                            $url = $image['url'];
-                            $size = 'thumb-780';
-                            $thumb = $image['sizes'][ $size ];
-                            $width = $image['sizes'][ $size . '-width' ];
-                            $height = $image['sizes'][ $size . '-height' ];
-                            //get_the_post_thumbnail(get_the_id(), "thumb-780").'*/
-                             echo '<div class="album">';
+                            echo '<div class="album">';
                                 echo '<figure class="effect-albums">';
-                                   echo '<a href="'.$term_link.'" target="_blank"><img src="'.$thumb.'" width="'. $width .'" height="'.$height.'"></a>';
+                                   echo get_the_post_thumbnail(get_the_id(), 'thumb-480');
                                     echo '<figcaption>';
                                        echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
                                        echo '<p class="winner"><span>Photo by: '. $winner_name ./*.get_the_author_meta('display_name', $post->post_author).*/'</span></p>';
@@ -149,9 +142,9 @@
                 <div class="container hidden-phone">
               		<div class="counters-hp">
               			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="16067" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="697" data-speed="1500"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="38" data-speed="1500"></p><p><span class="counter-bottom">Countries Represented</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="210" data-speed="1500"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="697" data-speed="5000"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="38" data-speed="5000"></p><p><span class="counter-bottom">Countries Represented</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="210" data-speed="5000"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
               		</div>
           	   </div>
           	</div>
@@ -163,7 +156,7 @@
                     <h3 class="title">From the Blog</h3>
                      <div class="hidden-phone"><?php the_field('lastest_posts_text'); ?></div>
                       <div class="buttons-blog-hp">
-                          <a class="button small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a><br/>
+                          <a class="button blue small" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Visit Our Blog</a><br/>
                        <?php
                        $post_object = get_field('lastest_posts_post');
                         if( $post_object ): 
