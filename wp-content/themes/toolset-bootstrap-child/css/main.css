@@ -140,10 +140,10 @@ body:not(.page-template-page-home-php) #main {
 .site-title {
   margin-top: 5px;
 }
-.blog #header,
-.archive:not(.tax-photo_alboms) #header,
 .page-template-default #header {
   background-image: url('../images/header-pix/header2.jpg');
+  height: 250px;
+  position: relative;
 }
 .overlay {
   background: rgba(0, 0, 0, 0.3);
@@ -177,7 +177,6 @@ body:not(.page-template-page-home-php) #main {
 }
 .page-title {
   text-align: center;
-  padding-bottom: 40px;
   margin-top: 20px;
   position: relative;
 }
@@ -300,6 +299,8 @@ body:not(.page-template-page-home-php) #main {
   text-shadow: none;
   color: #46a1d3;
 }
+.navbar .nav > li.current_page_parent > a,
+.navbar .nav > li.current_page_parent > a:hover,
 .navbar .nav > li.current_page_item > a,
 .navbar .nav > li.active > a,
 .navbar .nav > li.active > a:hover,
@@ -526,7 +527,7 @@ form#search-form .btn i {
   text-indent: 3px;
 }
 .submission-form-hp a.red-circle {
-  background: #ed4e4a;
+  background: #ea4858;
   border-radius: 50%;
   height: 113px;
   width: 113px;
@@ -1494,6 +1495,8 @@ button.exif-toggle i {
   -moz-filter: blur(10px);
   -o-filter: blur(10px);
   -ms-filter: blur(10px);
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
 }
 .tax-photo_alboms #header .overlay:after {
   content: '';
@@ -1959,15 +1962,15 @@ button.exif-toggle i {
 .search #header {
   background-size: cover;
 }
+.blog #header .overlay,
+.archive:not(.tax-photo_alboms) #header .overlay,
+.search #header .overlay {
+  background: none;
+}
 .blog #header .page-title,
 .archive:not(.tax-photo_alboms) #header .page-title,
 .search #header .page-title {
   text-align: center;
-}
-.blog #header .page-title h1,
-.archive:not(.tax-photo_alboms) #header .page-title h1,
-.search #header .page-title h1 {
-  /*color:lighten(@gray,5%);*/
 }
 .blog #header .page-title p,
 .archive:not(.tax-photo_alboms) #header .page-title p,
@@ -1978,23 +1981,16 @@ button.exif-toggle i {
   font-size: 24px;
   width: 700px;
   color: #fff;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 .blog #header .page-title p a,
 .archive:not(.tax-photo_alboms) #header .page-title p a,
 .search #header .page-title p a {
-  color: #ea4858;
+  color: #fff;
 }
 .blog article p,
 .archive:not(.tax-photo_alboms) article p,
 .search article p {
   display: inline;
-}
-.blog .page-title h1,
-.single-post .page-title h1,
-.archive:not(.tax-photo_alboms) .page-title h1,
-.search .page-title h1 {
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 .blog article.hentry,
 .single-post article.hentry,
@@ -2137,6 +2133,9 @@ button.exif-toggle i {
   -moz-filter: blur(10px);
   -o-filter: blur(10px);
   -ms-filter: blur(10px);
+}
+.single-post #header .page-title h1 {
+  color: #fff;
 }
 .single-post #header .author {
   color: #fff;

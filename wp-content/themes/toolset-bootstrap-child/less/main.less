@@ -164,9 +164,11 @@ body:not(.page-template-page-home-php) #main{
 
 }
 .site-title{margin-top:5px;}
-.blog ,.archive:not(.tax-photo_alboms), .page-template-default{
+.page-template-default{
  	#header{
 		background-image:url('../images/header-pix/header2.jpg');
+		height:250px;
+		position:relative;
 	}
 }
 .overlay {
@@ -198,7 +200,6 @@ body:not(.page-template-page-home-php) #main{
 }
 .page-title {
 	text-align:center;
-	padding-bottom: 40px;
 	margin-top:20px;
 	position:relative;
 }
@@ -305,6 +306,7 @@ body:not(.page-template-page-home-php) #main{
 			color:@theme-accent;
 		}
 	}
+	&.current_page_parent>a,&.current_page_parent>a:hover,
 	&.current_page_item>a, &.active>a,&.active>a:hover, &.active>a:focus,
 	&.dropdown.open>.dropdown-toggle, &.dropdown.active>.dropdown-toggle, 
 	&.dropdown.open.active>.dropdown-toggle{
@@ -527,7 +529,7 @@ form#search-form {
 		text-indent: 3px;
 	}
 	a.red-circle {
-	background: rgb(237, 78, 74);
+	background: @sub-color;
 	border-radius: 50%;
 	height: 113px;
 	width: 113px;
@@ -1435,6 +1437,8 @@ input[type="file"] {
 			  -moz-filter: blur(10px);
 			  -o-filter: blur(10px);
 			  -ms-filter: blur(10px);
+			  transform:scale(1.1);
+			-webkit-transform:scale(1.1);
 		  &:after{
 		  	content: '';
 		  	display:block;
@@ -1890,41 +1894,38 @@ input[type="file"] {
 .blog #header,.archive:not(.tax-photo_alboms) #header,.search #header, .single-post #header{
 	background:#fff url('../images/blog_header.jpg') center top ;
 	height:400px;
+	
 	.page-title {
 		-webkit-transform:translateY(-50%);
 		transform:translateY(-50%);
 		padding:0;
 		position:absolute;
 		top:50%;
-
 	}
+	
 }
-.blog  ,.archive:not(.tax-photo_alboms),.search{
+.blog ,.archive:not(.tax-photo_alboms),.search{
 	#header{
 		background-size:cover;
-		
+		.overlay{background:none;}
 		.page-title {
 			text-align:center;
-			h1{/*color:lighten(@gray,5%);*/}
 			p{
 				margin:10px auto 0 ;
-				font-weight:400;
+				font-weight:200;
 				line-height:1.5;
 				font-size:24px;
 				width:700px;
 				color:#fff;
-				text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-				a{color:@sub-color;}
+				a{color:#fff;}
 			}
+
 		}
 	}
 	article p{display: inline;}
 }
 
 .blog,.single-post,.archive:not(.tax-photo_alboms),.search  {
-	.page-title h1{
-		text-shadow: 2px 2px 2px rgba(0,0,0,0.4);
-	}
 	article.hentry{
 	margin-bottom: 40px;
 	padding-bottom: 40px;
@@ -2003,6 +2004,7 @@ input[type="file"] {
 			  -o-filter: blur(10px);
 			  -ms-filter: blur(10px);
 		}
+		.page-title h1{color:#fff;}
 		.author{
 			color:#fff;
 			font-size: 16px;

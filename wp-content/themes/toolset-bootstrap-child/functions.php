@@ -257,11 +257,15 @@ function zipsearch_search_where( $where ){
 if ( is_admin() ){
     // add the post_ID to the acf[] form
     add_action( 'edit_form_after_editor', 'my_edit_form_after_editor' );
+    add_action( 'photo_alboms_edit_form_fields', 'tax_id_field', 10, 2);
 }
 function my_edit_form_after_editor( $post ){
     echo "<input type='hidden' name='acf[post_ID]' value='{$post->ID}'/>";
 }
 
+function tax_id_field( $term ){
+    echo "<input type='hidden' name='acf[term_id]' value='{$term->term_id}'/>";
+}
 // restrict OPEN albums to 1
 add_filter('acf/validate_value/name=album_status', 'validate_album_status', 10, 4);
 function validate_album_status( $valid, $value, $field, $input ){
@@ -274,7 +278,7 @@ function validate_album_status( $valid, $value, $field, $input ){
 
 	$albums = get_terms('photo_alboms', array('hide_empty' => 0));
 	foreach ($albums as $album) {
-		if (get_field('album_status', $album) == 'OPEN')
+		if ((get_field('album_status', $album) == 'OPEN') && ($album->term_id != $_POST['acf']['term_id']))
 			 return 'Album '.$album->name." already marked as OPEN";
 	}
 	return $valid;
@@ -494,3 +498,11 @@ function countdown_time() {
 	return '<span id="countdown_ts" style="display:none"><span id="year">'.$ts['year'].'</span><span id="month">'.$ts['mon'].'</span><span id="day">'.$ts['mday'].'</span><span id="hour">'.$ts['hours'].'</span><span id="min">'.$ts['minutes'].'</span><span id="sec">'.$ts['seconds'].'</span></span>';
 }
 add_shortcode( 'countdown','countdown_time' );
+if(function_exists('acf_add_options_page')) { 
+ 
+  acf_add_options_page();
+  acf_add_options_sub_page('General');
+  acf_add_options_sub_page('Footer');
+ acf_add_options_sub_page('Social');
+ 
+} 

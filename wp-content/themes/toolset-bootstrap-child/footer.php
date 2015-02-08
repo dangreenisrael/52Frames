@@ -10,8 +10,8 @@
 		<div class="row-fluid" id="newsletter-hp">
 			<div class="container">
 				<div class="span6">
-					<h3 class="title-newsletter"><?php// the_field('newsletter_title',194); ?>Monthly Newsletter</h3>
-					<div id="newsletter-text-hp"><?php the_field('newsletter_body',194); ?></div>
+					<h3 class="title-newsletter"><?php the_field('newsletter_title',option); ?></h3>
+					<div id="newsletter-text-hp"><?php the_field('newsletter_body',option); ?></div>
 				</div>
 				<div class="span6 pull-right">
 					<!-- Begin MailChimp Signup Form -->
@@ -51,12 +51,12 @@
 			<footer id="footer" class="muted">
 				<div class="container-fluid top-footer">
 					<div class="container">
-					  <h3><?php the_field('footer_text_title',194); ?></h3>
-					  <p><?php the_field('footer_text_body',194); ?></p>
+					  <h3><?php the_field('footer_text_title',option); ?></h3>
+					  <p><?php the_field('footer_text_body',option); ?></p>
 					  <ul class="social-footer-container">
-						  <li class="facebook"><a href="<?php the_field('facebooks_link',194); ?>"><i class="fa fa-facebook"></i></a></li>
-						  <li class="instagram"><a href="<?php the_field('instagrams_link',194); ?>"><i class="fa fa-instagram"></i></a></li>
-						  <li class="twitter"><a href="<?php the_field('twiters_link',194); ?>"><i class="fa fa-twitter"></i></a></li>
+						  <li class="facebook"><a href="<?php the_field('facebooks_link',option); ?>"><i class="fa fa-facebook"></i></a></li>
+						  <li class="instagram"><a href="<?php the_field('instagrams_link',option); ?>"><i class="fa fa-instagram"></i></a></li>
+						  <li class="twitter"><a href="<?php the_field('twiters_link',option); ?>"><i class="fa fa-twitter"></i></a></li>
 					  </ul>
 					</div>
 				</div>

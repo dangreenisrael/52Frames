@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html <?php language_attributes(); ?> class="no-js ie ie6 ie-lte7 ie-lte8 ie-lte9"><![endif]-->
 <!--[if IE 7 ]><html <?php language_attributes(); ?> class="no-js ie ie7 ie-lte7 ie-lte8 ie-lte9"><![endif]-->
@@ -48,9 +47,17 @@
 	<?php if(is_singular('post')):
 		$background = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
 	
-	 endif; ?>
+	 endif; 
+	 if (is_home() || is_archive() || is_category() || is_tag() || is_search()):
+	  $header_image = get_field('blog_overview_header_image',option);
+	else:
+		 $header_image = get_field('header_image');
+	 endif;
+	 if  (!empty($header_image)):
+	 	$header_background ='style="background-image:url('.$header_image.')"' ;
+	endif; ?>
 
-<header id="header"  role="banner" >
+<header id="header"  role="banner" <?php echo $header_background ?>>
 		<?php if (is_singular('post'))
 		echo '<div class="post-image" style="background-image:url('.$background[0] .')"></div>';
 		?>
@@ -71,10 +78,10 @@
 			<?php if ( wpbootstrap_get_setting('titles_settings', 'display_pages_titles' ) && !is_page_template( 'page-home.php' )): ?>
 		
 		<div class="row-fluid page-title">
-			<div class="container ">
+			<div class="container">
 				<?php if (is_home()) :?>
-					<h1>Our Blog</h1>
-					<p>The 52Frames blog is your one-stop shop for all the tutorials, tips, and inspiration you need to take your photography to the next level. And oh so much more. </p>
+					<h1>Blog</h1>
+					<p><?php echo get_field('blog_header_text',option)?></p>
 				<?php elseif (is_category()) :?>
 					<h1><?php printf('%s', single_cat_title( '', false ) );?><h1>
 				<?php elseif (is_tag()) :?>
