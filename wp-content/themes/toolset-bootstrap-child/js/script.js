@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
          }
 	});
 
-	 $('a[href^="#"]').on('click',function (e) {
+	 $('a.commentlink[href^="#"]').on('click',function (e) {
 	    e.preventDefault();
 
 	    var target = this.hash;

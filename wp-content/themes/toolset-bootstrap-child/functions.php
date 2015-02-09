@@ -466,6 +466,7 @@ function aero_page_navi() {
            echo '</ul></div>';
         }
 } /* end page navi */
+
 /* VIDEO CONTAINER*/
 function div_wrapper($content) {
     // match any iframes
@@ -498,8 +499,8 @@ function countdown_time() {
 	return '<span id="countdown_ts" style="display:none"><span id="year">'.$ts['year'].'</span><span id="month">'.$ts['mon'].'</span><span id="day">'.$ts['mday'].'</span><span id="hour">'.$ts['hours'].'</span><span id="min">'.$ts['minutes'].'</span><span id="sec">'.$ts['seconds'].'</span></span>';
 }
 add_shortcode( 'countdown','countdown_time' );
-if(function_exists('acf_add_options_page')) { 
- 
+/* ACF OPTION PAGE */
+if(function_exists('acf_add_options_page')) {  
   acf_add_options_page();
   acf_add_options_sub_page('General');
   acf_add_options_sub_page('Footer');

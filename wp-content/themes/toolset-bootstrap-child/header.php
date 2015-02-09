@@ -80,7 +80,7 @@
 		<div class="row-fluid page-title">
 			<div class="container">
 				<?php if (is_home()) :?>
-					<h1>Blog</h1>
+					<h1><?php echo get_field('blog_title',option)?></h1>
 					<p><?php echo get_field('blog_header_text',option)?></p>
 				<?php elseif (is_category()) :?>
 					<h1><?php printf('%s', single_cat_title( '', false ) );?><h1>

@@ -202,7 +202,7 @@
                       <img src="<?php echo $image[0]; ?>" alt="<?php echo get_the_title(get_field('photo_walk_image')) ?>" />
                     </div>
                     <div class="span7" id="photowalk-text-hp">
-                         <h3 class="title">Photowalk</h3>
+                         <h3 class="title">Photowalks</h3>
                            <?php the_field('photo_walk_text'); ?>
                      </div>
                       <div class="span3 pull-right"  id="photo-walk-button">

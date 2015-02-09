@@ -27,18 +27,18 @@
 		
 		<?php the_excerpt(); ?>
 		<a class="btn btn-primary btn-large" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to', 'wpbootstrap' ).' %s', the_title_attribute( 'echo=0' ) ) ); ?>">
-		<?php _e( '/ Read More', 'wpbootstrap' ) ?>
+		<?php _e( '... Read More', 'wpbootstrap' ) ?>
 		</a>
 		<?php else:
 			the_content( '<span class="btn btn-small btn-primary pull-right">'.__( 'Read more', 'wpbootstrap' ).' &raquo;</span>' ); 
 			?>
-			<div class="entry-meta">
+			<div class="entry-meta row">
 				<?php if (has_category() || has_tag() ):?>			
 					<?php if (has_category()): ?>
-					<span class="post-cat"><?php _e( '<strong>Category</strong>', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?></span>
+					<div class="post-cat span4"><?php _e( '<strong>Category</strong>', 'wpbootstrap' ); echo ' ';echo get_the_category_list( ', ' ); ?></div>
 					<?php endif; ?>
 					<?php if (has_tag()): ?>
-					<span class="post-tags"><?php _e( '<strong>Tags</strong>', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?></span>
+					<div class="post-tags span8"><?php _e( '<strong>Tags</strong>', 'wpbootstrap' ); echo ' ';echo get_the_tag_list('',', ',''); ?></div>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>

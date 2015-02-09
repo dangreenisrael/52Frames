@@ -89,6 +89,7 @@ h2 {
 h3 {
   font-size: 28px;
   margin: 20px 0 5px;
+  font-weight: 300;
 }
 a {
   color: #46a1d3;
@@ -188,7 +189,7 @@ body:not(.page-template-page-home-php) #main {
   border-radius: 5px;
   color: #ea4858 !important;
   font-size: 18px;
-  text-decoration: none;
+  text-decoration: none !important;
   outline: 0 !important;
   webkit-transition: all 0.35s;
   transition: all 0.35s;
@@ -295,7 +296,8 @@ body:not(.page-template-page-home-php) #main {
   padding: 6px 18px;
   color: #fff;
 }
-.navbar .nav > li > a:hover {
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a.active {
   text-shadow: none;
   color: #46a1d3;
 }
@@ -431,6 +433,10 @@ form#search-form .btn i {
 }
 #bg_container embed {
   display: none;
+}
+#bg_container video {
+  position: absolute;
+  right: 0;
 }
 .container.uber {
   position: absolute;
@@ -1946,6 +1952,7 @@ button.exif-toggle i {
 .single-post #header {
   background: #ffffff url('../images/blog_header.jpg') center top;
   height: 400px;
+  background-size: cover;
 }
 .blog #header .page-title,
 .archive:not(.tax-photo_alboms) #header .page-title,
@@ -1976,10 +1983,10 @@ button.exif-toggle i {
 .archive:not(.tax-photo_alboms) #header .page-title p,
 .search #header .page-title p {
   margin: 10px auto 0 ;
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1.5;
   font-size: 24px;
-  width: 700px;
+  max-width: 700px;
   color: #fff;
 }
 .blog #header .page-title p a,
@@ -1992,13 +1999,27 @@ button.exif-toggle i {
 .search article p {
   display: inline;
 }
+.blog .entry-meta:before,
+.archive:not(.tax-photo_alboms) .entry-meta:before,
+.search .entry-meta:before {
+  content: '';
+  display: block;
+  background: #e6e6e6;
+  height: 1px;
+  width: 20%;
+  margin-bottom: 20px;
+}
+.blog .entry-content,
+.archive:not(.tax-photo_alboms) .entry-content,
+.search .entry-content {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #cccccc;
+}
 .blog article.hentry,
 .single-post article.hentry,
 .archive:not(.tax-photo_alboms) article.hentry,
 .search article.hentry {
   margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #cccccc;
 }
 .blog article.hentry h1,
 .single-post article.hentry h1,
@@ -2056,8 +2077,6 @@ button.exif-toggle i {
 .single-post article.hentry .entry-meta,
 .archive:not(.tax-photo_alboms) article.hentry .entry-meta,
 .search article.hentry .entry-meta {
-  border-top: 1px solid #e6e6e6;
-  padding-top: 20px;
   margin-top: 20px;
 }
 .blog article.hentry .entry-meta .post-cat,
@@ -2105,10 +2124,8 @@ button.exif-toggle i {
   text-shadow: none;
   border: 0;
   box-shadow: none;
-  margin-left: 5px;
   margin-top: -3px;
   padding: 0;
-  font-size: 15px;
   font-weight: 700;
   line-height: 1;
 }
@@ -2124,7 +2141,7 @@ button.exif-toggle i {
   height: 100%;
   position: absolute;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
@@ -2145,18 +2162,24 @@ button.exif-toggle i {
 .single-post #header .author a {
   color: #fff;
 }
-.single-post article h1 {
+.single-post article.hentry h1 {
   font-size: 30px;
   margin-top: -5px;
 }
-.single-post article .wp-caption {
+.single-post article.hentry .wp-caption {
   max-width: 100%;
 }
-.single-post article .wp-caption .wp-caption-text {
+.single-post article.hentry .wp-caption .wp-caption-text {
   font-size: 13px;
   border-bottom: 1px solid #e6e6e6;
   padding: 5px 0;
   color: #999999;
+}
+.single-post article.hentry .entry-meta .post-cat {
+  margin-right: 2%;
+}
+.single-post article.hentry img {
+  margin-bottom: 20px;
 }
 .single-post .toolbar ul {
   margin: 0;
@@ -2213,24 +2236,32 @@ button.exif-toggle i {
 }
 .single-post .yarpp-related h3,
 .single-post #comments-title {
-  padding-top: 12px !important;
+  padding: 12px 0 !important;
   line-height: 1.4;
   border-top: 1px solid #555;
   margin-top: 30px !important;
   font-weight: 400 !important;
+  font-size: 22px !important;
 }
 .single-post .yarpp-thumbnail-title {
   margin-top: 18px;
 }
+.single-post .yarpp-thumbnails-horizontal {
+  margin: 0 0 30px;
+  height: 100%;
+}
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail {
-  height: auto;
+  height: 100%;
   width: 49%;
-  float: left;
-  margin: 0 0 20px 2%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding: 0;
+  display: inline-block;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+.single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail .yarpp-item {
   position: relative;
+  height: 100%;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 10px;
 }
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:first-child {
   margin-left: 0 !important;
@@ -2247,7 +2278,7 @@ button.exif-toggle i {
   display: block;
   color: #555555;
 }
-.single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:first-child {
+.single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:first-child .yarpp-item {
   margin-left: 0;
 }
 .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail:hover .yarpp-thumbnail-title {
@@ -2698,9 +2729,18 @@ button.exif-toggle i {
     padding-left: 15%;
     padding-right: 4%;
   }
+  .single-post article.post .yarpp-thumbnails-horizontal {
+    display: table;
+    margin-left: -10px;
+  }
   .single-post article.post .yarpp-thumbnails-horizontal .yarpp-thumbnail {
-    width: 23%;
-    margin: 0 0 0 2.666666%;
+    width: 25%;
+    display: table-cell;
+    float: none;
+    margin: 0;
+  }
+  .single-post article.post .yarpp-thumbnails-horizontal .yarpp-thumbnail .yarpp-item {
+    margin-left: 10px;
   }
   .wpb_tour .wpb_tabs_nav {
     width: 22%!important;
@@ -2824,9 +2864,6 @@ button.exif-toggle i {
   #sidebar ul.pop-widget-tabs li a {
     font-size: 13px !important;
     padding: 0;
-  }
-  .single-post .yarpp-thumbnails-horizontal .yarpp-thumbnail {
-    margin-left: 1.5%;
   }
 }
 @media (max-width: 979px) {

@@ -9,10 +9,13 @@ Author: mitcho (Michael Yoshitaka Erlewine)
 <div class="row yarpp-thumbnails-horizontal">
 	<?php while (have_posts()) : the_post(); ?>
 		<?php if (has_post_thumbnail()):?>
-		<div class="span3 yarpp-thumbnail">
-			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail('thumb-480'); ?></a>
-			<span class="yarpp-thumbnail-title"><?php the_title()?></span>
-			<a class="view">Read More</a>
+		<div class="yarpp-thumbnail span3">
+			<div class="yarpp-item">
+				<?php the_post_thumbnail('thumb-480'); ?>
+				<span class="yarpp-thumbnail-title"><?php the_title()?></span>
+				<a class="view" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">Read More</a>
+
+			</div>
 		</div>
 		<?php endif; ?>
 	<?php endwhile; ?>
