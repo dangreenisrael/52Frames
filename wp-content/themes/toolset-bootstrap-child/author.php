@@ -5,16 +5,18 @@
  */
 get_header(); ?>
 <div class="span8">
-	<div class="about-author-container clearfix">
-	            <div class="avatar-cell span3">
-	              <?php echo get_avatar(get_the_author_meta('email'), '100'); ?>
-	            </div>
-	            <div class="description span9">
-	            	<h2 class="title"><?php the_author(); ?></h2>
-	             	 <?php the_author_meta("description"); ?>
-	            	<!--div class="author-link">View All Posts By <?php the_author_posts_link(''); ?></div-->
-	            </div>
-          </div>
+	<div class="author-box">
+		<div class="about-author-container clearfix">
+	        <div class="avatar-cell span3">
+	          <?php echo get_avatar(get_the_author_meta('email'), '100'); ?>
+	        </div>
+	        <div class="description span9">
+	        	<h2 class="title"><?php the_author(); ?></h2>
+	         	 <?php the_author_meta("description"); ?>
+	        	<!--div class="author-link">View All Posts By <?php the_author_posts_link(''); ?></div-->
+	        </div>
+	  	</div>
+	 </div>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; 

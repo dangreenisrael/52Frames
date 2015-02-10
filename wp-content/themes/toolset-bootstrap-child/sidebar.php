@@ -23,4 +23,8 @@
 	if ( is_dynamic_sidebar() ):
 		dynamic_sidebar( 'Sidebar' );
 	 endif; ?>
+	 <aside class="contribute">	
+		<p>Be a featured guest blogger!</p>
+		 <a href="<?php echo get_page_link(564); ?>">Have some photo goodness you want to share? </a>
+	</aside>
 </section><!-- #sidebar -->

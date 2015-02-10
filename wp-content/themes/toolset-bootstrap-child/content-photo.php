@@ -134,9 +134,8 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				<!-- Start Custom Fileds -->
 
 
-<?php setPostViews(get_the_ID()); ?>
+<?php echo do_shortcode('[post_view]') ?>
 
-<?php echo getPostViews(get_the_ID()); ?>
  <div class="row-fluid">
 	<div class="row container lower">
 		<div class="span6 discussion">

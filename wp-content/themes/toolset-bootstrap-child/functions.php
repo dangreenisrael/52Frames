@@ -149,7 +149,7 @@ function getPostViews($postID){
 }
 
 // function to count views.
-function setPostViews($postID) {
+/*function setPostViews($postID) {
     $count_key = 'post_views_count';
     $count = get_post_meta($postID, $count_key, true);
     if($count==''){
@@ -160,7 +160,7 @@ function setPostViews($postID) {
         $count++;
         update_post_meta($postID, $count_key, $count);
     }
-}
+}*/
 
 
 // Add it to a column in WP-Admin

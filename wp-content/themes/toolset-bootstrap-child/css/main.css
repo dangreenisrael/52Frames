@@ -2236,9 +2236,11 @@ button.exif-toggle i {
   border-radius: 50%;
   height: 100px;
 }
+.author .about-author-container {
+  margin-top: 0;
+}
 /** sidebar  **/
 #sidebar aside {
-  border-radius: 5px;
   margin-bottom: 40px;
   color: #808080;
 }
@@ -2351,6 +2353,28 @@ button.exif-toggle i {
   color: #fff !important;
   font-size: 16px !important;
   padding: 12px !important;
+}
+#sidebar .contribute {
+  background: #323A45;
+  padding: 20px;
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+}
+#sidebar .contribute a {
+  color: #ea4858;
+  font-size: 20px;
+  line-height: 1.2;
+  padding-top: 10px;
+  display: block;
+}
+#sidebar .contribute a:before {
+  display: block;
+  content: '';
+  width: 50px;
+  height: 1px;
+  margin: 0 auto 10px;
+  background: #ea4858;
 }
 .single-post .cat-list li.current-cat {
   background: #DFF0F9;
@@ -2742,9 +2766,6 @@ button.exif-toggle i {
   }
 }
 @media (min-width: 1200px) {
-  .contaner.uber {
-    top: 160px;
-  }
   .site-description {
     margin-bottom: 40px;
   }
@@ -2768,7 +2789,8 @@ button.exif-toggle i {
   }
   .blog article,
   .archive:not(.tax-photo_alboms) article,
-  .single-post article.post {
+  .single-post article.post,
+  .author .author-box {
     padding-right: 9%;
   }
 }
@@ -2776,6 +2798,7 @@ button.exif-toggle i {
   #header .container,
   .container.uber {
     width: 1280px;
+    top: 160px;
   }
   .featured .featured-name {
     top: 40px;
