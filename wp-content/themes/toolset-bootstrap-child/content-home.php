@@ -7,14 +7,14 @@
 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/slick/slick.css"/>
           <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
              <div id="bg_container">              
-  		      	<video width="1920" height="600" autoplay loop class="hidden-phone">
+  		      	<video width="1920" height="600" poster="echo get_stylesheet_directory_uri()?>/images/video.jpg" autoplay loop class="hidden-phone">
                 <source src="<?php echo get_stylesheet_directory_uri()?>/video/video_background-HD.mp4" type="video/mp4">
               </video>
               <div class="overlay"></div>
             </div>  
             <div class="container uber">
-              <div class="row span12"><h1 class="site-description"><?php bloginfo( 'description' ); ?></h1></div>
               <div class="span6 content-slider">
+                <h1 class="site-description"><?php bloginfo( 'description' ); ?></h1>
                 <?php 
                  $args = array(
                    'post_type' => 'homepage-slider', 
@@ -22,8 +22,7 @@
                    'orderby' => 'menu_order'
                    
                  );?>
-                 <div class="home-slider">
-                   
+                 <div class="home-slider">                   
                     <?php $loop = new WP_Query( $args );
                     while ( $loop->have_posts() ) : $loop->the_post();
                       $title = get_the_title();
