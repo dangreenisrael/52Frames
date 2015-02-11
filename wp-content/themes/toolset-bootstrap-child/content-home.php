@@ -84,8 +84,6 @@
                  </div>
                  <div class="albums-carousel">
                     <?php
-<<<<<<< Updated upstream
-                    ?php
                     $albums = get_terms('photo_alboms');
                     foreach ($albums as $album) {
                        $album_arr[get_field('week_number', $album)] = $album;
@@ -128,46 +126,6 @@
                       echo '</div>';
                       wp_reset_postdata();
                     }
-=======
-                    $terms2 = get_terms('photo_alboms'); 
-                      if ( !empty( $terms2 ) && !is_wp_error( $terms2 ) ){
-                      	 foreach ( $terms2 as $term2 ) {
-                            if (get_field('', $term2) == 'CLOSE')
-                              continue;
-                            $week = get_field('week_number', $term2);
-                            $term_link = get_term_link( $term2, 'photo_alboms' ); 
-                            $winner = new WP_Query(
-                                              array('post_type' => 'photo', 'posts_per_page' => 1, 
-                                                    'meta_query' => array(
-                                                          array('key' => 'first_place', 'value' => 'Winner', 'compare' => '='), 
-                                                          array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')
-                                                         ),
-                                                        'tax_query' => array(
-                                                        array(
-                                                          'taxonomy' => 'photo_alboms', 
-                                                          'field' => 'slug', 
-                                                          'terms' => $term2->slug
-                                                          )
-                                                        )
-                                                   )
-                                              );
-                            $winner->the_post();
-                            $term_link = get_field('fb_link', $term2);
-                            $winner_name = get_field('winner_name', $term2);
-                            echo '<div class="album">';
-                                echo '<figure class="effect-albums">';
-                                   echo get_the_post_thumbnail(get_the_id(), 'thumb-480');
-                                    echo '<figcaption>';
-                                       echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$week.'<span>'.$term2->name.'</span></a></h2>';
-                                       echo '<p class="winner"><span>Photo by: '. $winner_name ./*.get_the_author_meta('display_name', $post->post_author).*/'</span></p>';
-                                    echo '</figcaption>';
-                                    echo '<a class="view" href="'.$term_link.'" target="_blank">View more</a>'; 
-                                echo '</figure>' ;
-                            echo '</div>';
-                            wp_reset_postdata();
-                          }
-                      }
->>>>>>> Stashed changes
                     ?>
                  </div>
             </div>   
