@@ -13,17 +13,19 @@ if ( post_password_required() ) {
 		<?php if (comments_open()): ?>
 			<?php if ( have_comments() ) : ?>
 				<a name="respond" />
-				<h2 id="comments-title">
-				<?php
-					$comment_count_actual = get_comments_number();
-					if ($comment_count_actual = 1) {
-						printf( __( '1 Comment', 'wpbootstrap' ));
-                    } elseif ($comment_count_actual > 1) {
-						printf( '%1$s '.__( 'Comments', 'wpbootstrap' ).' &ldquo;%2$s&rdquo;',number_format_i18n( get_comments_number() ));
-					}
-				?>
-				</h2>
-
+				<div class="comments-header clearfix">
+					<h2 id="comments-title" class="pull-left">
+					<?php
+						$comment_count_actual = get_comments_number();
+						if ($comment_count_actual = 1) {
+							printf( __( '1 Comment', 'wpbootstrap' ));
+	                    } elseif ($comment_count_actual > 1) {
+							printf( '%1$s '.__( 'Comments', 'wpbootstrap' ).' &ldquo;%2$s&rdquo;',number_format_i18n( get_comments_number() ));
+						}
+					?>
+					</h2>
+					<a class="commentlink pull-right" href="#respond"/>Add your comment</a>
+				</div>
 				<ol class="commentlist unstyled">
 					<?php wp_list_comments(array('walker'=>new Wpbootstrap_Comments())); ?>
 				</ol> <!-- .commentlist -->

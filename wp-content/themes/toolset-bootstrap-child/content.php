@@ -20,7 +20,7 @@
 	<div class="entry-content clearfix">
 	<?php if (!is_single()):?>
 	<?php if ( has_post_thumbnail()): ?>
-		<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail pull-left">
+		<a href="<?php the_permalink(); ?>" class="post-thumbnail thumbnail">
 		<?php the_post_thumbnail('thumb-780'); ?>
 		</a>
 	<?php endif; ?>

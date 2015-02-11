@@ -25,6 +25,6 @@
 	 endif; ?>
 	 <aside class="contribute">	
 		<p>Be a featured guest blogger!</p>
-		 <a href="<?php echo get_page_link(564); ?>">Have some photo goodness you want to share? </a>
+		 <a href="<?php echo get_page_link(3100); ?>">Have some photo goodness you want to share? </a>
 	</aside>
 </section><!-- #sidebar -->
