@@ -90,6 +90,23 @@ a.view {
   border: 0;
   box-shadow: none;
 }
+div#ehu-bar.ehu-top-fixed,
+div#ehu-bar.ehu-bottom-fixed {
+  position: static!important;
+  border: 0 !important;
+}
+div#ehu-bar.ehu-top-fixed #ehu-bar-content,
+div#ehu-bar.ehu-bottom-fixed #ehu-bar-content {
+  text-align: center;
+  line-height: 30px;
+}
+div#ehu-bar.ehu-top-fixed #ehu-bar-content a,
+div#ehu-bar.ehu-bottom-fixed #ehu-bar-content a {
+  background: #fff;
+  padding: 2px 5px 3px;
+  border-radius: 3px;
+  color: #ea4858 !important;
+}
 /*  Typography */
 h2 {
   font-size: 34px;
@@ -948,9 +965,6 @@ form#search-form .btn i {
     max-width: 15.5%;
     padding: 8px;
     border: 1px solid #e6e6e6;
-  }
-  .overlay {
-    background: rgba(0, 0, 0, 0.5);
   }
 }
 @media (min-width: 768px) and (min-width: 1200px) {
@@ -2432,14 +2446,17 @@ button.exif-toggle i {
   text-align: center;
   color: #46A1D3;
 }
-/*.vc_separator{
-	padding-bottom: 24px;
-	font-size: 24px;
-	h4{
-		font-weight: 400;
-		color:@sub-color;
-	}
-}*/
+.vc_separator {
+  padding-bottom: 24px;
+  font-size: 24px;
+}
+.vc_separator h4 {
+  font-weight: 400;
+  color: #ea4858;
+}
+.ui-widget-content {
+  color: #555555;
+}
 /* Terms of Service */
 .page-id-299 #main-container {
   background: #F7F8FA;

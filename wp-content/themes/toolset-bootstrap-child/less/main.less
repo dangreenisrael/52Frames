@@ -62,6 +62,20 @@ figcaption{
 	border: 0;
 	box-shadow: none;
 }
+div#ehu-bar.ehu-top-fixed, div#ehu-bar.ehu-bottom-fixed{
+	position:static!important;
+	border:0 !important;
+	#ehu-bar-content{
+		text-align:center;
+		line-height:30px;
+		a{
+			background:#fff;
+			padding:2px 5px 3px;
+			border-radius:3px;
+			color:@sub-color !important;
+		}
+	}
+}
 
 /*  Typography */
 @import url(http://fonts.googleapis.com/css?family=Kreon:300,400,700);
@@ -906,7 +920,6 @@ form#search-form {
 		  	 }	  	  
 	  	}  
 	}
-	.overlay{background: rgba(0, 0, 0, 0.5);}	
 }
 
 
@@ -2245,14 +2258,18 @@ input[type="file"] {
 		}
 	}
 }
-/*.vc_separator{
+.vc_separator{
 	padding-bottom: 24px;
 	font-size: 24px;
 	h4{
 		font-weight: 400;
 		color:@sub-color;
 	}
-}*/
+}
+
+.ui-widget-content{color:@text-color;}
+
+
 	/* Terms of Service */
 	 .page-id-299 {
 	 	#main-container{
