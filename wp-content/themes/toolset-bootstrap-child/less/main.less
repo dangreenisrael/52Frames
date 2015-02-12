@@ -2258,15 +2258,37 @@ input[type="file"] {
 		}
 	}
 }
-.vc_separator{
-	padding-bottom: 24px;
-	font-size: 24px;
+.vc_separator.red{
+	
+	font-size: 22px;
 	h4{
 		font-weight: 400;
 		color:@sub-color;
 	}
+	span.vc_sep_line{border-color:@sub-color;}
 }
+.entry-content .blue-box .vc_column_container{
+	color:#fff;
+	font-size:18px;
+	padding:30px !important;
+	h2{color:#fff}
+}
+.entry-content .featured-columns {
+	.wpb_text_column{
+		padding-right:20px;
+		&:before{
+			content: '';
+			display: inline-block;
+			width: 45%;
+			height: 1px;
+			background: #76B2D4;
+			position: absolute;
+			left: 0px;
+			top: 0;
 
+		}
+	}	
+}
 .ui-widget-content{color:@text-color;}
 
 

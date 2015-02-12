@@ -220,7 +220,7 @@
                            <?php the_field('photo_walk_text'); ?>
                      </div>
                       <div class="span3 pull-right"  id="photo-walk-button">
-                        <a class="button big" href="#"><?php the_field('photo_walk_button'); ?></a>
+                        <a class="button big" href="<?php echo get_field('photowalk_link')?>"><?php the_field('photo_walk_button'); ?></a>
                      </div>
                  </div>
             </div>

@@ -2449,13 +2449,36 @@ button.exif-toggle i {
   text-align: center;
   color: #46A1D3;
 }
-.vc_separator {
-  padding-bottom: 24px;
-  font-size: 24px;
+.vc_separator.red {
+  font-size: 22px;
 }
-.vc_separator h4 {
+.vc_separator.red h4 {
   font-weight: 400;
   color: #ea4858;
+}
+.vc_separator.red span.vc_sep_line {
+  border-color: #ea4858;
+}
+.entry-content .blue-box .vc_column_container {
+  color: #fff;
+  font-size: 18px;
+  padding: 30px !important;
+}
+.entry-content .blue-box .vc_column_container h2 {
+  color: #ffffff;
+}
+.entry-content .featured-columns .wpb_text_column {
+  padding-right: 20px;
+}
+.entry-content .featured-columns .wpb_text_column:before {
+  content: '';
+  display: inline-block;
+  width: 45%;
+  height: 1px;
+  background: #76B2D4;
+  position: absolute;
+  left: 0px;
+  top: 0;
 }
 .ui-widget-content {
   color: #555555;
