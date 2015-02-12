@@ -347,6 +347,7 @@ $(document).ready(function() {
       slidesToScroll: 1,
       autoplay: false,
       autoplaySpeed: 2000,
+      infinite: false,
       responsive: [
     {
       breakpoint: 980,

@@ -102,7 +102,6 @@ div#ehu-bar.ehu-bottom-fixed #ehu-bar-content {
 }
 div#ehu-bar.ehu-top-fixed #ehu-bar-content a,
 div#ehu-bar.ehu-bottom-fixed #ehu-bar-content a {
-  background: #fff;
   padding: 2px 5px 3px;
   border-radius: 3px;
   color: #ea4858 !important;
@@ -633,6 +632,7 @@ form#search-form .btn i {
 .latest-albums .album {
   position: relative;
   overflow: hidden;
+  float: left;
 }
 .latest-albums .album figure {
   background: -webkit-linear-gradient(-45deg, #ec65b7 0%, #05e0d8 100%);
@@ -679,7 +679,6 @@ form#search-form .btn i {
   display: block;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
-  min-width: 180px;
   color: #fff;
   font-weight: 300;
   text-decoration: none !important;
@@ -772,6 +771,10 @@ form#search-form .btn i {
 .albums-carousel .slick-next:hover,
 .albums-carousel .slick-prev:hover {
   opacity: 0.85;
+}
+.albums-carousel .slick-next.slick-disabled,
+.albums-carousel .slick-prev.slick-disabled {
+  opacity: 0.3;
 }
 .albums-carousel .slick-next i,
 .albums-carousel .slick-prev i {
