@@ -159,7 +159,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 		</div>
 		
 		<div class="span6 specs">
-			<?php //echo do_shortcode('[display_rating_form]'); ?>
+			<?php echo do_shortcode('[display_rating_form]'); ?>
 			<div class="exif">
 				<h3> Exif</h3>
 				<ul class="row-fluid">

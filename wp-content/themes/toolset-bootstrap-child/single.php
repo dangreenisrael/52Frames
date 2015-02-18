@@ -18,7 +18,7 @@ get_header(); ?>
 	                <li class="googleplus"><a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="popup"><i class="fa fa-google-plus"></i></a></li>
 	                <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $image_url; ?>" class="popup" ><i class="fa fa-pinterest"></i></a></li>
 	                <li class="linkedin"><a href="http://linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>&amp;title=<?php the_title(); ?>" class="popup" ><i class="fa fa-linkedin"></i></a></li>
-	                <li><div class="fb-like" data-href="<?php the_permalink()?>" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div><li>
+	                <li class="facebook-like"><div class="fb-like" data-href="<?php the_permalink()?>" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div><li>
 	             </ul>
 	         </div>
 			<?php	get_template_part( 'content', get_post_format() );

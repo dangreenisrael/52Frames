@@ -1,7 +1,8 @@
-jQuery(document).ready(function($) {
-	$(".search-top").click(function(){
-		$("#search-form").fadeToggle();
- 	 });
+	jQuery(document).ready(function($) {
+		
+		$(".search-top").click(function(){
+			$("#search-form").fadeToggle();
+	 	 });
 
 	$('.navbar .dropdown').hover(function() {
 	  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
@@ -11,9 +12,8 @@ jQuery(document).ready(function($) {
 
 	 $('a.popup').click(function(event) {
 		  window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
-		  return false;
-	});
-
+		});
+	 
 	 $('a.btn-navbar').click(function() {
 		if ($(this).hasClass('active'))
       	  $(this).removeClass('active');
@@ -21,8 +21,8 @@ jQuery(document).ready(function($) {
            $(this).addClass('active');
          }
 	});
-
-	 $('a.commentlink[href^="#"]').on('click',function (e) {
+	 
+	 $('a[href^="#"]').on('click',function (e) {
 	    e.preventDefault();
 
 	    var target = this.hash;

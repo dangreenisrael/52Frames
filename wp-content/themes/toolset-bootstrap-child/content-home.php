@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/slick/slick.css"/>
           <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
              <div id="bg_container">              
-  		      	<video width="1920" height="600" poster="echo get_stylesheet_directory_uri()?>/images/video.jpg" autoplay loop class="hidden-phone">
+  		      	<video width="1920" height="600" poster="<?php echo get_stylesheet_directory_uri()?>/images/video.jpg" autoplay loop class="hidden-phone">
                 <source src="<?php echo get_stylesheet_directory_uri()?>/video/video_background-HD.mp4" type="video/mp4">
               </video>
               <div class="overlay"></div>
@@ -95,20 +95,20 @@
                         continue;
                       $cur_album = $album_arr[$curweek];
                       $winner = new WP_Query(
-                                      array('post_type' => 'photo', 'posts_per_page' => 1, 
-                                            'meta_query' => array(
-                                                  array('key' => 'first_place', 'value' => 'Winner', 'compare' => '='), 
-                                                  array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')
-                                                 ),
-                                                'tax_query' => array(
-                                                array(
-                                                  'taxonomy' => 'photo_alboms', 
-                                                  'field' => 'slug', 
-                                                  'terms' => $cur_album->slug,
-                                                  )
-                                                )
-                                           )
-                                      );
+                          array('post_type' => 'photo', 'posts_per_page' => 1, 
+                                'meta_query' => array(
+                                      array('key' => 'first_place', 'value' => 'Winner', 'compare' => '='), 
+                                      array('key' => 'winner_photo', 'value' => '1', 'compare' => '=')
+                                     ),
+                                    'tax_query' => array(
+                                    array(
+                                      'taxonomy' => 'photo_alboms', 
+                                      'field' => 'slug', 
+                                      'terms' => $cur_album->slug,
+                                      )
+                                    )
+                               )
+                          );
 
                       $winner->the_post();
                       $term_link = get_field('fb_link', $cur_album);
@@ -298,6 +298,7 @@
                     <span>Audience <strong>Award</strong></span>
                 </div>
                 <div class="featured-details">
+                  <div class="likes"><i class="fa fa-heart-o"></i>159</div>
                   <?php //if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                   <div class="title-hp">
                      <a><?php the_title();?></a>
@@ -343,6 +344,7 @@ $(document).ready(function() {
 
      $('.albums-carousel').slick({
       lazyLoad: 'ondemand',
+      rtl: true,
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: false,
@@ -350,7 +352,7 @@ $(document).ready(function() {
       infinite: false,
       responsive: [
     {
-      breakpoint: 980,
+      breakpoint: 1030,
       settings: {
         slidesToShow: 3,
         slidesToScroll: 3
