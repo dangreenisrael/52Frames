@@ -67,12 +67,12 @@
                      } else {
                        $submit = get_page_link(57);
                       } 
-                      $submit = get_page_link(564);
+                      $submit = get_page_link(3437);
                       ?>
                       <div class="camera-action">
               					<a class="red-circle" href="<?php echo $submit ?>">
-                            <span class="submit-text">Submit</span>
-                            <span class="your-photo-text">Your Photo</span>
+                            <span class="submit-text">Get</span>
+                            <span class="your-photo-text">Started</span>
                         </a>                   
                     </div>          					  
                 </div>
@@ -155,10 +155,10 @@
           			<div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
                 <div class="container hidden-phone">
               		<div class="counters-hp">
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="16067" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="697" data-speed="5000"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="18367" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="741" data-speed="5000"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
               			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="38" data-speed="5000"></p><p><span class="counter-bottom">Countries Represented</span></p></div>
-              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="210" data-speed="5000"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+              			<div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="217" data-speed="5000"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
               		</div>
           	   </div>
           	</div>

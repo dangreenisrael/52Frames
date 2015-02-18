@@ -1,15 +1,21 @@
 	jQuery(document).ready(function($) {
-		
+	function updateViewportDimensions() {
+  	var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+  	return { width:x,height:y }
+	}
+	// setting the viewport width
+	var viewport = updateViewportDimensions();	
+
 		$(".search-top").click(function(){
 			$("#search-form").fadeToggle();
 	 	 });
-
-	$('.navbar .dropdown').hover(function() {
-	  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
-	}, function() {
-  	$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
-	});
-
+	if( viewport.width >= 980 ) {		
+		$('.navbar .dropdown').hover(function() {
+		  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
+		}, function() {
+	  	$(this).find('.dropdown-menu').first().stop(true, true).slideUp(110);
+		});
+	}
 	 $('a.popup').click(function(event) {
 		  window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
 		});
