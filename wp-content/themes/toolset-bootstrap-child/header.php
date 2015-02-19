@@ -30,6 +30,7 @@
 		wp_head();
 		do_action( 'wpbootstrap_after_wp_head' );
 	?>
+<<<<<<< Updated upstream
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -40,6 +41,9 @@
   ga('send', 'pageview');
 
 </script>
+=======
+	
+>>>>>>> Stashed changes
 </head>
 <!--div class="js"-->
 <body <?php body_class(); ?>>

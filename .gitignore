@@ -1,3 +1,4 @@
 wp-config.php
 wp-content/uploads/*
 .idea
+wp-content/themes/toolset-bootstrap-child/js/script.js

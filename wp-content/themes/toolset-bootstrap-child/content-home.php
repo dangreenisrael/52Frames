@@ -275,7 +275,8 @@
                 </div>
               </div>
 
-                  <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                  <?php wp_reset_postdata(); 
+                  // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
               <?php endif; ?>
 
               <?php
@@ -298,6 +299,7 @@
                     <span>Audience <strong>Award</strong></span>
                 </div>
                 <div class="featured-details">
+                <?php $album = get_active_album(); ?>
                   <div class="likes"><i class="fa fa-heart-o"></i>159</div>
                   <?php //if( function_exists('zilla_likes') ) zilla_likes($post->ID); ?>
                   <div class="title-hp">

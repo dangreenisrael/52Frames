@@ -24,12 +24,8 @@
 		dynamic_sidebar( 'Sidebar' );
 	 endif; ?>
 	 <aside class="contribute">	
-<<<<<<< Updated upstream
-		<p>Be a featured guest blogger!</p>
-		 <a href="<?php echo get_page_link(3100); ?>">Have some photo goodness you want to share? </a>
-=======
-		<p>Have some photo goodness you want to share?</p>
-		 <a href="<?php echo get_page_link(564); ?>"> Be a featured guest blogger!</a>
->>>>>>> Stashed changes
+		<p>Want to share some photo goodness?</p>
+		 <a href="<?php echo get_page_link(3100); ?>"> Be a featured guest blogger!</a>
+
 	</aside>
 </section><!-- #sidebar -->

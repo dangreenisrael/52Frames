@@ -40,7 +40,8 @@
 	        window.location.hash = target;
 	    });
 	});
-
+	 $('a.fullsizable').fullsizable();
+	 
 	function convertToServerTimeZone(){
 
 	    //EST

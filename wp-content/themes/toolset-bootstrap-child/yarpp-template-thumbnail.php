@@ -22,5 +22,5 @@ Author: mitcho (Michael Yoshitaka Erlewine)
 </div>
 
 <?php else: ?>
-<p>No related photos.</p>
+<p>No related posts.</p>
 <?php endif; ?>
