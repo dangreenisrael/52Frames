@@ -275,7 +275,7 @@
                 </div>
                 <div class="featured-details">
                   <div class="title-hp">
-                     <a <?php the_permalink()?>><?php the_title();?></a>
+                     <a href="<?php the_permalink()?>"><?php the_title();?></a>
                   </div>
                   <div class="framer-name">
                       <!--a href="<?php get_the_author_meta( 'user_url', $post->post_author ); ?>"-->
