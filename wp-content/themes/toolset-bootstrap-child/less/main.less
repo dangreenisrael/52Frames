@@ -63,7 +63,6 @@ figcaption{
 	box-shadow: none;
 }
 div#ehu-bar.ehu-top-fixed, div#ehu-bar.ehu-bottom-fixed{
-	position:static!important;
 	border:0 !important;
 	#ehu-bar-content{
 		text-align:center;
@@ -181,6 +180,7 @@ body:not(.page-template-page-home-php) #main{
 		width:auto ;
 		float:left;
 		position:relative;
+		z-index:200;
 	}
 }
 .site-title{margin-top:5px;}
@@ -2696,6 +2696,9 @@ input[type="file"] {
 
 
 @media (min-width: 768px){
+	div#ehu-bar.ehu-top-fixed, div#ehu-bar.ehu-bottom-fixed{
+		position:static!important;
+	}	
 	.row-fluid .span3 {width: 25%;}
 	.latest-albums {
 		margin-top:-110px;
@@ -2905,12 +2908,14 @@ input[type="file"] {
 			margin-top:73px;
 		}
 	}
+	
 	.vc_row{margin-left:0;margin-right:0;}
 	.container{
 		max-width:500px;
 		padding-right:20px;
 		padding-left:20px;
 	}
+	.home .container.uber{top:90px;}
 	.latest-albums .title-container{
 		background-color:@theme-color;
 	}
