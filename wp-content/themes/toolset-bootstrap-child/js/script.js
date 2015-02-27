@@ -43,6 +43,16 @@
 
 	 $('a.fullsizable').fullsizable();
 
+	 $(".rating-result").click(function() {
+   	 	$('html, body').animate({
+        scrollTop: $(".rating-form").offset().top
+    	}, 500);
+	});
+	  $(".photo-description .ico.comments").click(function() {
+   	 	$('html, body').animate({
+        scrollTop: $("#comments-title").offset().top
+    	}, 500);
+	});
 	 
 	function convertToServerTimeZone(){
 

@@ -42,7 +42,11 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
 					
+<<<<<<< Updated upstream
 						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),'full'); ?>' class='fullsizable'><?php the_post_thumbnail('thumb-h545'); ?></a>
+=======
+						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),''); ?>' class='thickbox'><?php the_post_thumbnail('thumb-h545'); ?></a>
+>>>>>>> Stashed changes
 
 
 				<?php endif; ?>
