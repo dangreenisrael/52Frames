@@ -784,14 +784,6 @@ form#search-form {
 .photo-description .entry-meta {
 	float: right;
 }
-
-.featured{
-	.featured-item{
-		width:33.3333333%;
-		position:relative;
-		text-align:center;
-	}
-}
 .latest-posts{
 	background-color:#f2f2f2;
 	padding: 50px 0;
@@ -863,6 +855,13 @@ form#search-form {
 
 	/* Featured */
 	.featured{
+		display: table;
+		width:100%;
+		.featured-item{
+			width:33.3333333%;
+			position:relative;
+			text-align:center;
+		}	
 		.featured-name,.featured-details{
 			position: absolute;
 			width:100%;
@@ -916,6 +915,7 @@ form#search-form {
 	 
 	#featured-framer{
 		overflow:hidden;
+		background:#777;
 		> img.photo{
 		display: block;
 		  margin:0px;
