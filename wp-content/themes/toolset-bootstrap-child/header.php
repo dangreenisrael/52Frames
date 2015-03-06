@@ -30,7 +30,7 @@
 		wp_head();
 		do_action( 'wpbootstrap_after_wp_head' );
 	?>
-<<<<<<< Updated upstream
+
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,9 +41,6 @@
   ga('send', 'pageview');
 
 </script>
-=======
-	
->>>>>>> Stashed changes
 </head>
 <!--div class="js"-->
 <body <?php body_class(); ?>>
@@ -57,25 +54,32 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id="preloader"></div>
 	<?php do_action( 'wpbootstrap_before_container' ); ?>
-	<?php if(is_singular('post')):
-		$background = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
-	
-	 endif; 
-	 if (is_home() || is_archive() || is_category() || is_tag() || is_search()):
-	  $header_image = get_field('blog_overview_header_image',option);
-	else:
-		 $header_image = get_field('header_image');
-	 endif;
-	 if  (!empty($header_image)):
-	 	$header_background ='style="background-image:url('.$header_image.')"' ;
-	endif; ?>
 
+	<?php 
+	if (!is_tax('photo_alboms') && !is_singular( 'photo' )):
+		if (is_home() || is_archive() || is_category() || is_tag() || is_search()) :
+		  $header_image = get_field('blog_overview_header_image',option);
+		else:
+			 $header_image = get_field('header_image');
+		 endif;
+		 if  (!empty($header_image)):
+		 	$header_background ='style="background-image:url('.$header_image.')"' ;
+		endif;
+	endif;
+	$cat = $wp_query->get_queried_object();
+	if(is_singular('post')):
+		$background = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
+		$background_image = $background[0];
+	elseif (is_tax('photo_alboms')):
+		$background_image = get_field('header_album_image','photo_alboms_'. $cat->term_id);
+	endif;
+	?>
 <header id="header"  role="banner" <?php echo $header_background ?>>
-		<?php if (is_singular('post'))
+		<?php if (is_singular('post') || is_tax('photo_alboms')):
 		echo '<div class="post-image-container">';
-		echo '<div class="post-image" style="background-image:url('.$background[0] .')"></div>';
+		echo '<div class="post-image" style="background-image:url('.$background_image.')"></div>';
 		echo '</div>';
-		?>
+		endif?>
 		<?php if ( !is_singular( 'photo' ) && !is_page_template( 'page-home.php' ) && !is_page()) :
 			echo '<div class="overlay"></div>';
 		endif;
@@ -94,7 +98,8 @@
 		
 		<div class="row-fluid page-title">
 			<div class="container">
-				<?php if (is_home()) :?>
+				<?php 
+				if (is_home()) :?>
 					<h1><?php echo get_field('blog_title',option)?></h1>
 					<p><?php echo get_field('blog_header_text',option)?></p>
 				<?php elseif (is_category()) :?>
@@ -121,7 +126,7 @@
 						</a>
 					</p>
 				<?php
-					$cat = $wp_query->get_queried_object();
+					
 					elseif (is_tax()):					
 					$term_week_num	= get_field('week_number','photo_alboms_'. $cat->term_id);
 					 echo '<h1><span>Week '. $term_week_num .' (' .get_the_date('Y').')</span>';

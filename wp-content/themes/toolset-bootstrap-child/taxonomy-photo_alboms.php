@@ -24,10 +24,14 @@ endwhile; endif;
 			<?php echo get_the_post_thumbnail($w_arr['Winner'],'thumb-480'); ?>
 				<span class="badge winner">Winner</span>		
 				<figcaption>		
-					<h2><!--a href="'.get_author_posts_url( $w_arr['Winner'],get_the_author_meta( 'ID' ) ) .'" rel="author"-->
-					 <?php echo  get_the_author_meta('display_name', get_post($w_arr['Winner'])->post_author);
-					if( function_exists('zilla_likes') ) zilla_likes($w_arr['Winner']);?>
-					<i class="fa fa-comments"></i><?php comments_popup_link($w_arr['Winner'], __( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+					<h2>
+						<a href="<?php echo get_author_posts_url( $w_arr['Winner'],get_the_author_meta( 'ID' ) )?>" rel="author">
+					 	<?php echo  get_the_author_meta('display_name', get_post($w_arr['Winner'])->post_author);?></a>
+					 	<span class="pull-right">
+							<?php 
+							if( function_exists('zilla_likes') ) zilla_likes($w_arr['Winner']);?>
+							<i class="fa fa-comments"></i><?php comments_popup_link( __( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+						</span>
 					</h2>
 					<p><a href="<?php echo get_the_permalink($w_arr['Winner'])?>"><?php echo get_the_title($w_arr['Winner'])?></a></p>
 				</figcaption>			
@@ -38,10 +42,13 @@ endwhile; endif;
 			<?php echo get_the_post_thumbnail($w_arr['1st Runner-up'],'thumb-480'); ?>
 				<span class="badge winner">1st Runner-up</span>		
 				<figcaption>		
-					<h2><!--a href="'.get_author_posts_url( $w_arr['1st Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author"-->
-					 <?php echo  get_the_author_meta('display_name', get_post($w_arr['1st Runner-up'])->post_author);
-					if( function_exists('zilla_likes') ) zilla_likes($w_arr['1st Runner-up']);?>
-					<i class="fa fa-comments"></i><?php comments_popup_link($w_arr['1st Runner-up'], __( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+					<h2>
+						<a href="<?php echo get_author_posts_url( $w_arr['1st Runner-up'],get_the_author_meta( 'ID' ) ) ?>" rel="author">
+						 <?php echo  get_the_author_meta('display_name', get_post($w_arr['1st Runner-up'])->post_author);?></a>
+						 <span class="pull-right">
+							<?php if( function_exists('zilla_likes') ) zilla_likes($w_arr['1st Runner-up']);?>
+							<i class="fa fa-comments"></i><?php comments_popup_link(__( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+						</span>
 					</h2>
 					<p><a href="<?php echo get_the_permalink($w_arr['1st Runner-up'])?>"><?php echo get_the_title($w_arr['1st Runner-up'])?></a></p>
 				</figcaption>			
@@ -52,10 +59,14 @@ endwhile; endif;
 			<?php echo get_the_post_thumbnail($w_arr['2nd Runner-up'],'thumb-480'); ?>
 				<span class="badge winner">2nd Runner-up</span>		
 				<figcaption>		
-					<h2><!--a href="'.get_author_posts_url( $w_arr['2nd Runner-up'],get_the_author_meta( 'ID' ) ) .'" rel="author"-->
-					 <?php echo  get_the_author_meta('display_name', get_post($w_arr['2nd Runner-up'])->post_author);
-					if( function_exists('zilla_likes') ) zilla_likes($w_arr['2nd Runner-up']);?>
-					<i class="fa fa-comments"></i><?php comments_popup_link($w_arr['2nd Runner-up'], __( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+					<h2>
+						<a href="<?php echo get_author_posts_url( $w_arr['2nd Runner-up'],get_the_author_meta( 'ID' ) ) ?>" rel="author">
+						 <?php echo  get_the_author_meta('display_name', get_post($w_arr['2nd Runner-up'])->post_author);?>
+						</a>
+						<span class="pull-right">
+							<?php if( function_exists('zilla_likes') ) zilla_likes($w_arr['2nd Runner-up']);?>
+							<i class="fa fa-comments"></i><?php comments_popup_link(__( '<span>0</span>', 'wpbootstrap' ), __( '<span>1</span>', 'wpbootstrap' ), __( '<span>%</span>', 'wpbootstrap' ) );?>
+						</span>
 					</h2>
 					<p><a href="<?php echo get_the_permalink($w_arr['2nd Runner-up'])?>"><?php echo get_the_title($w_arr['2nd Runner-up'])?></a></p>
 				</figcaption>			
