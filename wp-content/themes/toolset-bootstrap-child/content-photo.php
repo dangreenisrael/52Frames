@@ -42,11 +42,8 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
 					
-<<<<<<< Updated upstream
+
 						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),'full'); ?>' class='fullsizable'><?php the_post_thumbnail('thumb-h545'); ?></a>
-=======
-						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),''); ?>' class='thickbox'><?php the_post_thumbnail('thumb-h545'); ?></a>
->>>>>>> Stashed changes
 
 
 				<?php endif; ?>
@@ -126,11 +123,12 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 	</div>
 	<div class="row container">
 		<ul class="social clearfix"> 
-			<li>Share This Photo:</li>
-	        <li class="facebook"><a href=""  target="_blank"><i class="fa fa-facebook"></i></a></li>
-            <li class="twitter"><a href="https://twitter.com/oktopost" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li class="googleplus"><a href="https://plus.google.com/+Oktopost/posts"  target="_blank"><i class="fa fa-google-plus"></i></a></li>
-            <li class="linkedin"><a href="https://www.linkedin.com/company/oktopost" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+			<li><label>Share This Photo:</label></li>
+	        <li class="twitter"><a href="http://twitter.com/share?text=Currently reading <?php the_title(); ?>&amp;url=<?php the_permalink(); ?>" class="popup" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li class="facebook"><a href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php the_title(); ?>" class="popup" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="popup" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $image_url; ?>" class="popup" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+            <li class="linkedin"><a href="http://linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>&amp;title=<?php the_title(); ?>" class="popup" target="_blank"><i class="fa fa-linkedin"></i></a></li>
          </ul>
 	</div>
 </div>
@@ -147,8 +145,9 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 			
 
 			?>
-			<?php if ($moderate_critique) {
-				echo '<h3>Moderate Critique</h3>';	
+			<?php if ($moderate_critique) {?>
+				<h3>Moderator's Critique</h3>
+				<?php	
 				echo '<div class="row moderate-critique">';
 				echo '<div class="span2">'.get_avatar( get_the_author_meta('ID'), 70).'</div>'; 
 				echo '<div class="span9">';
@@ -165,7 +164,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 		<div class="span6 specs">
 			<?php echo do_shortcode('[display_rating_form]'); ?>
 			<div class="exif">
-				<h3> Exif</h3>
+				<h3> EXIF Data</h3>
 				<ul class="row-fluid">
 				<?php
 				 if($shutter != '') echo '<li class="span3"><label>Shutter Speed</label><span>'.$shutter.'</span></li>';
