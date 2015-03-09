@@ -86,20 +86,16 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 				?>
 				<div class="actions">
 				<?php if( function_exists('zilla_likes') ) zilla_likes(); ?>
-				<span class="ico comments"><?php comments_popup_link( __( '<span>0 Comments</span>', 'wpbootstrap' ), __( '<span>1 Comment</span>', 'wpbootstrap' ), __( '<span>% Comments</span>', 'wpbootstrap' ) );?></span>
+				<span class="ico comments"><a class="commentlink" href="#respond"/></a><?php comments_popup_link( __( '<span>0 Comments</span>', 'wpbootstrap' ), __( '<span>1 Comment</span>', 'wpbootstrap' ), __( '<span>% Comments</span>', 'wpbootstrap' ) );?></span>
 				<?php
 					
 					if ($for_sale != '') 
 						echo '<a class="ico buy" href="">Buy Photo</a>';
 
 					?>
+				<span class="ico rating"><?php echo do_shortcode('[display_rating_result  no_rating_results_text="Add Rating" show_rich_snippets="true" show_count="true" show_title="false"]');?></span>
 				</div>
-				<?php if ( current_user_can( 'judge' ) ) : ?>
-				<!-- Rating Widget -->
-
-				<?php if(function_exists('the_ratings')) { the_ratings(); } ?>
-
-				<?php endif ?>	
+					
 
 				<!-- Content -->
 				<p class="photo-caption">
@@ -130,6 +126,12 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
             <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $image_url; ?>" class="popup" target="_blank"><i class="fa fa-pinterest"></i></a></li>
             <li class="linkedin"><a href="http://linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>&amp;title=<?php the_title(); ?>" class="popup" target="_blank"><i class="fa fa-linkedin"></i></a></li>
          </ul>
+         <?php if ( current_user_can( 'judge' ) ) : ?>
+				<!-- Rating Widget -->
+
+				<?php if(function_exists('the_ratings')) { the_ratings(); } ?>
+
+				<?php endif ?>
 	</div>
 </div>
 

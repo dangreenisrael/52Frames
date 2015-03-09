@@ -49,8 +49,12 @@
 	            <div class="description span9">
 	            	<h2 class="title"><?php the_author(); ?></h2>
 	             	 <?php the_author_meta("description"); ?>
-	             	  <?php echo get_the_author_link('Author website'); ?> 
-	            	<!--div class="author-link">View All Posts By <?php the_author_posts_link(''); ?></div-->
+	             	 <?php if (get_the_author_meta('user_url') ) { 
+	             		 $website = get_the_author_meta('url');
+	             		 $author = get_the_author();
+        					echo '<a href="'.$website.'" target="_blank">Visit ' . $author . ' Website.</a>';
+					    } 
+					 ?>
 	            </div>
           </div>
 	<?php  endif; ?>

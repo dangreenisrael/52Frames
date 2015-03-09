@@ -1830,6 +1830,7 @@ input[type="file"] {
 	.social{
 		list-style-type: none;
 		margin:20px 0 0;
+		float:left;
 		li{
 			display:inline-block;
 			margin-right:18px;
@@ -1855,6 +1856,7 @@ input[type="file"] {
 		li.pinterest a:hover{background:#cb2027;border-color:#cb2027;}
 		li.linkedin a:hover{background:#007bb6;border-color:#007bb6;}
 	}
+	.post-ratings{float:right;margin-top:20px;width:auto;}
 	.lower{
 		h3{
 			color:@theme-accent;
@@ -2230,24 +2232,26 @@ input[type="file"] {
 		strong{display:block;}
 	}
 }
-
+.author .about-author-container{
+	margin-top:0
+}
 .about-author-container{
 		margin: 40px 0;
 		border: solid 1px #D0D5D8;
 		border-radius: 3px;
 		padding: 20px;
 		background: #f7f7f7;
-
 		.avatar-cell{
 			img{border-radius:50%;height:100px;}
 		}
 		.title{
 			margin-top:0 !important;
+			margin-bottom:5px;
+			color:@text-color;
 		}
+		.description{font-size:14px;}
 	}
-.author .about-author-container{
-	margin-top:0
-}
+
 /** sidebar  **/
 #sidebar{
 	aside{
