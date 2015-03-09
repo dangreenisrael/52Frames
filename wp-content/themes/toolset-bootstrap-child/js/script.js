@@ -53,8 +53,19 @@
         scrollTop: $("#comments-title").offset().top
     	}, 500);
 	});
-	 
-	function convertToServerTimeZone(){
+
+	function setHeight() {
+		 headerHeight = $('#header').height();
+   		 windowHeight = $(window).innerHeight() - headerHeight - 30;
+    		$('.photo-thumbnail img').css('max-height', windowHeight);
+ 		 }
+ 		 setHeight();
+  
+  		$(window).resize(function() {
+ 		   setHeight();
+  		});
+		
+		function convertToServerTimeZone(){
 
 	    //EST
 	    offset = -5.0

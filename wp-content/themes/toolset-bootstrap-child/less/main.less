@@ -1665,7 +1665,7 @@ input[type="file"] {
 		margin-top:0;
 		.container{
 			 position: relative;
-		 	 top: 50%;
+		 	 top: 50% !important;
 		 	 -webkit-transform: translateY(-50%);
 		 	 -ms-transform: translateY(-50%);
 		 	 transform: translateY(-50%);
@@ -1690,8 +1690,11 @@ input[type="file"] {
 			position: absolute;
 			top: 50%;
 			margin-top:-25px;
-			font-size: 55px;
-			color:desaturate(darken(@theme-color,30%),30%);
+			font-size: 55px;			
+			a{
+				color:desaturate(darken(@theme-color,30%),30%);
+				&:hover{color:@theme-color;}
+			}
 			&.next{
 				right:-50px;
 			}
@@ -1703,6 +1706,9 @@ input[type="file"] {
 	}
 	.photo-thumbnail{
 		margin-right: 3.5%;
+		img{
+			width:auto;
+		}
 	}
 	.photo-description{
 		margin-left:15%;
@@ -1785,15 +1791,38 @@ input[type="file"] {
 			font-size:9px;
 			text-transform: uppercase;
 			color:#797979 !important;
+			a{
+				color:#797979 !important;
+				text-decoration:none !important;
+			}
+			&:hover{background-color:rgba(0, 0, 0, 0.15)}
 		}
-		.ico.comments{background-image: url('../images/ico-comments.png')}
+		.ico.comments{
+			background-image: url('../images/ico-comments.png');
+		}
 		.ico.buy{background-image: url('../images/ico-cart.png')}
 		.zilla-likes{
-			background:url('../images/ico-like.png') no-repeat center 6px !important;
+			background-image:none !important;
 			padding-left:0 !important;
 			margin-left:0;
+			position:relative;
+			&:before{
+				content:"\f08a";
+				font-family:FontAwesome;
+				display:block;
+				font-size:23px;
+				position:absolute;
+				top:6px;
+				left:50%;
+				transform:translateX(-50%);
+				-webkit-transform:translateX(-50%);
+			}
+			&.active:before{
+				content:"\f004";
+			}
 			
 		}
+		.zilla-likes-postfix{display:inline;}
 		.zilla-likes:hover, .zilla-likes.active{
 			padding-left:0 !important;
 		}
@@ -2208,8 +2237,12 @@ input[type="file"] {
 		border-radius: 3px;
 		padding: 20px;
 		background: #f7f7f7;
+
 		.avatar-cell{
 			img{border-radius:50%;height:100px;}
+		}
+		.title{
+			margin-top:0 !important;
 		}
 	}
 .author .about-author-container{
