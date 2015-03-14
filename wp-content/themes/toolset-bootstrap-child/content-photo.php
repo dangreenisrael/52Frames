@@ -32,7 +32,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 <div class="photo-content">
 	<div class="row container">
 		<div class="photo-nav prev">
-			<?php $id = get_adjacent_id_smart( false ); ?>
+			<?php $id = get_adjacent_id_smart( true ); ?>
 			<a href='<?php echo get_permalink($id); ?>'><i class="fa fa-angle-left"></i></a>
 		</div>
 		<div class="span8">
@@ -113,7 +113,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 			</div>
 		</div>
 		<div class="photo-nav next">
-			<?php $id = get_adjacent_id_smart( true ); ?>
+			<?php $id = get_adjacent_id_smart( false ); ?>
 			<a href='<?php echo get_permalink($id); ?>'><i class="fa fa-angle-right"></i></a>
 		</div>
 	</div>
@@ -142,7 +142,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
  <div class="row-fluid">
 	<div class="row container lower">
-		<div class="span6 discussion">
+		<div class="span7 discussion">
 			<?php
 			
 
@@ -163,7 +163,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 		</div>
 		
-		<div class="span6 specs">
+		<div class="span5 specs">
 			<?php echo do_shortcode('[display_rating_form]'); ?>
 			<div class="exif">
 				<h3> EXIF Data</h3>
@@ -207,11 +207,11 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 	<div class="row container">
 		<ul class="nav-single pager" role="navigation">
 			<li class="nav-previous previous">
-				<?php $id = get_adjacent_id_smart( false ); ?>
+				<?php $id = get_adjacent_id_smart( true ); ?>
 				<a href='<?php echo get_permalink($id); ?>'><?php echo get_the_post_thumbnail($id, 'thumb-440' ); ?></a>
 			</li>
 			<li class="nav-next next">
-				<?php $id = get_adjacent_id_smart( true ); ?>
+				<?php $id = get_adjacent_id_smart( false ); ?>
 				<a href='<?php echo get_permalink($id); ?>'><?php echo get_the_post_thumbnail($id, 'thumb-440' ); ?></a>
 			</li>
 		</ul>

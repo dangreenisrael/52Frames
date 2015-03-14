@@ -55,8 +55,9 @@
 	});
 
 	function setHeight() {
+		 topBarHeight = $('#ehu-bar').height();
 		 headerHeight = $('#header').height();
-   		 windowHeight = $(window).innerHeight() - headerHeight - 30;
+   		 windowHeight = $(window).innerHeight() - headerHeight - topBarHeight - 30;
     		$('.photo-thumbnail img').css('max-height', windowHeight);
  		 }
  		 setHeight();
