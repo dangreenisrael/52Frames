@@ -16,13 +16,14 @@ if ($winners->have_posts()): while($winners->have_posts()): $winners->the_post()
 	$w_arr[$tag] = get_the_id();
 endwhile; endif;
 	?>
-
+<div class="js">
+<div id="preloader"></div>
 <div class="row-fluid winners">
 	<div class="container">
 		<div class="span4 winner">
 			<figure>		
 			<?php echo get_the_post_thumbnail($w_arr['Winner'],'thumb-480'); ?>
-				<span class="badge winner">Winner</span>		
+				<span class="badge winner">Judges’ Pick</span>		
 				<figcaption>		
 					<h2>
 						<a href="<?php echo get_author_posts_url( $w_arr['Winner'],get_the_author_meta( 'ID' ) )?>" rel="author">
@@ -40,7 +41,7 @@ endwhile; endif;
 		<div class="span4 1runner">
 			<figure>		
 			<?php echo get_the_post_thumbnail($w_arr['1st Runner-up'],'thumb-480'); ?>
-				<span class="badge winner">1st Runner-up</span>		
+				<span class="badge winner">2nd Place</span>		
 				<figcaption>		
 					<h2>
 						<a href="<?php echo get_author_posts_url( $w_arr['1st Runner-up'],get_the_author_meta( 'ID' ) ) ?>" rel="author">
@@ -57,7 +58,7 @@ endwhile; endif;
 		<div class="span4 2runner">
 			<figure>		
 			<?php echo get_the_post_thumbnail($w_arr['2nd Runner-up'],'thumb-480'); ?>
-				<span class="badge winner">2nd Runner-up</span>		
+				<span class="badge winner">3rd Place</span>		
 				<figcaption>		
 					<h2>
 						<a href="<?php echo get_author_posts_url( $w_arr['2nd Runner-up'],get_the_author_meta( 'ID' ) ) ?>" rel="author">
@@ -75,7 +76,7 @@ endwhile; endif;
 	</div>
 </div>
 
-<div class="container">
+<div class="container album-lists">
 	<div class="row-fluid filter-container">
 		<div class="filterbox span3"><?php echo do_shortcode( '[searchandfilter id="133"]' ); ?></div>
 		<?php if ( current_user_can( 'judge' ) ) : ?>
@@ -91,18 +92,17 @@ endwhile; endif;
 	</div>
 
 	<?php if ( have_posts() ) : ?>
-		<div class="row-fluid album-lists clearfix">
+		<div class="row-fluid  clearfix">
 			<?php
 				while ( have_posts() ) : the_post();
 					get_template_part( 'content-albums_collection' );
 				endwhile;
-				
-			?>
+			?>			
 		</div>
 	<?php endif; 
 	 if ( function_exists( 'aero_page_navi' ) ) 				
 				aero_page_navi()
 	?>
-
+	</div>
 </div>
 <?php get_footer();

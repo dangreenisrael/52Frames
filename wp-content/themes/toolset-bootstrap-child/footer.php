@@ -77,5 +77,4 @@
 <?php wp_footer(); ?>
 <?php do_action( 'wpbootstrap_after_wp_footer' ); ?>
 </body>
-<!--/div-->
 </html>

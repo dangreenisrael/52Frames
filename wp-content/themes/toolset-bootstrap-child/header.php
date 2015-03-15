@@ -42,7 +42,6 @@
 
 </script>
 </head>
-<!--div class="js"-->
 <body <?php body_class(); ?>>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -52,7 +51,7 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=422585397892387&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div id="preloader"></div>
+
 	<?php do_action( 'wpbootstrap_before_container' ); ?>
 
 	<?php 

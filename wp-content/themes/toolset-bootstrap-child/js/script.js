@@ -53,7 +53,15 @@
         scrollTop: $("#comments-title").offset().top
     	}, 500);
 	});
-
+	  var $images = $('.album-lists img');
+	  var loaded_images_count = 0;
+		$images.load(function(){
+    		loaded_images_count++;
+    		if (loaded_images_count == $images.length) {
+			$('#preloader').fadeOut('slow',function(){$(this).remove();});
+			$('#main').css('height','auto');
+		}
+	});  
 	function setHeight() {
 		 topBarHeight = $('#ehu-bar').height();
 		 headerHeight = $('#header').height();

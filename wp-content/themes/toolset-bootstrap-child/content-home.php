@@ -152,7 +152,7 @@
               ?>
 
             <div class="row-fluid stats">
-                <div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Challenges</a></div>
+                <div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Albums</a></div>
                 <div class="container hidden-phone">
                   <div class="counters-hp">
                     <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="18367" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>

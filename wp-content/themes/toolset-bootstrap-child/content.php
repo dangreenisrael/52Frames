@@ -48,13 +48,13 @@
 	            </div>
 	            <div class="description span9">
 	            	<h2 class="title"><?php the_author(); ?></h2>
-	             	 <?php the_author_meta("description"); ?>
-	             	 <?php if (get_the_author_meta('user_url') ) { 
+	            	 <?php if (get_the_author_meta('user_url') ) { 
 	             		 $website = get_the_author_meta('url');
-	             		 $author = get_the_author();
-        					echo '<a href="'.$website.'" target="_blank">Visit ' . $author . ' Website.</a>';
+						 $website1 = preg_replace('#^https?://#', '', $website);
+        					echo '<a href="'.$website.'" target="_blank">'.$website1 .'</a>';
 					    } 
 					 ?>
+	             	 <?php the_author_meta("description"); ?>
 	            </div>
           </div>
 	<?php  endif; ?>
