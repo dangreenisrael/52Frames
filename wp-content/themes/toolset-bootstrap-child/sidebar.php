@@ -24,7 +24,7 @@
 		dynamic_sidebar( 'Sidebar' );
 	 endif; ?>
 	 <aside class="contribute">	
-		<p>Want to share some photo goodness?</p>
+		<p><i class="fa fa-bullhorn"></i> Want to share some photo goodness?</p>
 		 <a href="<?php echo get_page_link(3100); ?>"> Be a featured guest blogger!</a>
 
 	</aside>

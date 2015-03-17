@@ -59989,11 +59989,11 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/wp-content\/themes\/toolset-bootstrap-child\/content-home.php": {
+	"\/wp-content\/themes\/toolset-bootstrap-child\/content-home1.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/content-home.php",
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/content-home1.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0

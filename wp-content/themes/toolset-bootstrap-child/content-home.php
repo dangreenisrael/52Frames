@@ -67,7 +67,7 @@
                      } else {
                        $submit = get_page_link(57);
                       } 
-                      $submit = get_page_link(3437);
+                      $submit = get_page_link(3753);
                       ?>
                       <div class="camera-action">
                         <a class="red-circle" href="<?php echo $submit ?>">
