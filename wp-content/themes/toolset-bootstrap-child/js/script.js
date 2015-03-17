@@ -28,7 +28,7 @@
          }
 	});
 	 
-	 $('a[href^="#"]').on('click',function (e) {
+	 $('.entry-content a[href^="#"]').on('click',function (e) {
 	    e.preventDefault();
 
 	    var target = this.hash;
