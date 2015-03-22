@@ -29,7 +29,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 		block_page($album_slug);
 	?>
 
-<div class="photo-content">
+<div class="photo-content entry-content">
 	<div class="row container">
 		<div class="photo-nav prev">
 			<?php $id = get_adjacent_id_smart( true ); ?>
