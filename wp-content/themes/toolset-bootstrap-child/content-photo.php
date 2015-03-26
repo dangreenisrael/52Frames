@@ -55,7 +55,15 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 		</div>
 		<div class="span4">
 			<div class="photo-description">
-				
+				<div class="nudity-filter">
+				<label>Display Nudity</label>
+			    <div class="toggle-container">
+			       <input id="toggle-on" class="toggle toggle-left" name="toggle" type="radio" checked>
+			       <label for="toggle-on" class="btn">On</label>
+			       <input id="toggle-off" class="toggle toggle-right" name="toggle" type="radio">
+			       <label for="toggle-off" class="btn">Off</label>
+			    </div>
+			</div>
 				<div id="author_det" class="clearfix">
 
 					<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author">
@@ -67,7 +75,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 							<?php echo the_author_meta('first_name'); ?> <?php echo the_author_meta('last_name'); ?>
 							</a>
 						</h2>
-						<input type="button" class="follow" value="Follow" data-author="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" />
+						<input type="button" class="follow" value="Follow" data-author="<?php echo $author_id; ?>" />
 					</div>
 				</div>
 

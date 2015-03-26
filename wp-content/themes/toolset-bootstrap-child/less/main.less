@@ -256,6 +256,7 @@ body:not(.page-template-page-home-php) #main{
 	}
 	&.big,&.vc_btn-lg,&.button-primary,&.gform_button{padding:12px 30px;font-size:20px;}
 }
+.login-submit input{background-color: @sub-color;color:#fff!important;}
 .button:hover,.vc_btn:hover{
 	text-decoration: none;
 	opacity:0.8;
@@ -1348,23 +1349,51 @@ input[type="file"] {
 	}
 /** REGISTER TEMPLATE ***/
 .page-template-page-register-php{
+	position:relative;
+	.overlay{background: rgba(36, 45, 54,0.7)}
 	#ehu-bar{display:none;}
 	background:url('../images/register-pic.jpg') no-repeat center top;
 	background-attachment: fixed;
 	background-size: cover;
 	.article-header{text-align:center}
 	#content{margin-top:-10px;}
-	.container{		
+	.container{	
+		position:relative;	
 		.entry-content {
 			background: rgba(30,42,55,0.68);
 			border-radius: 7px;
 			color:#fff;
 		}
-	@media (min-width: 980px){
-		width:940px;
-		.entry-content{
-			padding:40px 100px;
+		&.mini{
+			.logo{
+			 	display: block;
+				padding: 20px 0;
+				background: @theme-dark;
 			}
+			.entry-content{
+				padding:50px;
+				background:#fff; 
+				h1{
+					color:@text-color;
+					font-size:24px;
+					font-weight:400;
+				}
+				.wppb-user-forms #loginform{
+					input:not([type="submit"]){color:@text-color !important}
+				}
+			}
+		}
+	@media (min-width: 980px){
+		&.wide{
+			width:940px;
+			.entry-content{
+				padding:40px 100px;
+			}
+		}
+		&.mini{
+			width:470px;
+		}
+		
 		}
 	}
 	h1,h2,h3{
@@ -1455,7 +1484,24 @@ input[type="file"] {
 }
 
 /****** ALBUM PAGE **********/
+.nudity-filter{
+	input[type="radio"].toggle {
+	    position: absolute;
+	    left: -99em;
+	}
 
+	input[type="radio"].toggle + label {
+	    display:inline-block;
+	    text-align:center;
+	    padding:3px 0px;
+	    width:2.0em;
+	}
+	 input[type="radio"].toggle.checked + label {
+	    background-color:#404040;
+	    background-image:none !important;
+	    color:#F7F7F7;
+	}
+}
 .tax-photo_alboms{
 	#header{
 		height:440px;
@@ -1492,7 +1538,6 @@ input[type="file"] {
 	}
 	#main{
 		margin:0;
-		height:200px;
 		overflow:hidden;
 		position:relative;
 	}
@@ -1613,6 +1658,7 @@ input[type="file"] {
 			img {
 				-webkit-backface-visibility: hidden;
 				backface-visibility: hidden;
+				height:191px;
 			}
 			h2,p {
 				padding:5px 10px;
@@ -2273,6 +2319,7 @@ input[type="file"] {
 			color:@text-color;
 		}
 		.description{font-size:14px;}
+		.author-website{display:block;}
 	}
 
 /** sidebar  **/

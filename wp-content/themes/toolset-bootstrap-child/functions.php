@@ -55,6 +55,7 @@ add_image_size( 'thumb-780', 780, 520, true );
 add_image_size( 'thumb-640', 640, 427, true );
 add_image_size( 'thumb-480', 480, 320, true );
 add_image_size( 'thumb-440', 440, 250, true );
+add_image_size( 'thumb-300', 300, 200, true );
 
 add_filter( 'image_size_names_choose', 'aero_custom_image_sizes' );
 
@@ -66,6 +67,7 @@ function aero_custom_image_sizes( $sizes ) {
         'thumb-640' => __('640px by 427px'),
         'thumb-480' => __('480px by 320px'),
         'thumb-440' => __('440 by 250px'),
+        'thumb-300' => __('300 by 200px'),
     ) );
 }
 function get_active_album() {

@@ -27,7 +27,25 @@
            $(this).addClass('active');
          }
 	});
-	 
+	 /* var $images = $('.album-lists img');
+	  var loaded_images_count = 0;
+		$images.load(function(){
+    		loaded_images_count++;
+    		if (loaded_images_count == $images.length) {
+			$('#preloader').fadeOut('slow',function(){$(this).remove();});
+			$('#main').css('height','auto');
+		}
+		}); */
+
+		$('.nudity-filter').on('change', 'input[type="radio"].toggle', function () {
+	    if (this.checked) {
+	        $('input[name="' + this.name + '"].checked').removeClass('checked');
+	        $(this).addClass('checked');
+	        $('.toggle-container').addClass('force-update').removeClass('force-update');
+	    }
+		});
+		$('.nudity-filter input[type="radio"].toggle:checked').addClass('checked');
+
 	 $('.entry-content a[href^="#"]').on('click',function (e) {
 	    e.preventDefault();
 

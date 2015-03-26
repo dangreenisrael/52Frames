@@ -51,7 +51,7 @@
 	            	 <?php if (get_the_author_meta('user_url') ) { 
 	             		 $website = get_the_author_meta('url');
 						 $website1 = preg_replace('#^https?://#', '', $website);
-        					echo '<a href="'.$website.'" target="_blank">'.$website1 .'</a>';
+        					echo '<a class="author-website" href="'.$website.'" target="_blank">'.$website1 .'</a>';
 					    } 
 					 ?>
 	             	 <?php the_author_meta("description"); ?>

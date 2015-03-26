@@ -67,7 +67,7 @@
                      } else {
                        $submit = get_page_link(57);
                       } 
-                      $submit = get_page_link(3753);
+                      $submit = get_page_link(3437);
                       ?>
                       <div class="camera-action">
                         <a class="red-circle" href="<?php echo $submit ?>">
@@ -112,16 +112,22 @@
 
                       $winner->the_post();
                       $term_link = get_field('fb_link', $cur_album);
+                      $blank = 'target="_blank"';
+                      if (empty($term_link)) {
+                        $term_link = get_term_link($cur_album, 'photo_alboms');
+                        $blank = '';
+                      }
+
                       $winner_name = get_field('winner_name', $cur_album);
 
                       echo '<div class="album">';
                       echo '<figure class="effect-albums">';
                       echo get_the_post_thumbnail(get_the_id(), 'thumb-480');
                       echo '<figcaption>';
-                      echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'" target="_blank">Week '.$curweek.'<span>'.$cur_album->name.'</span></a></h2>';
+                      echo '<h2><a class="album-name-hp" href="'.esc_url( $term_link ).'"'.$blank.' >Week '.$curweek.'<span>'.$cur_album->name.'</span></a></h2>';
                       echo '<p class="winner"><span>Photo by: '. $winner_name ./*.get_the_author_meta('display_name', $post->post_author).*/'</span></p>';
                       echo '</figcaption>';
-                      echo '<a class="view" href="'.$term_link.'" target="_blank">View more</a>'; 
+                      echo '<a class="view" href="'.$term_link.'" '.$blank.'>View more</a>'; 
                       echo '</figure>' ;
                       echo '</div>';
                       wp_reset_postdata();
@@ -131,34 +137,24 @@
             </div>   
               <?php
               // count posts
-              $n_post = wp_count_posts();
-              $n_post_publish = $n_post->publish;
-              $n_post_drafts = $n_post->draft;
-              // count pages
-              $n_page = wp_count_posts('page');
-              $n_page_publish = $n_page->publish;
-              $n_page_drafts = $n_page->draft;
+              
               // count custom post types
               $n_cpt = wp_count_posts('photo');
               $n_cpt_publish = $n_cpt->publish;
               $n_cpt_drafts = $n_cpt->draft;
-              // count comments
-              $n_comments = wp_count_comments();
-              $n_comments_moderated = $n_comments->moderated;
-              $n_comments_approved = $n_comments->approved;
-              $n_comments_spam = $n_comments->spam;
-              $n_comments_trash = $n_comments->trash;
-              $n_comments_total = $n_comments->total_comments;
+              
+              $n_terms = wp_count_terms('photo_alboms');
+              $n_users = count_users();;
               ?>
 
             <div class="row-fluid stats">
                 <div class="span12 text-center"><a class="button-challenges-hp" href="#">View All Albums</a></div>
                 <div class="container hidden-phone">
                   <div class="counters-hp">
-                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="18367" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
-                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="741" data-speed="5000"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
+                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="<?php echo $n_cpt_publish; ?>" data-speed="5000"></p><p><span class="counter-bottom">Photographs Submitted</span></p></div>
+                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="<?php echo $n_users['total_users']; ?>" data-speed="5000"></p><p><span class="counter-bottom">Photographers to Date</span></p></div>
                     <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="38" data-speed="5000"></p><p><span class="counter-bottom">Countries Represented</span></p></div>
-                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="217" data-speed="5000"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
+                    <div class="span3 counter-container text-center"><p class="timer count-title" id="count-number" data-to="<?php echo $n_terms ?>" data-speed="5000"></p><p><span class="counter-bottom">Weekly Challenges</span></p></div>
                   </div>
                </div>
             </div>
