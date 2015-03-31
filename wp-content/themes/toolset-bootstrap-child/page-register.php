@@ -43,7 +43,7 @@ Template Name: Register and Edit Profile
 <body <?php body_class(); ?>>
 	<div class="overlay"></div>
 	<?php $width = get_field('content_width')?>
-	<div class="container <?php echo ''.$width?>">	
+	<div class="container <?php echo $width ?>">	
 		<div class="row" id="main">
 			<?php do_action( 'wpbootstrap_before_content' ); ?>
 			<section class="row" id="content" role="main">

@@ -20,14 +20,26 @@ function enqueue_my_scripts() {
 	   	wp_enqueue_style( 'parent-style', get_stylesheet_directory_uri() . '/assets/styles.css' ); 
 		wp_enqueue_style( 'countdown', get_stylesheet_directory_uri() . '/assets/jquery.countdown.css' ); 
 
+		wp_enqueue_script('cookie', get_stylesheet_directory_uri() . '/js/jquery.cookie.js' ,array('jquery'));
 		wp_enqueue_script('script', get_stylesheet_directory_uri() . '/js/script.js' ,array('jquery'));
+		wp_localize_script( 'script', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 
+			'follownonce' => wp_create_nonce( 'myajax-follownonce' ),
+			'remove_follow_nonce' => wp_create_nonce( 'myajax-remove-follownonce' ) ) );
 		wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.countdown.js', array('jquery') ); 
-		wp_enqueue_script( 'countdown', get_stylesheet_directory_uri() . '/js/jquery.counterup.min.js', array('jquery') );
+		wp_enqueue_script( 'countup', get_stylesheet_directory_uri() . '/js/jquery.counterup.min.js', array('jquery') );
 		wp_enqueue_script('fullsizable',get_stylesheet_directory_uri() . '/js/jquery.fullsizable-min.js' ,array('jquery'), true);
 	}
 }
 
 
+// function photo_url_struct() {
+// 	// add to our plugin init function
+// 	global $wp_rewrite;
+// 	$gallery_structure = '/%year%/%monthnum%/%gallery%';
+// 	$wp_rewrite->add_rewrite_tag("%gallery%", '([^/]+)', "gallery=");
+// 	$wp_rewrite->add_permastruct('gallery', $gallery_structure, false);
+// }
+// add_action('init', 'photo_url_struct');
 /** Add Bottom Menu **/
 
 function register_my_menu() {
@@ -504,3 +516,144 @@ function wpse_139269_term_radio_checklist( $args ) {
 }
 
 add_filter( 'wp_terms_checklist_args', 'wpse_139269_term_radio_checklist' );
+
+add_action( 'wp_ajax_nopriv_add_follow', 'ajax_add_follow' );
+add_action( 'wp_ajax_add_follow', 'ajax_add_follow' );
+ 
+function ajax_add_follow() {
+	$nonce = $_POST['nonce'];
+	 
+    if ( ! wp_verify_nonce( $nonce, 'myajax-follownonce' ) ) {
+        die ( 'Busted!');
+    }
+
+    if(!empty($_POST['follower']) && !empty($_POST['subject'])) {
+    	if (is_following($_POST['subject'], $_POST['follower']))
+    		return 'success';
+
+    	$followers = get_user_meta( $_POST['subject'], 'followers', true);
+    	$followers = explode(',', $followers);
+    	$followers[] = $_POST['follower'];
+    	update_user_meta( $_POST['subject'], 'followers', implode(',', $followers));
+
+    	$following = get_user_meta( $_POST['follower'], 'following', true);
+    	$following = explode(',', $following);
+    	$following[] = $_POST['subject'];
+    	update_user_meta( $_POST['follower'], 'following', implode(',', $following));
+    	echo 'success';
+    	die();
+    }	
+    echo 'fail';
+    die();
+}
+
+add_action( 'wp_ajax_nopriv_remove_follow', 'ajax_remove_follow' );
+add_action( 'wp_ajax_remove_follow', 'ajax_remove_follow' );
+function ajax_remove_follow() {
+	$nonce = $_POST['nonce'];
+	 
+    if ( ! wp_verify_nonce( $nonce, 'myajax-remove-follownonce' ) ) {
+        die ( 'Busted!');
+    }
+
+    if(!empty($_POST['follower']) && !empty($_POST['subject'])) {
+    	if (!(is_following($_POST['subject'], $_POST['follower'])))
+    		return 'success';
+
+    	$followers = get_user_meta( $_POST['subject'], 'followers', true);
+    	$followers = explode(',', $followers);
+    	$followers = array_diff($followers, array($_POST['follower']));
+    	update_user_meta( $_POST['subject'], 'followers', implode(',', $followers));
+
+    	$following = get_user_meta( $_POST['follower'], 'following', true);
+    	$following = explode(',', $following);
+    	$following = array_diff($following, array($_POST['subject']));
+    	update_user_meta( $_POST['follower'], 'following', implode(',', $following));
+    	echo 'success';
+    	die();
+    }	
+    echo 'fail';
+    die();
+}
+
+function is_following($photographer, $cur_user='') {
+	$cur_user = (empty($cur_user)) ? get_current_user_id() : $cur_user;
+	$following = get_user_meta( $cur_user, 'following', true);
+	$following = explode(',', $following);
+	return in_array($photographer, $following);
+}
+
+add_action( 'template_redirect', 'capx_template_redirect' );
+function capx_template_redirect() {
+	global $wp_query;
+
+	if ( false !== stripos( $_SERVER['REQUEST_URI'], '/author' ) && empty( $wp_query->posts ) ) {
+		$wp_query->is_404 = false;
+		get_template_part( 'author' );
+		exit;
+	}
+
+}
+
+
+function get_lists_arr() {
+	return array('follow' => 'Photographers I Follow', 'top52' =>'Top 52');
+}
+
+function get_photo_type_arr() {
+	return $photo_type = array('street' => 'Street Photography', 'abstract' =>'Abstract', 
+		'portrait' => 'Portrait/Self-Portrait', 'landscape' => 'Landscape', 
+		'blacknwhite' => 'Black and white' 
+		);
+}
+
+function album_query_args($exclude) {
+	$args = array('post_type' => 'photo', 'photo_alboms' => get_queried_object()->slug, 
+		'paged' => get_query_var('paged'), 'post__not_in' => array_values($exclude));
+	if (isset($_GET['sortorder'])) {
+		switch ($_GET['sortorder']) {
+			case 'date':
+				$args['orderby'] = 'date';
+				$args['order'] = 'ASC';
+			case 'title':
+				$args['orderby'] = 'title';
+				$args['order'] = 'ASC';
+				break;
+			case 'zilla_likes':
+				$args['orderby'] = 'meta_value_num';
+				$args['meta_key'] = '_zilla_likes';
+				$args['order'] = 'DESC';
+				break;
+			case 'rating':
+				$args['orderby'] = 'meta_value_num';
+				$args['meta_key'] = 'ratings_users';
+				$args['order'] = 'DESC';
+				break;
+		}
+	}
+
+	if (isset($_GET['filterby'])) {
+		switch ($_GET['filterby']) {
+			case 'follow':
+				$uid = get_current_user_id();
+				$following = get_user_meta( $uid, 'following', true ); 
+				$following = explode(',', $following);
+				$args['author__in'] = $following;
+				break;
+
+			case 'top52':
+				$args['orderby'] = 'meta_value_num';
+				$args['meta_key'] = '_zilla_likes';
+				$args['order'] = 'DESC';
+				break;
+		}
+	}
+
+	$args['meta_query'] = array();
+	if (isset($_GET['photo_type'])) {
+		
+		$args['meta_query'][] = array ('key' => 'wpcf-'.$_GET['photo_type'], 'value' => 1);
+	}
+
+	return $args;
+}

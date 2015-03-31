@@ -139,13 +139,14 @@
 					$user 			= get_user_by( 'id', $user_id );
 					$author_name	= $user->display_name;
 					$album 			= wp_get_post_terms(get_the_ID(),'photo_alboms')[0];
-					$week_num	= get_field('week_number',$album);
+					$album_link		= get_term_link($album);
+					$week_num		= get_field('week_number',$album);
 					$author_pic		= get_avatar( $user->ID, '70');
 					$album_name 	= $album->name;
 					$album_slug 	= $album->slug;
 					$extra_credit	= get_post_meta(get_the_id(), 'wpcf-extra-challenge', true );
 				 ?>
-					<h1><?php echo 'Week '.$week_num . ' <span>'.$album_name.'</span>'?></h1>	
+					<h1><a href="<?php echo $album_link ?>"><?php echo 'Week '.$week_num . ' <span>'.$album_name.'</span>'?></a></h1>	
 				<?php elseif(is_404()): ?>
 					<h1>404 - Page Not Found</h1>
 				<?php else: ?>
@@ -157,6 +158,32 @@
 
 	</header><!-- #header -->
 	
+	
+<?php
+// handle nudity
+$nudity_class = 'hide_nudity';
+$nudity = 0;
+if (is_user_logged_in()) {
+	global $current_user;
+    get_currentuserinfo();
+	$nudity = get_user_meta($current_user->ID, 'show_nudity', true);
+	$nudity_class = ($nudity == 1) ? 'show_nudity' : 'hide_nudity';
+} else {
+	$nudity = $_COOKIE["show_nudity"];
+	$nudity_class = ($nudity == 1) ? 'show_nudity' : 'hide_nudity';
+}
+	?>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		<?php if ($nudity ==  1)  { ?>
+		$('#main-container').addClass('show_nudity').removeClass('hide_nudity');
+		$('input[name=show_nudity]:nth(0)').prop('checked', true);
+		<?php } else { ?>
+		$('#main-container').addClass('hide_nudity').removeClass('show_nudity');
+		$('input[name=show_nudity]:nth(1)').prop('checked', true);
+		<?php } ?>
+	});
+</script>
 
 		<?php do_action( 'wpbootstrap_after_header' ); ?>
 	<div id="main-container" class="row-fluid">	

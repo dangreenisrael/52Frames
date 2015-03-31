@@ -27,6 +27,18 @@
            $(this).addClass('active');
          }
 	});
+	 $('.main-content a[href^="#"]').on('click',function (e) {
+	    e.preventDefault();
+
+	    var target = this.hash;
+	    var $target = $(target);
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});
 	 /* var $images = $('.album-lists img');
 	  var loaded_images_count = 0;
 		$images.load(function(){
@@ -46,18 +58,7 @@
 		});
 		$('.nudity-filter input[type="radio"].toggle:checked').addClass('checked');
 
-	 $('.entry-content a[href^="#"]').on('click',function (e) {
-	    e.preventDefault();
-
-	    var target = this.hash;
-	    var $target = $(target);
-
-	    $('html, body').stop().animate({
-	        'scrollTop': $target.offset().top
-	    }, 900, 'swing', function () {
-	        window.location.hash = target;
-	    });
-	});
+	 
 
 	 $('a.fullsizable').fullsizable();
 
@@ -84,6 +85,17 @@
  		   setHeight();
   		});
 		
+	   $('.latest-albums .album').hover(function() {        
+			 var winnerHeight = $(this).find('.winner').height() + 12;		
+	        $(this).find('h2').css({transform: "translate3d(0, "+ (- winnerHeight) + "px, 0)"});		
+	    },function(){		
+	    $(this).find('h2').css({transform: "translate3d(0, 0, 0)"});		
+	    });		
+	    $('.vote-up').each(function() {		
+	     var text = $(this).text();		
+	     $(this).html(text.replace('▲', '<i class="fa fa-thumbs-up"></i>'));		
+	    });
+
 		function convertToServerTimeZone(){
 
 	    //EST

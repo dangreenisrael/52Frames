@@ -62,6 +62,17 @@
 				</div>
 				<div class="container-fluid bottom-footer">
 					<div class="container ">
+						<div class="press"> 
+							<h4>As Featured In:</h4>
+							<a href=" http://www.buzzfeed.com/ryanhatesthis/dont-expect-me-to-feed-my-kid-there" target="_blank">
+								<img src="<?php echo get_stylesheet_directory_uri()?>/images/buzzfeed.png"/>
+							</a>
+							<img src="<?php echo get_stylesheet_directory_uri()?>/images/upworthy.png"/>
+							<img src="<?php echo get_stylesheet_directory_uri()?>/images/huffington.png"/>
+							<img src="<?php echo get_stylesheet_directory_uri()?>/images/yahoo.png"/>							
+							<img src="<?php echo get_stylesheet_directory_uri()?>/images/abc.png"/>
+							<img src="<?php echo get_stylesheet_directory_uri()?>/images/usaToday.png"/>
+						</div> 
 						<div class="footer-menu pull-left"><?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?></div>
 						<div class="pull-right"><?php echo of_get_option('display_credit_footer_right'); ?></div>
 					</div>

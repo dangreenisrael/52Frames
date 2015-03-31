@@ -59859,6 +59859,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/wp-content\/themes\/content-home.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/content-home.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/wp-content\/themes\/index.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -59867,6 +59876,28 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/wp-content\/themes\/min\/script-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/min\/script-min.js",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/min\/min\/script-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/wp-content\/themes\/script.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/script.js",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/min\/script-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/2013-08-26-USAHomelessAtlGA_2011611Holland779Dr_.jpg": {
 		"fileType": 16384,
@@ -60097,6 +60128,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/abc.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2950,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/abc.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/abc.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/album-bg.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -60126,6 +60168,17 @@
 		"initialSize": 80952,
 		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/blog_header.jpg",
 		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/blog_header.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/buzzfeed.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4505,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/buzzfeed.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/buzzfeed.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -60181,6 +60234,17 @@
 		"initialSize": 75801,
 		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/home-video.jpg",
 		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/home-video.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/huffington.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2839,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/huffington.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/huffington.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -60262,6 +60326,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/nudity-placeholder.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 38737,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/nudity-placeholder.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/nudity-placeholder.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/register-pic.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -60280,6 +60355,39 @@
 		"initialSize": 433530,
 		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/submition-pic.jpg",
 		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/submition-pic.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/upworthy.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 7842,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/upworthy.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/upworthy.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/usaToday.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 5337,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/usaToday.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/usaToday.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/wp-content\/themes\/toolset-bootstrap-child\/images\/yahoo.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9491,
+		"inputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/yahoo.png",
+		"outputAbbreviatedPath": "\/wp-content\/themes\/toolset-bootstrap-child\/images\/yahoo.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0

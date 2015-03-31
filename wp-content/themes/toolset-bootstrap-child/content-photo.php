@@ -19,17 +19,18 @@ $camera_model  = types_render_field("camera-model", array("show_name"=>"true","o
 $lens  = types_render_field("lens", array("show_name"=>"true","output"=>"raw","id"=>"lens"));
 $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw","id"=>"flash"));
 
+$ad_photo = get_post_meta(get_the_id(), 'ad_photo', true );
+if ($ad_photo) $ad_class = 'ad_photo';
 ?>
 
 
-<article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
-
+<article <?php post_class('clearfix main-content '.$ad_class) ?> id="post-<?php the_ID(); ?>">
 
 	<?php
 		block_page($album_slug);
 	?>
 
-<div class="photo-content entry-content">
+<div class="photo-content">
 	<div class="row container">
 		<div class="photo-nav prev">
 			<?php $id = get_adjacent_id_smart( true ); ?>
@@ -40,10 +41,13 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 
 				<div class="entry-content clearfix">	
 
-				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): ?>
+				<?php if ( has_post_thumbnail() && wpbootstrap_get_setting('general_settings','display_thumbnails') ): 
+					$nudity = get_post_meta( get_the_id(), 'wpcf-this-photo-contains-nudity', true);
+					$nude = ($nudity != 0) ? 'nude' : '';
+				?>
 					
 
-						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),'full'); ?>' class='fullsizable'><?php the_post_thumbnail('thumb-h545'); ?></a>
+						<a href='<?php echo wp_get_attachment_url(get_post_thumbnail_id(),'full'); ?>' class='fullsizable <?php echo $nude; ?>'><?php the_post_thumbnail('thumb-h545'); ?></a>
 
 
 				<?php endif; ?>
@@ -57,10 +61,10 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 			<div class="photo-description">
 				<div class="nudity-filter">
 				<label>Display Nudity</label>
-			    <div class="toggle-container">
-			       <input id="toggle-on" class="toggle toggle-left" name="toggle" type="radio" checked>
+			    <div class="toggle-container" id='nudity-toggle'>
+			       <input type="radio" id="toggle-on" class="toggle toggle-left" name="show_nudity" value='on'  >
 			       <label for="toggle-on" class="btn">On</label>
-			       <input id="toggle-off" class="toggle toggle-right" name="toggle" type="radio">
+			       <input id="toggle-off" class="toggle toggle-right" name="show_nudity" value='off' type="radio" checked>
 			       <label for="toggle-off" class="btn">Off</label>
 			    </div>
 			</div>
@@ -75,20 +79,32 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 							<?php echo the_author_meta('first_name'); ?> <?php echo the_author_meta('last_name'); ?>
 							</a>
 						</h2>
-						<input type="button" class="follow" value="Follow" data-author="<?php echo $author_id; ?>" />
+						<?php 
+						$followid = 'follow';
+						$text = 'Follow';
+						if (is_user_logged_in() ) {
+							if (is_following($author_id)) {
+								$followid = 'unfollow';
+								$text = 'UnFollow';
+							}
+						 	?>
+							<input id='<?php echo $followid ?>' type="button" class="follow" value="<?php echo $text; ?>" data-author="<?php echo $author_id; ?>" data-user='<?php echo get_current_user_id(); ?>'/>
+						<?php } ?>
 					</div>
 				</div>
 
 				
-
+				<?php 
+				$costume = get_post_custom(get_the_id()); 
+				?>
 				<h1><?php the_title(); ?></h1>
 				<?php if( get_field('winner_photo') ):
 				 if (get_field('first_place') == 'Winner') {
 						echo 'Winner';
 					} else if (get_field('first_place') == '1st Runner-up') {
-					         echo '1st Runner-up';
+					    echo '1st Runner-up';
 					} else if (get_field('first_place') == '2nd Runner-up') {
-					       echo '2nd Runner-up';
+					    echo '2nd Runner-up';
 					}
 				endif;
 				?>
@@ -99,7 +115,7 @@ $flash  = types_render_field("flash", array("show_name"=>"true","output"=>"raw",
 					
 					if ($for_sale != '') 
 						echo '<a class="ico buy" href="">Buy Photo</a>';
-
+						gravity_form('1', false, false, false, '', true, 1);
 					?>
 				<span class="ico rating"><?php echo do_shortcode('[display_rating_result  no_rating_results_text="Add Rating" show_rich_snippets="true" show_count="true" show_title="false"]');?></span>
 				</div>

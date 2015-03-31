@@ -4,15 +4,18 @@
  *
  */
 ?>
-<?php $nudity = get_post_meta( get_the_id(), 'wpcf-this-photo-contains-nudity', true);
-	$nude = '';
-	if ($nudity != 0) $nude = "nude" ;
+<?php 
+$nudity = get_post_meta( get_the_id(), 'wpcf-this-photo-contains-nudity', true);
+$nude = ($nudity != 0) ? "nude" : '';
+
+$ad_photo = get_post_meta(get_the_id(), 'ad_photo', true );
+$ad_class = ($ad_photo) ? 'ad_photo' : '';
 ?>
 <div class="span3">
-	<article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
+	<article <?php post_class('clearfix '.$ad_class) ?> id="post-<?php the_ID(); ?>">
 		<figure>
 			<a href="<?php the_permalink(); ?>" class="<?php echo $nude ?>">
-				<?php the_post_thumbnail('thumb-480'); ?>			
+				<?php the_post_thumbnail('thumb-300'); ?>			
 			</a>
 			<figcaption>		
 				<h2><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) )?>" rel="author">

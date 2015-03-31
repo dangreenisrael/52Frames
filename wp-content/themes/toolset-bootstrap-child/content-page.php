@@ -9,9 +9,6 @@
 	.entry-content .featured-columns .wpb_text_column:before{
 		top:-12px;
 	}
-	.entry-content .featured-columns .wpb_text_column{
-		margin-bottom:40px;
-	}
 }
 </style>
 <article <?php post_class('clearfix') ?> id="post-<?php the_ID(); ?>">
